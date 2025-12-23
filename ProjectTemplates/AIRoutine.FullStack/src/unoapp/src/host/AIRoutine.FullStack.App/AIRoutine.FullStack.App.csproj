@@ -39,9 +39,9 @@
 
   <ItemGroup>
     <!-- Framework References - relative to fullstack root -->
-    <ProjectReference Include="..\..\..\..\framework\src\UnoFramework\UnoFramework.csproj" />
-    <ProjectReference Include="..\..\..\..\framework\src\UnoFramework.Contracts\UnoFramework.Contracts.csproj" />
-    <ProjectReference Include="..\..\..\..\framework\src\UnoFramework.Generators\UnoFramework.Generators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\..\..\..\..\framework\src\UnoFramework\UnoFramework.csproj" />
+    <ProjectReference Include="..\..\..\..\..\framework\src\UnoFramework.Contracts\UnoFramework.Contracts.csproj" />
+    <ProjectReference Include="..\..\..\..\..\framework\src\UnoFramework.Generators\UnoFramework.Generators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
   </ItemGroup>
 
 </Project>
