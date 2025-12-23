@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "AIRoutine",
+  "classifications": ["Uno", "MAUI", "Mobile", "Desktop", "WASM"],
+  "identity": "AIRoutine.UnoApp.CSharp",
+  "name": "AIRoutine Uno Platform App",
+  "shortName": "airoutine-uno",
+  "sourceName": "AIRoutine.UnoApp",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "preferNameDirectory": true,
+  "primaryOutputs": [
+    {
+      "path": "AIRoutine.UnoApp.slnx"
+    }
+  ],
+  "postActions": [
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "description": "Initialize UnoFramework git submodule",
+      "manualInstructions": [
+        {
+          "text": "Run: git submodule add https://github.com/AIRoutine/UnoFramework.git framework && git submodule update --init --recursive"
+        }
+      ],
+      "continueOnError": true,
+      "args": {
+        "executable": "git",
+        "args": "submodule add https://github.com/AIRoutine/UnoFramework.git framework"
+      }
+    }
+  ]
+}

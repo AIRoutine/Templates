@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <PackageReference Include="AIRoutine.CodeStyle.AspNetCore" PrivateAssets="all" />
+    <PackageReference Include="Shiny.Mediator.Contracts" />
+  </ItemGroup>
+
+</Project>

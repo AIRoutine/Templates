@@ -1,0 +1,32 @@
+<UserControl x:Class="AIRoutine.UnoApp.Presentation.Shell"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="using:AIRoutine.UnoApp.Presentation"
+             xmlns:utu="using:Uno.Toolkit.UI">
+
+  <Border Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <utu:ExtendedSplashScreen x:Name="Splash"
+                              HorizontalAlignment="Stretch"
+                              VerticalAlignment="Stretch"
+                              HorizontalContentAlignment="Stretch"
+                              VerticalContentAlignment="Stretch">
+      <utu:ExtendedSplashScreen.LoadingContentTemplate>
+        <DataTemplate>
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="2*" />
+              <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <ProgressRing IsActive="True"
+                          Grid.Row="1"
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Center"
+                          Height="80"
+                          Width="80" />
+          </Grid>
+        </DataTemplate>
+      </utu:ExtendedSplashScreen.LoadingContentTemplate>
+    </utu:ExtendedSplashScreen>
+  </Border>
+</UserControl>

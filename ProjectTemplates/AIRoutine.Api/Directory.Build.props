@@ -1,0 +1,9 @@
+<Project>
+  <PropertyGroup>
+    <NetVersion>net10.0</NetVersion>
+    <TargetFramework>$(NetVersion)</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/AIRoutine.Api/AIRoutine.Api.csproj" />
+    <Project Path="src/AIRoutine.Api.Contracts/AIRoutine.Api.Contracts.csproj" />
+    <Project Path="src/AIRoutine.Api.Handlers/AIRoutine.Api.Handlers.csproj" />
+  </Folder>
+</Solution>

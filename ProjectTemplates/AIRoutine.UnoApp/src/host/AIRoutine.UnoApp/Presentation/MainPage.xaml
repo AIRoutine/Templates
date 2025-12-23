@@ -1,0 +1,45 @@
+<Page x:Class="AIRoutine.UnoApp.Presentation.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:AIRoutine.UnoApp.Presentation"
+      xmlns:controls="using:UnoFramework.Controls"
+      xmlns:utu="using:Uno.Toolkit.UI"
+      NavigationCacheMode="Required"
+      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+  <controls:BusyOverlay IsBusy="{Binding IsBusy}" BusyMessage="{Binding BusyMessage}">
+    <Grid utu:SafeArea.Insets="VisibleBounds">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="*" />
+      </Grid.RowDefinitions>
+
+      <utu:NavigationBar Content="{Binding Title}" />
+
+      <StackPanel Grid.Row="1"
+                  Padding="16"
+                  VerticalAlignment="Center"
+                  HorizontalAlignment="Center"
+                  Spacing="16">
+
+        <TextBlock Text="Welcome to AIRoutine.UnoApp!"
+                   FontSize="24"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center" />
+
+        <TextBlock Text="This is a template with UnoFramework integrated."
+                   HorizontalAlignment="Center"
+                   Opacity="0.7" />
+
+        <Button Content="Click Me"
+                Command="{Binding ClickCommand}"
+                HorizontalAlignment="Center" />
+
+        <TextBlock Text="{Binding ClickCount, Converter={StaticResource NullToCollapsedConverter}}"
+                   HorizontalAlignment="Center"
+                   FontSize="18" />
+
+      </StackPanel>
+    </Grid>
+  </controls:BusyOverlay>
+</Page>

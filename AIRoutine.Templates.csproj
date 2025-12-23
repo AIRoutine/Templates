@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageType>Template</PackageType>
+    <PackageVersion>1.0.0</PackageVersion>
+    <PackageId>AIRoutine.Templates</PackageId>
+    <Title>AIRoutine Project Templates</Title>
+    <Authors>AIRoutine</Authors>
+    <Description>Project templates for AIRoutine ASP.NET API and Uno Platform applications</Description>
+    <PackageTags>dotnet-new;templates;api;uno;aspnetcore;mediator</PackageTags>
+    <PackageProjectUrl>https://github.com/AIRoutine/Templates</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+
+    <TargetFramework>netstandard2.0</TargetFramework>
+
+    <IncludeContentInPack>true</IncludeContentInPack>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <ContentTargetFolders>content</ContentTargetFolders>
+    <NoWarn>$(NoWarn);NU5128</NoWarn>
+    <NoDefaultExcludes>true</NoDefaultExcludes>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <LocalizeTemplates>false</LocalizeTemplates>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="ProjectTemplates\**\*" Exclude="ProjectTemplates\**\bin\**;ProjectTemplates\**\obj\**" />
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="**\*" />
+  </ItemGroup>
+
+</Project>
