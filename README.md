@@ -14,6 +14,7 @@ dotnet new install AIRoutine.Templates
 |----------|------------|-------------|
 | AIRoutine ASP.NET API | `airoutine-api` | ASP.NET Core API with Shiny.Mediator (CQRS pattern) |
 | AIRoutine Uno App | `airoutine-uno` | Uno Platform app with UnoFramework integration |
+| AIRoutine Full-Stack | `airoutine-fullstack` | Combined API + Uno App with shared configuration |
 
 ## Usage
 
@@ -32,6 +33,56 @@ dotnet new airoutine-uno -n MyApp
 cd MyApp
 git submodule update --init --recursive
 dotnet build
+```
+
+### Create a Full-Stack Project (API + Uno App)
+
+```bash
+dotnet new airoutine-fullstack -n MyProject
+cd MyProject
+git submodule update --init --recursive
+dotnet build
+```
+
+## Full-Stack Template Structure
+
+The `airoutine-fullstack` template creates a unified project with shared configuration:
+
+```
+MyProject/
+├── src/
+│   ├── api/                    # ASP.NET API
+│   │   ├── Directory.Build.props   (inherits from root)
+│   │   ├── Directory.Packages.props (inherits from root)
+│   │   └── src/
+│   │       ├── MyProject.Api/
+│   │       ├── MyProject.Api.Contracts/
+│   │       └── MyProject.Api.Handlers/
+│   │
+│   └── unoapp/                 # Uno Platform App
+│       ├── Directory.Build.props   (inherits from root)
+│       ├── Directory.Packages.props (inherits from root)
+│       ├── global.json
+│       └── src/host/MyProject.App/
+│
+├── framework/                  # UnoFramework (git submodule)
+├── Directory.Build.props       # Root - defines NetVersion
+├── Directory.Packages.props    # Root - central package versions
+└── MyProject.slnx
+```
+
+### Inheritance Hierarchy
+
+```
+Root Directory.Build.props (NetVersion = net10.0)
+  ↓ Inherited by
+  ├── src/api/Directory.Build.props
+  └── src/unoapp/Directory.Build.props
+
+Root Directory.Packages.props (all package versions)
+  ↓ Inherited by
+  ├── src/api/Directory.Packages.props
+  └── src/unoapp/Directory.Packages.props
 ```
 
 ## ASP.NET API Template Features

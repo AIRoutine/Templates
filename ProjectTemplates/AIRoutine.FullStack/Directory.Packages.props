@@ -1,0 +1,20 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <MicrosoftVersion>10.0.1</MicrosoftVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Shared packages -->
+    <PackageVersion Include="Shiny.Mediator" Version="6.0.1" />
+    <PackageVersion Include="Shiny.Mediator.Contracts" Version="6.0.1" />
+    <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+
+    <!-- API packages -->
+    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="$(MicrosoftVersion)" />
+    <PackageVersion Include="Scalar.AspNetCore" Version="2.11.10" />
+
+    <!-- Code Style -->
+    <PackageVersion Include="AIRoutine.CodeStyle.AspNetCore" Version="1.0.0" />
+  </ItemGroup>
+</Project>

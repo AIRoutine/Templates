@@ -1,0 +1,21 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".gitignore" />
+    <File Path=".gitmodules" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+  </Folder>
+  <Folder Name="/src/api/">
+    <Project Path="src/api/src/AIRoutine.FullStack.Api/AIRoutine.FullStack.Api.csproj" />
+    <Project Path="src/api/src/AIRoutine.FullStack.Api.Contracts/AIRoutine.FullStack.Api.Contracts.csproj" />
+    <Project Path="src/api/src/AIRoutine.FullStack.Api.Handlers/AIRoutine.FullStack.Api.Handlers.csproj" />
+  </Folder>
+  <Folder Name="/src/unoapp/">
+    <Project Path="src/unoapp/src/host/AIRoutine.FullStack.App/AIRoutine.FullStack.App.csproj" />
+  </Folder>
+  <Folder Name="/framework/">
+    <Project Path="framework/src/UnoFramework/UnoFramework.csproj" />
+    <Project Path="framework/src/UnoFramework.Contracts/UnoFramework.Contracts.csproj" />
+    <Project Path="framework/src/UnoFramework.Generators/UnoFramework.Generators.csproj" />
+  </Folder>
+</Solution>
