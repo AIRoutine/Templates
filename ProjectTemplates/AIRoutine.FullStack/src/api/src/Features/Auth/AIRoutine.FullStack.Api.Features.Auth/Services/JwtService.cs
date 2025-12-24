@@ -1,7 +1,8 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using AIRoutine.FullStack.Api.Features.Auth.Data;
+using AIRoutine.FullStack.Api.Core.Data;
+using AIRoutine.FullStack.Api.Features.Auth.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -15,9 +16,9 @@ public class JwtService
     readonly string issuer;
     readonly string audience;
     readonly string signingKey;
-    readonly AuthDbContext data;
+    readonly AppDbContext data;
 
-    public JwtService(IConfiguration cfg, AuthDbContext data)
+    public JwtService(IConfiguration cfg, AppDbContext data)
     {
         this.data = data;
 
@@ -57,10 +58,10 @@ public class JwtService
                 return false;
 
             var storeToken = await this.data
-                .RefreshTokens
+                .Set<RefreshToken>()
                 .Include(x => x.User)
                 .FirstOrDefaultAsync(
-                    x => x.Id == token,
+                    x => x.Token == token,
                     cancellationToken
                 );
 
@@ -104,10 +105,10 @@ public class JwtService
             new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
         );
 
-        this.data.RefreshTokens.Add(new RefreshToken
+        this.data.Set<RefreshToken>().Add(new RefreshToken
         {
-            Id = jwtString,
-            DateCreated = DateTimeOffset.UtcNow,
+            Id = Guid.NewGuid(),
+            Token = jwtString,
             UserId = user.Id
         });
         await data.SaveChangesAsync(cancellationToken);

@@ -11,6 +11,7 @@
     <Project Path="src/api/src/AIRoutine.FullStack.Api.Handlers/AIRoutine.FullStack.Api.Handlers.csproj" />
   </Folder>
   <Folder Name="/src/api/src/Core/">
+    <Project Path="src/api/src/Core/AIRoutine.FullStack.Api.Core.Data/AIRoutine.FullStack.Api.Core.Data.csproj" />
     <Project Path="src/api/src/Core/AIRoutine.FullStack.Api.Core.Startup/AIRoutine.FullStack.Api.Core.Startup.csproj" />
   </Folder>
   <Folder Name="/src/api/src/Features/Auth/">

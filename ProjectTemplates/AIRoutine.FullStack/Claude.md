@@ -46,6 +46,14 @@ AIRoutine.FullStack/
 │   │       │   └── {Feature}Handler.cs
 │   │       │
 │   │       ├── Core/
+│   │       │   ├── AIRoutine.FullStack.Api.Core.Data/     # Zentraler DbContext
+│   │       │   │   ├── AIRoutine.FullStack.Api.Core.Data.csproj
+│   │       │   │   ├── AppDbContext.cs                    # Multi-Provider DbContext
+│   │       │   │   ├── Configuration/
+│   │       │   │   │   └── ServiceCollectionExtensions.cs # AddAppData()
+│   │       │   │   └── Entities/
+│   │       │   │       └── BaseEntity.cs                  # Id, CreatedAt, UpdatedAt
+│   │       │   │
 │   │       │   └── AIRoutine.FullStack.Api.Core.Startup/  # API DI Setup
 │   │       │       ├── AIRoutine.FullStack.Api.Core.Startup.csproj
 │   │       │       └── ServiceCollectionExtensions.cs     # AddApiServices()
@@ -57,9 +65,12 @@ AIRoutine.FullStack/
 │   │               │   ├── Configuration/
 │   │               │   │   └── ServiceCollectionExtensions.cs  # AddAuthFeature()
 │   │               │   ├── Data/
-│   │               │   │   ├── AuthDbContext.cs
-│   │               │   │   ├── RefreshToken.cs
-│   │               │   │   └── User.cs
+│   │               │   │   ├── Entities/
+│   │               │   │   │   ├── User.cs                # : BaseEntity
+│   │               │   │   │   └── RefreshToken.cs        # : BaseEntity
+│   │               │   │   └── Configurations/
+│   │               │   │       ├── UserConfiguration.cs
+│   │               │   │       └── RefreshTokenConfiguration.cs
 │   │               │   └── Services/
 │   │               │       ├── IUserService.cs
 │   │               │       ├── JwtService.cs
@@ -127,8 +138,10 @@ src/api/src/Features/{FeatureName}/AIRoutine.FullStack.Api.Features.{FeatureName
 ├── Configuration/
 │   └── ServiceCollectionExtensions.cs    # Add{FeatureName}Feature()
 ├── Data/
-│   ├── {FeatureName}DbContext.cs         # EF Core DbContext
-│   └── {Entity}.cs                       # Entitäten
+│   ├── Entities/
+│   │   └── {Entity}.cs                   # : BaseEntity
+│   └── Configurations/
+│       └── {Entity}Configuration.cs      # IEntityTypeConfiguration<T>
 └── Services/
     ├── I{Service}.cs                     # Service-Interfaces
     └── {Service}.cs                      # Service-Implementierungen
@@ -159,8 +172,41 @@ Features werden in `Core.Startup/ServiceCollectionExtensions.cs` registriert:
 public static IServiceCollection AddApiServices(this IServiceCollection services, IConfiguration configuration)
 {
     services.AddShinyMediator();
-    services.Add{FeatureName}Feature(configuration);
+    services.AddAppData(configuration);  // Zentraler DbContext
+    services.Add{FeatureName}Feature();  // Feature Services
     return services;
+}
+```
+
+### Entity Configuration Pattern
+
+Entities erben von `BaseEntity` und werden via `IEntityTypeConfiguration<T>` konfiguriert:
+
+```csharp
+// In Feature ServiceCollectionExtensions.cs
+public static IServiceCollection Add{FeatureName}Feature(this IServiceCollection services)
+{
+    // Entity Configurations registrieren
+    AppDbContext.RegisterConfigurations(typeof({Entity}Configuration).Assembly);
+
+    // Services
+    services.AddScoped<I{Service}, {Service}>();
+    return services;
+}
+```
+
+### Datenbank-Konfiguration
+
+Der Datenbank-Provider wird in `appsettings.json` konfiguriert:
+
+```json
+{
+  "Database": {
+    "Provider": "sqlite"  // sqlite, postgresql, sqlserver
+  },
+  "ConnectionStrings": {
+    "DefaultConnection": "Data Source=app.db"
+  }
 }
 ```
 

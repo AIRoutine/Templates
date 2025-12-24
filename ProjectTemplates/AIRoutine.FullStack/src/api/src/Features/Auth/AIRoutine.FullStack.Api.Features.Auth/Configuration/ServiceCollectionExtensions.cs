@@ -1,18 +1,16 @@
-using AIRoutine.FullStack.Api.Features.Auth.Data;
+using AIRoutine.FullStack.Api.Core.Data;
+using AIRoutine.FullStack.Api.Features.Auth.Data.Configurations;
 using AIRoutine.FullStack.Api.Features.Auth.Services;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace AIRoutine.FullStack.Api.Features.Auth.Configuration;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddAuthFeature(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddAuthFeature(this IServiceCollection services)
     {
-        // Database
-        services.AddDbContext<AuthDbContext>(options =>
-            options.UseSqlite(configuration.GetConnectionString("AuthDb") ?? "Data Source=auth.db"));
+        // Register entity configurations
+        AppDbContext.RegisterConfigurations(typeof(UserConfiguration).Assembly);
 
         // Services
         services.AddScoped<JwtService>();
