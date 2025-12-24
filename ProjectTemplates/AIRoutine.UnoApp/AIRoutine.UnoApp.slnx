@@ -6,12 +6,10 @@
     <File Path="Directory.Packages.props" />
     <File Path="global.json" />
   </Folder>
-  <Folder Name="/src/">
-    <Project Path="src/host/AIRoutine.UnoApp/AIRoutine.UnoApp.csproj" />
-  </Folder>
-  <Folder Name="/framework/">
-    <Project Path="framework/src/UnoFramework/UnoFramework.csproj" />
-    <Project Path="framework/src/UnoFramework.Contracts/UnoFramework.Contracts.csproj" />
-    <Project Path="framework/src/UnoFramework.Generators/UnoFramework.Generators.csproj" />
+  <Project Path="AIRoutine.UnoApp/AIRoutine.UnoApp.csproj" />
+  <Folder Name="/subm/uno/">
+    <Project Path="subm/uno/src/UnoFramework/UnoFramework.csproj" />
+    <Project Path="subm/uno/src/UnoFramework.Contracts/UnoFramework.Contracts.csproj" />
+    <Project Path="subm/uno/src/UnoFramework.Generators/UnoFramework.Generators.csproj" />
   </Folder>
 </Solution>

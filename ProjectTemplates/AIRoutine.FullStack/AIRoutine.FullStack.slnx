@@ -13,9 +13,9 @@
   <Folder Name="/src/uno/">
     <Project Path="src/uno/AIRoutine.FullStack.App/AIRoutine.FullStack.App.csproj" />
   </Folder>
-  <Folder Name="/framework/">
-    <Project Path="framework/src/UnoFramework/UnoFramework.csproj" />
-    <Project Path="framework/src/UnoFramework.Contracts/UnoFramework.Contracts.csproj" />
-    <Project Path="framework/src/UnoFramework.Generators/UnoFramework.Generators.csproj" />
+  <Folder Name="/subm/uno/">
+    <Project Path="subm/uno/src/UnoFramework/UnoFramework.csproj" />
+    <Project Path="subm/uno/src/UnoFramework.Contracts/UnoFramework.Contracts.csproj" />
+    <Project Path="subm/uno/src/UnoFramework.Generators/UnoFramework.Generators.csproj" />
   </Folder>
 </Solution>

@@ -36,13 +36,13 @@
       "description": "Add UnoFramework git submodule",
       "manualInstructions": [
         {
-          "text": "Run: git submodule add https://github.com/AIRoutine/UnoFramework.git framework"
+          "text": "Run: git submodule add https://github.com/AIRoutine/UnoFramework.git subm/uno"
         }
       ],
       "continueOnError": true,
       "args": {
         "executable": "git",
-        "args": "submodule add https://github.com/AIRoutine/UnoFramework.git framework"
+        "args": "submodule add https://github.com/AIRoutine/UnoFramework.git subm/uno"
       }
     },
     {
