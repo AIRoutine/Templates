@@ -6,8 +6,8 @@
     <PackageId>AIRoutine.Templates</PackageId>
     <Title>AIRoutine Project Templates</Title>
     <Authors>AIRoutine</Authors>
-    <Description>Project templates for AIRoutine ASP.NET API and Uno Platform applications</Description>
-    <PackageTags>dotnet-new;templates;api;uno;aspnetcore;mediator</PackageTags>
+    <Description>Project template for AIRoutine FullStack application (ASP.NET API + Uno Platform)</Description>
+    <PackageTags>dotnet-new;templates;fullstack;api;uno;aspnetcore;mediator</PackageTags>
     <PackageProjectUrl>https://github.com/AIRoutine/Templates</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
