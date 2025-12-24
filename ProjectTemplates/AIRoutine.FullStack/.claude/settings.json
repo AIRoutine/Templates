@@ -1,0 +1,13 @@
+{
+  "extraKnownMarketplaces": {
+    "at-claude-plugins": {
+      "source": {
+        "source": "github",
+        "repo": "AIRoutine/at-claude-plugins"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "uno-dev@at-claude-plugins": true
+  }
+}
