@@ -1,9 +1,13 @@
 <Project Sdk="Uno.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>$(NetVersion)-android;$(NetVersion)-ios;$(NetVersion)-browserwasm;$(NetVersion)-desktop;$(NetVersion)</TargetFrameworks>
+    <TargetFrameworks>$(NetVersion)-android;$(NetVersion)-ios;$(NetVersion)-desktop;$(NetVersion)</TargetFrameworks>
+    <!-- browserwasm temporarily disabled due to Uno.Resizetizer/Wasm.Bootstrap compatibility issue with dev packages -->
 
     <OutputType>Exe</OutputType>
     <UnoSingleProject>true</UnoSingleProject>
+
+    <!-- Suppress IL2026 trimming warnings for Uno.Extensions -->
+    <NoWarn>$(NoWarn);IL2026;IL2104;IL2111</NoWarn>
 
     <!-- Display name -->
     <ApplicationTitle>AIRoutine.FullStack.App</ApplicationTitle>
@@ -35,6 +39,21 @@
 
   <ItemGroup>
     <PackageReference Include="AIRoutine.CodeStyle.Uno" PrivateAssets="all" />
+  </ItemGroup>
+
+  <!-- App Icon -->
+  <ItemGroup>
+    <UnoIcon Include="Assets\Icons\icon.svg" ForegroundFile="Assets\Icons\icon_foreground.svg" Color="#00000000" />
+  </ItemGroup>
+
+  <!-- Splash Screen -->
+  <ItemGroup>
+    <UnoSplashScreen Include="Assets\Splash\splash_screen.svg" Color="#7F7F7F" BaseSize="128,128" />
+  </ItemGroup>
+
+  <!-- WebAssembly AppManifest -->
+  <ItemGroup Condition="'$(TargetFramework)' == '$(NetVersion)-browserwasm'">
+    <EmbeddedResource Include="Platforms\WebAssembly\WasmScripts\AppManifest.js" />
   </ItemGroup>
 
   <ItemGroup>

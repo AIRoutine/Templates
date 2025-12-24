@@ -7,11 +7,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AIRoutine.FullStack.Api.Contracts\AIRoutine.FullStack.Api.Contracts.csproj" />
-    <ProjectReference Include="..\AIRoutine.FullStack.Api.Handlers\AIRoutine.FullStack.Api.Handlers.csproj" />
+    <ProjectReference Include="..\..\AIRoutine.FullStack.Api.Contracts\AIRoutine.FullStack.Api.Contracts.csproj" />
+    <ProjectReference Include="..\..\AIRoutine.FullStack.Api.Handlers\AIRoutine.FullStack.Api.Handlers.csproj" />
     <ProjectReference Include="..\AIRoutine.FullStack.Api.Core.Data\AIRoutine.FullStack.Api.Core.Data.csproj" />
-    <ProjectReference Include="..\Features\Auth\AIRoutine.FullStack.Api.Features.Auth\AIRoutine.FullStack.Api.Features.Auth.csproj" />
-    <ProjectReference Include="..\Features\Auth\AIRoutine.FullStack.Api.Features.Auth.Handlers\AIRoutine.FullStack.Api.Features.Auth.Handlers.csproj" />
+    <ProjectReference Include="..\..\Features\Auth\AIRoutine.FullStack.Api.Features.Auth\AIRoutine.FullStack.Api.Features.Auth.csproj" />
+    <ProjectReference Include="..\..\Features\Auth\AIRoutine.FullStack.Api.Features.Auth.Handlers\AIRoutine.FullStack.Api.Features.Auth.Handlers.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,16 +1,17 @@
+using AIRoutine.FullStack.Api.Core.Data;
 using AIRoutine.FullStack.Api.Features.Auth.Contracts.Mediator.Requests;
-using AIRoutine.FullStack.Api.Features.Auth.Data;
+using AIRoutine.FullStack.Api.Features.Auth.Data.Entities;
 using AIRoutine.FullStack.Api.Features.Auth.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace AIRoutine.FullStack.Api.Features.Auth.Handlers;
 
 [MediatorScoped]
-public class RefreshHandler(AuthDbContext data, JwtService jwtService) : IRequestHandler<RefreshRequest, RefreshResponse>
+public class RefreshHandler(AppDbContext data, JwtService jwtService) : IRequestHandler<RefreshRequest, RefreshResponse>
 {
     [MediatorHttpPost(
-        "RefreshAuth",
         "/auth/signin/refresh",
+        OperationId = "RefreshAuth",
         RequiresAuthorization = true
     )]
     public async Task<RefreshResponse> Handle(RefreshRequest request, IMediatorContext context, CancellationToken cancellationToken)
@@ -23,9 +24,9 @@ public class RefreshHandler(AuthDbContext data, JwtService jwtService) : IReques
             return RefreshResponse.Fail;
 
         var refreshToken = await data
-            .RefreshTokens
+            .Set<RefreshToken>()
             .Include(x => x.User)
-            .FirstOrDefaultAsync(x => x.Id == request.Token, cancellationToken);
+            .FirstOrDefaultAsync(x => x.Token == request.Token, cancellationToken);
 
         if (refreshToken == null)
             return RefreshResponse.Fail;

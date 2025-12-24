@@ -1,6 +1,7 @@
 using System.Security.Claims;
+using AIRoutine.FullStack.Api.Core.Data;
 using AIRoutine.FullStack.Api.Features.Auth.Contracts.Mediator.Requests;
-using AIRoutine.FullStack.Api.Features.Auth.Data;
+using AIRoutine.FullStack.Api.Features.Auth.Data.Entities;
 using AIRoutine.FullStack.Api.Features.Auth.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
@@ -10,14 +11,14 @@ namespace AIRoutine.FullStack.Api.Features.Auth.Handlers;
 
 [MediatorScoped]
 public class SignInHandler(
-    AuthDbContext data,
+    AppDbContext data,
     JwtService jwtService,
     IHttpContextAccessor httpAccessor
 ) : IRequestHandler<SignInRequest, SignInResponse>
 {
     [MediatorHttpPost(
-        "SignIn",
         "/auth/signin/mobile",
+        OperationId = "SignIn",
         AllowAnonymous = true
     )]
     public async Task<SignInResponse> Handle(SignInRequest request, IMediatorContext context, CancellationToken cancellationToken)
@@ -26,7 +27,7 @@ public class SignInHandler(
         if (request.Scheme.StartsWith("HACK:", StringComparison.InvariantCultureIgnoreCase))
         {
             var email1 = request.Scheme.Split(":")[1];
-            var user1 = await data.Users.FirstOrDefaultAsync(x => x.Email == email1, cancellationToken);
+            var user1 = await data.Set<User>().FirstOrDefaultAsync(x => x.Email == email1, cancellationToken);
 
             if (user1 == null)
                 return SignInResponse.Fail;
@@ -47,7 +48,7 @@ public class SignInHandler(
         var newUser = false;
         var claims = auth.Principal.Identities.FirstOrDefault()?.Claims.ToList();
         var email = claims?.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
-        var user = await data.Users.FirstOrDefaultAsync(x => x.Email == email, cancellationToken);
+        var user = await data.Set<User>().FirstOrDefaultAsync(x => x.Email == email, cancellationToken);
 
         if (user == null)
         {
@@ -55,10 +56,9 @@ public class SignInHandler(
             user = new User
             {
                 Id = Guid.NewGuid(),
-                Email = email,
-                DateCreated = DateTimeOffset.UtcNow
+                Email = email
             };
-            data.Users.Add(user);
+            data.Set<User>().Add(user);
         }
         user.FirstName = claims!.FirstOrDefault(x => x.Type == ClaimTypes.GivenName)?.Value ?? string.Empty;
         user.LastName = claims!.FirstOrDefault(x => x.Type == ClaimTypes.Surname)?.Value ?? string.Empty;
