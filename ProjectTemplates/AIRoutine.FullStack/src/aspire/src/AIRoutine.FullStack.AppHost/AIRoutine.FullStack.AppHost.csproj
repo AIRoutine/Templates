@@ -21,6 +21,8 @@
   <ItemGroup>
     <ProjectReference Include="..\AIRoutine.FullStack.ServiceDefaults\AIRoutine.FullStack.ServiceDefaults.csproj" IsAspireProjectResource="false" />
     <ProjectReference Include="..\..\..\api\src\AIRoutine.FullStack.Api\AIRoutine.FullStack.Api.csproj" />
+    <!-- Uno App - referenced for orchestration awareness, not as Aspire resource -->
+    <ProjectReference Include="..\..\..\uno\src\AIRoutine.FullStack.App\AIRoutine.FullStack.App.csproj" IsAspireProjectResource="false" />
   </ItemGroup>
 
 </Project>

@@ -4,5 +4,6 @@
   </Folder>
   <Folder Name="/src/Core/">
     <Project Path="src/Core/AIRoutine.FullStack.Core.Startup/AIRoutine.FullStack.Core.Startup.csproj" />
+    <Project Path="src/Core/AIRoutine.FullStack.Core.Styles/AIRoutine.FullStack.Core.Styles.csproj" />
   </Folder>
 </Solution>

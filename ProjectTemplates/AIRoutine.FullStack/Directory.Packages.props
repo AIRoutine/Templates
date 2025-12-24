@@ -2,14 +2,16 @@
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
     <MicrosoftVersion>10.0.1</MicrosoftVersion>
-    <AspireVersion>9.2.0</AspireVersion>
+    <AspireVersion>13.1.0</AspireVersion>
+    <OpenTelemetryVersion>1.14.0</OpenTelemetryVersion>
+    <ShinyMediatorVersion>6.0.1</ShinyMediatorVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <!-- Shared packages -->
-    <PackageVersion Include="Shiny.Mediator" Version="6.0.1" />
-    <PackageVersion Include="Shiny.Mediator.AspNet" Version="6.0.1" />
-    <PackageVersion Include="Shiny.Mediator.Contracts" Version="6.0.1" />
+    <PackageVersion Include="Shiny.Mediator" Version="$(ShinyMediatorVersion)" />
+    <PackageVersion Include="Shiny.Mediator.AspNet" Version="$(ShinyMediatorVersion)" />
+    <PackageVersion Include="Shiny.Mediator.Contracts" Version="$(ShinyMediatorVersion)" />
     <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.4.0" />
 
     <!-- API packages -->
@@ -18,13 +20,13 @@
 
     <!-- Aspire packages -->
     <PackageVersion Include="Aspire.Hosting.AppHost" Version="$(AspireVersion)" />
-    <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="9.6.0" />
+    <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="10.1.0" />
     <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="$(AspireVersion)" />
-    <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.12.0" />
-    <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="1.12.0" />
-    <PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.12.0" />
-    <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="1.12.0" />
-    <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="1.12.0" />
+    <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="$(OpenTelemetryVersion)" />
+    <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="$(OpenTelemetryVersion)" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="$(OpenTelemetryVersion)" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="$(OpenTelemetryVersion)" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="$(OpenTelemetryVersion)" />
 
     <!-- Code Style -->
     <PackageVersion Include="AIRoutine.CodeStyle.AspNetCore" Version="1.1.0" />

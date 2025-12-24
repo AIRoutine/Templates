@@ -1,0 +1,12 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <!-- Layout Styles -->
+        <ResourceDictionary Source="ms-appx:///AIRoutine.FullStack.Core.Styles/Styles/Layouts.xaml" />
+        <!-- Button Styles -->
+        <ResourceDictionary Source="ms-appx:///AIRoutine.FullStack.Core.Styles/Styles/Buttons.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+</ResourceDictionary>

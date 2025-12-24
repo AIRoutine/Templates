@@ -10,8 +10,8 @@
         <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
         <!-- Load Uno.UI.Toolkit resources -->
         <ToolkitResources xmlns="using:Uno.Toolkit.UI" />
-        <!-- Load Framework control styles -->
-        <ResourceDictionary Source="ms-appx:///UnoFramework/Controls/BusyOverlay.xaml" />
+        <!-- Load App Styles -->
+        <ResourceDictionary Source="ms-appx:///AIRoutine.FullStack.Core.Styles/Styles/Styles.xaml" />
       </ResourceDictionary.MergedDictionaries>
 
       <!-- Converters -->

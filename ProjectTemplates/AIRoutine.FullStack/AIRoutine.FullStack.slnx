@@ -24,6 +24,7 @@
   </Folder>
   <Folder Name="/src/uno/src/Core/">
     <Project Path="src/uno/src/Core/AIRoutine.FullStack.Core.Startup/AIRoutine.FullStack.Core.Startup.csproj" />
+    <Project Path="src/uno/src/Core/AIRoutine.FullStack.Core.Styles/AIRoutine.FullStack.Core.Styles.csproj" />
   </Folder>
   <Folder Name="/src/aspire/src/">
     <Project Path="src/aspire/src/AIRoutine.FullStack.AppHost/AIRoutine.FullStack.AppHost.csproj" />

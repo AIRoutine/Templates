@@ -57,8 +57,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <!-- Core Startup -->
+    <!-- Core Projects -->
     <ProjectReference Include="..\Core\AIRoutine.FullStack.Core.Startup\AIRoutine.FullStack.Core.Startup.csproj" />
+    <ProjectReference Include="..\Core\AIRoutine.FullStack.Core.Styles\AIRoutine.FullStack.Core.Styles.csproj" />
     <!-- Framework References -->
     <ProjectReference Include="..\..\..\..\subm\uno\src\UnoFramework\UnoFramework.csproj" />
     <ProjectReference Include="..\..\..\..\subm\uno\src\UnoFramework.Contracts\UnoFramework.Contracts.csproj" />
