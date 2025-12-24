@@ -15,6 +15,11 @@
       "type": "http",
       "url": "https://mcp.platform.uno/v1"
     },
+    "uno-app": {
+      "type": "stdio",
+      "command": "dotnet",
+      "args": ["dnx", "-y", "uno.devserver", "--mcp-app"]
+    },
     "microsoft-learn": {
       "type": "http",
       "url": "https://learn.microsoft.com/api/mcp"
