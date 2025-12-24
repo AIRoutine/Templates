@@ -44,6 +44,34 @@
         "executable": "git",
         "args": "submodule add https://github.com/AIRoutine/UnoFramework.git framework"
       }
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "description": "Add AIRoutine Claude Plugins marketplace",
+      "manualInstructions": [
+        {
+          "text": "Run: claude /plugin marketplace add AIRoutine/at-claude-plugins"
+        }
+      ],
+      "continueOnError": true,
+      "args": {
+        "executable": "claude",
+        "args": "/plugin marketplace add AIRoutine/at-claude-plugins"
+      }
+    },
+    {
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "description": "Install uno-dev Claude plugin",
+      "manualInstructions": [
+        {
+          "text": "Run: claude /plugin install uno-dev"
+        }
+      ],
+      "continueOnError": true,
+      "args": {
+        "executable": "claude",
+        "args": "/plugin install uno-dev"
+      }
     }
   ]
 }
