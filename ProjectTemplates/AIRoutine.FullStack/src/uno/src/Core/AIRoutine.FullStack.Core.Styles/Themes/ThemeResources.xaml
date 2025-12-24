@@ -1,0 +1,11 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Dark" Source="ms-appx:///AIRoutine.FullStack.Core.Styles/Themes/Colors.Dark.xaml" />
+        <ResourceDictionary x:Key="Light" Source="ms-appx:///AIRoutine.FullStack.Core.Styles/Themes/Colors.Light.xaml" />
+        <ResourceDictionary x:Key="Default" Source="ms-appx:///AIRoutine.FullStack.Core.Styles/Themes/Colors.Dark.xaml" />
+    </ResourceDictionary.ThemeDictionaries>
+
+</ResourceDictionary>

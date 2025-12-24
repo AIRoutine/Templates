@@ -1,0 +1,29 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <!-- Tokens -->
+        <ResourceDictionary Source="ms-appx:///AIRoutine.FullStack.Core.Styles/Tokens/Colors.xaml" />
+        <ResourceDictionary Source="ms-appx:///AIRoutine.FullStack.Core.Styles/Tokens/Spacing.xaml" />
+        <ResourceDictionary Source="ms-appx:///AIRoutine.FullStack.Core.Styles/Tokens/Typography.xaml" />
+
+        <!-- Theme Colors -->
+        <ResourceDictionary Source="ms-appx:///AIRoutine.FullStack.Core.Styles/Themes/ThemeResources.xaml" />
+
+        <!-- Typography -->
+        <ResourceDictionary Source="ms-appx:///AIRoutine.FullStack.Core.Styles/Typography/TextStyles.xaml" />
+
+        <!-- Controls -->
+        <ResourceDictionary Source="ms-appx:///AIRoutine.FullStack.Core.Styles/Controls/Buttons.xaml" />
+        <ResourceDictionary Source="ms-appx:///AIRoutine.FullStack.Core.Styles/Controls/Inputs.xaml" />
+        <ResourceDictionary Source="ms-appx:///AIRoutine.FullStack.Core.Styles/Controls/Navigation.xaml" />
+        <ResourceDictionary Source="ms-appx:///AIRoutine.FullStack.Core.Styles/Controls/Data.xaml" />
+        <ResourceDictionary Source="ms-appx:///AIRoutine.FullStack.Core.Styles/Controls/Feedback.xaml" />
+
+        <!-- Layouts -->
+        <ResourceDictionary Source="ms-appx:///AIRoutine.FullStack.Core.Styles/Layouts/Containers.xaml" />
+        <ResourceDictionary Source="ms-appx:///AIRoutine.FullStack.Core.Styles/Layouts/Pages.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+</ResourceDictionary>

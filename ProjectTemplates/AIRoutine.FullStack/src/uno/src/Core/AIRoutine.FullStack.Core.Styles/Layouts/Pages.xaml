@@ -1,0 +1,27 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Page Root -->
+    <Style x:Key="PageRootStyle" TargetType="Grid">
+        <Setter Property="Background" Value="{ThemeResource BackgroundBrush}" />
+    </Style>
+
+    <!-- Page Content -->
+    <Style x:Key="PageContentStyle" TargetType="Grid">
+        <Setter Property="Padding" Value="24" />
+        <Setter Property="Background" Value="{ThemeResource BackgroundBrush}" />
+    </Style>
+
+    <!-- Page Header -->
+    <Style x:Key="PageHeaderStyle" TargetType="Grid">
+        <Setter Property="Padding" Value="24,16" />
+        <Setter Property="Background" Value="{ThemeResource SurfaceBrush}" />
+    </Style>
+
+    <!-- Scrollable Content -->
+    <Style x:Key="ScrollableContentStyle" TargetType="ScrollViewer">
+        <Setter Property="Padding" Value="24" />
+    </Style>
+
+</ResourceDictionary>
