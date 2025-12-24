@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Core\AIRoutine.FullStack.Api.Core.Startup\AIRoutine.FullStack.Api.Core.Startup.csproj" />
+    <ProjectReference Include="..\..\..\aspire\src\AIRoutine.FullStack.ServiceDefaults\AIRoutine.FullStack.ServiceDefaults.csproj" />
   </ItemGroup>
 
 </Project>

@@ -25,6 +25,10 @@
   <Folder Name="/src/uno/src/Core/">
     <Project Path="src/uno/src/Core/AIRoutine.FullStack.Core.Startup/AIRoutine.FullStack.Core.Startup.csproj" />
   </Folder>
+  <Folder Name="/src/aspire/src/">
+    <Project Path="src/aspire/src/AIRoutine.FullStack.AppHost/AIRoutine.FullStack.AppHost.csproj" />
+    <Project Path="src/aspire/src/AIRoutine.FullStack.ServiceDefaults/AIRoutine.FullStack.ServiceDefaults.csproj" />
+  </Folder>
   <Folder Name="/subm/uno/">
     <Project Path="subm/uno/src/UnoFramework/UnoFramework.csproj" />
     <Project Path="subm/uno/src/UnoFramework.Contracts/UnoFramework.Contracts.csproj" />

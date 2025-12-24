@@ -6,6 +6,7 @@
 - **Framework:** .NET 10
 - **Frontend:** Uno Platform (nutze Uno MCP und definierte Skills)
 - **Backend:** ASP.NET (nutze Microsoft Docs MCP und definierte Skills)
+- **Orchestrierung:** .NET Aspire (AppHost + ServiceDefaults)
 - **Architektur:** Shiny Mediator Pattern ([GitHub](https://github.com/shinyorg/mediator))
 
 ## Aktuelle Projektstruktur
@@ -19,6 +20,7 @@ AIRoutine.FullStack/
 ├── Claude.md                                   # Diese Datei
 ├── Directory.Build.props                       # Zentrale Build-Eigenschaften
 ├── Directory.Packages.props                    # Zentrale Package-Versionen
+├── global.json                                 # SDK-Versionen (Uno.Sdk)
 ├── AIRoutine.FullStack.slnx                    # Haupt-Solution
 │
 ├── src/
@@ -90,10 +92,24 @@ AIRoutine.FullStack/
 │   │                   ├── SignInHandler.cs
 │   │                   └── SignOutHandler.cs
 │   │
+│   ├── aspire/                                 # .NET Aspire Orchestrierung
+│   │   ├── aspire.slnx                         # Aspire Sub-Solution
+│   │   │
+│   │   └── src/
+│   │       ├── AIRoutine.FullStack.AppHost/    # Aspire Orchestrator
+│   │       │   ├── AIRoutine.FullStack.AppHost.csproj
+│   │       │   ├── Program.cs                  # Orchestriert API
+│   │       │   ├── appsettings.json
+│   │       │   └── Properties/
+│   │       │       └── launchSettings.json
+│   │       │
+│   │       └── AIRoutine.FullStack.ServiceDefaults/  # Shared Aspire Config
+│   │           ├── AIRoutine.FullStack.ServiceDefaults.csproj
+│   │           └── Extensions.cs               # AddServiceDefaults(), MapDefaultEndpoints()
+│   │
 │   └── uno/                                    # Frontend Uno App
 │       ├── Directory.Build.props
 │       ├── Directory.Packages.props
-│       ├── global.json
 │       ├── uno.slnx                            # Uno Sub-Solution
 │       │
 │       └── src/

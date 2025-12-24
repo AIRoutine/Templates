@@ -1,0 +1,22 @@
+<Project Sdk="Aspire.AppHost.Sdk/9.2.0">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>$(NetVersion)</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <IsAspireHost>true</IsAspireHost>
+    <UserSecretsId>$(ProjectName)-apphost</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aspire.Hosting.AppHost" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AIRoutine.FullStack.ServiceDefaults\AIRoutine.FullStack.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\..\..\api\src\AIRoutine.FullStack.Api\AIRoutine.FullStack.Api.csproj" />
+  </ItemGroup>
+
+</Project>
