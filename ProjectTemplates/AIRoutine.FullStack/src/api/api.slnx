@@ -1,7 +1,5 @@
 <Solution>
-  <Folder Name="/src/">
-    <Project Path="src/AIRoutine.FullStack.Api/AIRoutine.FullStack.Api.csproj" />
-    <Project Path="src/AIRoutine.FullStack.Api.Contracts/AIRoutine.FullStack.Api.Contracts.csproj" />
-    <Project Path="src/AIRoutine.FullStack.Api.Handlers/AIRoutine.FullStack.Api.Handlers.csproj" />
-  </Folder>
+  <Project Path="AIRoutine.FullStack.Api/AIRoutine.FullStack.Api.csproj" />
+  <Project Path="AIRoutine.FullStack.Api.Contracts/AIRoutine.FullStack.Api.Contracts.csproj" />
+  <Project Path="AIRoutine.FullStack.Api.Handlers/AIRoutine.FullStack.Api.Handlers.csproj" />
 </Solution>

@@ -15,6 +15,7 @@
     <PackageVersion Include="Scalar.AspNetCore" Version="2.11.10" />
 
     <!-- Code Style -->
-    <PackageVersion Include="AIRoutine.CodeStyle.AspNetCore" Version="1.0.0" />
+    <PackageVersion Include="AIRoutine.CodeStyle.AspNetCore" Version="*" />
+    <PackageVersion Include="AIRoutine.CodeStyle.Uno" Version="*" />
   </ItemGroup>
 </Project>

@@ -6,12 +6,12 @@
     <File Path="Directory.Packages.props" />
   </Folder>
   <Folder Name="/src/api/">
-    <Project Path="src/api/src/AIRoutine.FullStack.Api/AIRoutine.FullStack.Api.csproj" />
-    <Project Path="src/api/src/AIRoutine.FullStack.Api.Contracts/AIRoutine.FullStack.Api.Contracts.csproj" />
-    <Project Path="src/api/src/AIRoutine.FullStack.Api.Handlers/AIRoutine.FullStack.Api.Handlers.csproj" />
+    <Project Path="src/api/AIRoutine.FullStack.Api/AIRoutine.FullStack.Api.csproj" />
+    <Project Path="src/api/AIRoutine.FullStack.Api.Contracts/AIRoutine.FullStack.Api.Contracts.csproj" />
+    <Project Path="src/api/AIRoutine.FullStack.Api.Handlers/AIRoutine.FullStack.Api.Handlers.csproj" />
   </Folder>
-  <Folder Name="/src/unoapp/">
-    <Project Path="src/unoapp/src/host/AIRoutine.FullStack.App/AIRoutine.FullStack.App.csproj" />
+  <Folder Name="/src/uno/">
+    <Project Path="src/uno/AIRoutine.FullStack.App/AIRoutine.FullStack.App.csproj" />
   </Folder>
   <Folder Name="/framework/">
     <Project Path="framework/src/UnoFramework/UnoFramework.csproj" />

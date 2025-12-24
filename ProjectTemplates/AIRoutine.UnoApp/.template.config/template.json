@@ -44,6 +44,15 @@
         "executable": "git",
         "args": "submodule add https://github.com/AIRoutine/UnoFramework.git framework"
       }
+    },
+    {
+      "actionId": "AC1156F7-BB77-4DB8-B28F-24EEBCCA1E5C",
+      "description": "Claude Code Setup Instructions",
+      "manualInstructions": [
+        {
+          "text": "To setup Claude Code plugins, start 'claude' in this directory and restart once. The SessionStart hook will automatically install the uno-dev plugin with MCP servers."
+        }
+      ]
     }
   ]
 }
