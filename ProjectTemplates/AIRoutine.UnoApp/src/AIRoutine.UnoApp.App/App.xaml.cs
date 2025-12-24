@@ -1,7 +1,7 @@
-using Shiny.Mediator.Infrastructure;
+using AIRoutine.UnoApp.Core.Startup;
 using Uno.Resizetizer;
 
-namespace AIRoutine.FullStack.App;
+namespace AIRoutine.UnoApp;
 
 public partial class App : Application
 {
@@ -39,9 +39,7 @@ public partial class App : Application
                 .UseLocalization()
                 .ConfigureServices((context, services) =>
                 {
-                    services.AddShinyMediator();
-                    services.AddSingleton<IEventCollector, UnoEventCollector>();
-                    services.AddSingleton<BaseServices>();
+                    services.AddAppServices();
                     services.AddTransient<Shell>();
                 })
                 .UseNavigation(RegisterRoutes)

@@ -1,0 +1,29 @@
+<Project Sdk="Uno.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>$(NetVersion)-android;$(NetVersion)-ios;$(NetVersion)-browserwasm;$(NetVersion)-desktop;$(NetVersion)</TargetFrameworks>
+    <UnoSingleProject>true</UnoSingleProject>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <UnoFeatures>
+      Hosting;
+      Toolkit;
+      Logging;
+      Mvvm;
+      Configuration;
+      Localization;
+      Navigation;
+      ThemeService;
+    </UnoFeatures>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AIRoutine.CodeStyle.Uno" PrivateAssets="all" />
+    <PackageReference Include="Shiny.Mediator" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\subm\uno\src\UnoFramework\UnoFramework.csproj" />
+    <ProjectReference Include="..\..\..\subm\uno\src\UnoFramework.Contracts\UnoFramework.Contracts.csproj" />
+  </ItemGroup>
+</Project>

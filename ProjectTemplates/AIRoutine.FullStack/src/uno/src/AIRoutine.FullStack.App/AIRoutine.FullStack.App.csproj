@@ -35,14 +35,15 @@
 
   <ItemGroup>
     <PackageReference Include="AIRoutine.CodeStyle.Uno" PrivateAssets="all" />
-    <PackageReference Include="Shiny.Mediator" />
   </ItemGroup>
 
   <ItemGroup>
-    <!-- Framework References - relative to fullstack root -->
-    <ProjectReference Include="..\..\..\subm\uno\src\UnoFramework\UnoFramework.csproj" />
-    <ProjectReference Include="..\..\..\subm\uno\src\UnoFramework.Contracts\UnoFramework.Contracts.csproj" />
-    <ProjectReference Include="..\..\..\subm\uno\src\UnoFramework.Generators\UnoFramework.Generators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    <!-- Core Startup -->
+    <ProjectReference Include="..\Core\AIRoutine.FullStack.Core.Startup\AIRoutine.FullStack.Core.Startup.csproj" />
+    <!-- Framework References -->
+    <ProjectReference Include="..\..\..\..\subm\uno\src\UnoFramework\UnoFramework.csproj" />
+    <ProjectReference Include="..\..\..\..\subm\uno\src\UnoFramework.Contracts\UnoFramework.Contracts.csproj" />
+    <ProjectReference Include="..\..\..\..\subm\uno\src\UnoFramework.Generators\UnoFramework.Generators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
   </ItemGroup>
 
 </Project>

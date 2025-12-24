@@ -1,10 +1,11 @@
 using AIRoutine.FullStack.Api.Contracts.Mediator.Requests;
+using AIRoutine.FullStack.Api.Core.Startup;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
-builder.Services.AddShinyMediator();
+builder.Services.AddApiServices(builder.Configuration);
 
 var app = builder.Build();
 

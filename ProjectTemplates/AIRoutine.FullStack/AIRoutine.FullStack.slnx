@@ -5,13 +5,24 @@
     <File Path="Directory.Build.props" />
     <File Path="Directory.Packages.props" />
   </Folder>
-  <Folder Name="/src/api/">
-    <Project Path="src/api/AIRoutine.FullStack.Api/AIRoutine.FullStack.Api.csproj" />
-    <Project Path="src/api/AIRoutine.FullStack.Api.Contracts/AIRoutine.FullStack.Api.Contracts.csproj" />
-    <Project Path="src/api/AIRoutine.FullStack.Api.Handlers/AIRoutine.FullStack.Api.Handlers.csproj" />
+  <Folder Name="/src/api/src/">
+    <Project Path="src/api/src/AIRoutine.FullStack.Api/AIRoutine.FullStack.Api.csproj" />
+    <Project Path="src/api/src/AIRoutine.FullStack.Api.Contracts/AIRoutine.FullStack.Api.Contracts.csproj" />
+    <Project Path="src/api/src/AIRoutine.FullStack.Api.Handlers/AIRoutine.FullStack.Api.Handlers.csproj" />
   </Folder>
-  <Folder Name="/src/uno/">
-    <Project Path="src/uno/AIRoutine.FullStack.App/AIRoutine.FullStack.App.csproj" />
+  <Folder Name="/src/api/src/Core/">
+    <Project Path="src/api/src/Core/AIRoutine.FullStack.Api.Core.Startup/AIRoutine.FullStack.Api.Core.Startup.csproj" />
+  </Folder>
+  <Folder Name="/src/api/src/Features/Auth/">
+    <Project Path="src/api/src/Features/Auth/AIRoutine.FullStack.Api.Features.Auth/AIRoutine.FullStack.Api.Features.Auth.csproj" />
+    <Project Path="src/api/src/Features/Auth/AIRoutine.FullStack.Api.Features.Auth.Contracts/AIRoutine.FullStack.Api.Features.Auth.Contracts.csproj" />
+    <Project Path="src/api/src/Features/Auth/AIRoutine.FullStack.Api.Features.Auth.Handlers/AIRoutine.FullStack.Api.Features.Auth.Handlers.csproj" />
+  </Folder>
+  <Folder Name="/src/uno/src/">
+    <Project Path="src/uno/src/AIRoutine.FullStack.App/AIRoutine.FullStack.App.csproj" />
+  </Folder>
+  <Folder Name="/src/uno/src/Core/">
+    <Project Path="src/uno/src/Core/AIRoutine.FullStack.Core.Startup/AIRoutine.FullStack.Core.Startup.csproj" />
   </Folder>
   <Folder Name="/subm/uno/">
     <Project Path="subm/uno/src/UnoFramework/UnoFramework.csproj" />

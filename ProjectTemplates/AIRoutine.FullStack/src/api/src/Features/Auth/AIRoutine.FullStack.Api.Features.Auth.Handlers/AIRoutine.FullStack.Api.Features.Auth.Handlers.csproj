@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <PackageReference Include="AIRoutine.CodeStyle.AspNetCore" PrivateAssets="all" />
+    <PackageReference Include="Shiny.Mediator" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AIRoutine.FullStack.Api.Features.Auth.Contracts\AIRoutine.FullStack.Api.Features.Auth.Contracts.csproj" />
+    <ProjectReference Include="..\AIRoutine.FullStack.Api.Features.Auth\AIRoutine.FullStack.Api.Features.Auth.csproj" />
+  </ItemGroup>
+
+</Project>

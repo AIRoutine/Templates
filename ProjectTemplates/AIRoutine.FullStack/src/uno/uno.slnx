@@ -1,3 +1,8 @@
 <Solution>
-  <Project Path="AIRoutine.FullStack.App/AIRoutine.FullStack.App.csproj" />
+  <Folder Name="/src/">
+    <Project Path="src/AIRoutine.FullStack.App/AIRoutine.FullStack.App.csproj" />
+  </Folder>
+  <Folder Name="/src/Core/">
+    <Project Path="src/Core/AIRoutine.FullStack.Core.Startup/AIRoutine.FullStack.Core.Startup.csproj" />
+  </Folder>
 </Solution>

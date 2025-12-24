@@ -1,5 +1,15 @@
 <Solution>
-  <Project Path="AIRoutine.FullStack.Api/AIRoutine.FullStack.Api.csproj" />
-  <Project Path="AIRoutine.FullStack.Api.Contracts/AIRoutine.FullStack.Api.Contracts.csproj" />
-  <Project Path="AIRoutine.FullStack.Api.Handlers/AIRoutine.FullStack.Api.Handlers.csproj" />
+  <Folder Name="/src/">
+    <Project Path="src/AIRoutine.FullStack.Api/AIRoutine.FullStack.Api.csproj" />
+    <Project Path="src/AIRoutine.FullStack.Api.Contracts/AIRoutine.FullStack.Api.Contracts.csproj" />
+    <Project Path="src/AIRoutine.FullStack.Api.Handlers/AIRoutine.FullStack.Api.Handlers.csproj" />
+  </Folder>
+  <Folder Name="/src/Core/">
+    <Project Path="src/Core/AIRoutine.FullStack.Api.Core.Startup/AIRoutine.FullStack.Api.Core.Startup.csproj" />
+  </Folder>
+  <Folder Name="/src/Features/Auth/">
+    <Project Path="src/Features/Auth/AIRoutine.FullStack.Api.Features.Auth/AIRoutine.FullStack.Api.Features.Auth.csproj" />
+    <Project Path="src/Features/Auth/AIRoutine.FullStack.Api.Features.Auth.Contracts/AIRoutine.FullStack.Api.Features.Auth.Contracts.csproj" />
+    <Project Path="src/Features/Auth/AIRoutine.FullStack.Api.Features.Auth.Handlers/AIRoutine.FullStack.Api.Features.Auth.Handlers.csproj" />
+  </Folder>
 </Solution>
