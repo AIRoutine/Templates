@@ -8,7 +8,7 @@ public partial class MainViewModel(BaseServices baseServices) : PageViewModel(ba
     [ObservableProperty]
     private int _clickCount;
 
-    [RelayCommand]
+    [UnoCommand]
     private async Task ClickAsync()
     {
         using (BeginBusy("Processing..."))
