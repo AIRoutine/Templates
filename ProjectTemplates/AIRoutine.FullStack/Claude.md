@@ -50,6 +50,7 @@ AIRoutine.FullStack/
 │   │       ├── Core/
 │   │       │   ├── AIRoutine.FullStack.Api.Core.Data/     # Zentraler DbContext
 │   │       │   │   ├── AIRoutine.FullStack.Api.Core.Data.csproj
+│   │       │   │   ├── README.md                          # Projektdokumentation
 │   │       │   │   ├── AppDbContext.cs                    # Multi-Provider DbContext
 │   │       │   │   ├── Configuration/
 │   │       │   │   │   └── ServiceCollectionExtensions.cs # AddAppData()
@@ -58,12 +59,14 @@ AIRoutine.FullStack/
 │   │       │   │
 │   │       │   └── AIRoutine.FullStack.Api.Core.Startup/  # API DI Setup
 │   │       │       ├── AIRoutine.FullStack.Api.Core.Startup.csproj
+│   │       │       ├── README.md                          # Projektdokumentation
 │   │       │       └── ServiceCollectionExtensions.cs     # AddApiServices()
 │   │       │
 │   │       └── Features/
 │   │           └── Auth/                       # Auth Feature
 │   │               ├── AIRoutine.FullStack.Api.Features.Auth/
 │   │               │   ├── AIRoutine.FullStack.Api.Features.Auth.csproj
+│   │               │   ├── README.md                     # Projektdokumentation
 │   │               │   ├── Configuration/
 │   │               │   │   └── ServiceCollectionExtensions.cs  # AddAuthFeature()
 │   │               │   ├── Data/
@@ -80,6 +83,7 @@ AIRoutine.FullStack/
 │   │               │
 │   │               ├── AIRoutine.FullStack.Api.Features.Auth.Contracts/
 │   │               │   ├── AIRoutine.FullStack.Api.Features.Auth.Contracts.csproj
+│   │               │   ├── README.md                     # Projektdokumentation
 │   │               │   └── Mediator/
 │   │               │       └── Requests/
 │   │               │           ├── RefreshRequest.cs
@@ -88,6 +92,7 @@ AIRoutine.FullStack/
 │   │               │
 │   │               └── AIRoutine.FullStack.Api.Features.Auth.Handlers/
 │   │                   ├── AIRoutine.FullStack.Api.Features.Auth.Handlers.csproj
+│   │                   ├── README.md                     # Projektdokumentation
 │   │                   ├── RefreshHandler.cs
 │   │                   ├── SignInHandler.cs
 │   │                   └── SignOutHandler.cs
@@ -127,11 +132,23 @@ AIRoutine.FullStack/
 │           └── Core/
 │               └── AIRoutine.FullStack.Core.Startup/      # Uno DI Setup
 │                   ├── AIRoutine.FullStack.Core.Startup.csproj
+│                   ├── README.md                          # Projektdokumentation
 │                   └── ServiceCollectionExtensions.cs     # AddAppServices()
 │
 └── subm/
     └── uno/                                    # UnoFramework Submodule
 ```
+
+## Projektdokumentation
+
+**Jedes Projekt (Core, Features, ThirdParty) MUSS eine `README.md` Datei im Projektstammverzeichnis enthalten.**
+
+Die README.md dokumentiert:
+- Zweck und Verantwortlichkeiten des Projekts
+- Öffentliche APIs und Services
+- Abhängigkeiten zu anderen Projekten
+- Konfigurationsoptionen (falls vorhanden)
+- Beispiele zur Verwendung
 
 ## API Feature-Erweiterungsstruktur
 
@@ -139,6 +156,8 @@ Bei neuen API-Features erstelle Projekte unter `src/api/src/Features/{FeatureNam
 1. **Hauptprojekt** (`Api.Features.{FeatureName}`) - Services, Data, Configuration
 2. **Contracts-Projekt** (`Api.Features.{FeatureName}.Contracts`) - Request/Response DTOs
 3. **Handlers-Projekt** (`Api.Features.{FeatureName}.Handlers`) - Business-Logik
+
+**Jedes dieser Projekte MUSS eine `README.md` enthalten.**
 
 ### Namenskonventionen
 
@@ -151,6 +170,7 @@ Bei neuen API-Features erstelle Projekte unter `src/api/src/Features/{FeatureNam
 
 ```
 src/api/src/Features/{FeatureName}/AIRoutine.FullStack.Api.Features.{FeatureName}/
+├── README.md                             # Projektdokumentation (PFLICHT)
 ├── Configuration/
 │   └── ServiceCollectionExtensions.cs    # Add{FeatureName}Feature()
 ├── Data/
@@ -167,6 +187,7 @@ src/api/src/Features/{FeatureName}/AIRoutine.FullStack.Api.Features.{FeatureName
 
 ```
 src/api/src/Features/{FeatureName}/AIRoutine.FullStack.Api.Features.{FeatureName}.Contracts/
+├── README.md                             # Projektdokumentation (PFLICHT)
 └── Mediator/
     └── Requests/
         ├── {Action}Request.cs            # IRequest<TResponse>
@@ -177,6 +198,7 @@ src/api/src/Features/{FeatureName}/AIRoutine.FullStack.Api.Features.{FeatureName
 
 ```
 src/api/src/Features/{FeatureName}/AIRoutine.FullStack.Api.Features.{FeatureName}.Handlers/
+├── README.md                             # Projektdokumentation (PFLICHT)
 └── {Action}Handler.cs                    # IRequestHandler<TRequest, TResponse>
 ```
 
@@ -232,6 +254,8 @@ Bei neuen Uno-Features erstelle Projekte unter `src/uno/src/`:
 1. **Hauptprojekt** - Implementierungen
 2. **Contracts-Projekt** - Interfaces und Mediator-Contracts
 
+**Jedes dieser Projekte MUSS eine `README.md` enthalten.**
+
 ### Namenskonventionen
 
 | Typ | Ordner | Benennung |
@@ -244,6 +268,7 @@ Bei neuen Uno-Features erstelle Projekte unter `src/uno/src/`:
 
 ```
 src/uno/src/Features/AIRoutine.FullStack.Features.{FeatureName}.Contracts/
+├── README.md                     # Projektdokumentation (PFLICHT)
 ├── Models/                       # Data Transfer Objects
 ├── Enums/                        # Shared Enumerations
 ├── Interfaces/                   # Service-Interfaces
@@ -258,6 +283,7 @@ src/uno/src/Features/AIRoutine.FullStack.Features.{FeatureName}.Contracts/
 
 ```
 src/uno/src/Features/AIRoutine.FullStack.Features.{FeatureName}/
+├── README.md                     # Projektdokumentation (PFLICHT)
 ├── Configuration/                # DI Setup, Extensions, Registrierung
 ├── Domain/                       # Entities, Value Objects, Aggregates
 ├── Mediator/
