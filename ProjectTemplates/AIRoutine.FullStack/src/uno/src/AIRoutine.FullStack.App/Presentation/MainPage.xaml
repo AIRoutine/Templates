@@ -22,8 +22,10 @@
     ============================================================================
     -->
 
-    <Grid Style="{StaticResource PageRootStyle}">
-        <controls:BusyOverlay IsBusy="{Binding IsBusy}" BusyMessage="{Binding BusyMessage}">
+    <Grid Style="{StaticResource PageRootStyle}"
+          AutomationProperties.AutomationId="MainPage.Root">
+        <controls:BusyOverlay IsBusy="{Binding IsBusy}" BusyMessage="{Binding BusyMessage}"
+                              AutomationProperties.AutomationId="MainPage.BusyOverlay">
             <Grid utu:SafeArea.Insets="VisibleBounds">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -32,6 +34,7 @@
 
                 <!-- Navigation Header -->
                 <utu:NavigationBar Content="{Binding Title}"
+                                   AutomationProperties.AutomationId="MainPage.NavigationBar"
                                    Style="{StaticResource DefaultNavigationBarStyle}" />
 
                 <!-- Main Content mit AutoLayout -->
@@ -42,19 +45,23 @@
 
                     <!-- Headline -->
                     <TextBlock Text="Welcome to AIRoutine.FullStack!"
+                               AutomationProperties.AutomationId="MainPage.HeadlineText"
                                Style="{StaticResource HeadlineLargeCenteredTextStyle}" />
 
                     <!-- Subtitle -->
                     <TextBlock Text="Full-Stack: API + Uno App with shared configuration"
+                               AutomationProperties.AutomationId="MainPage.SubtitleText"
                                Style="{StaticResource BodyMediumCenteredSubtleTextStyle}" />
 
                     <!-- Action Button -->
                     <Button Content="Click Me"
+                            AutomationProperties.AutomationId="MainPage.ClickButton"
                             Style="{StaticResource PrimaryButtonCenteredStyle}"
                             Command="{Binding ClickCommand}" />
 
                     <!-- Click Counter -->
                     <TextBlock Text="{Binding ClickCount, Converter={StaticResource NullToCollapsedConverter}}"
+                               AutomationProperties.AutomationId="MainPage.ClickCountText"
                                Style="{StaticResource TitleLargeCenteredTextStyle}" />
 
                 </utu:AutoLayout>

@@ -4,8 +4,10 @@
              xmlns:local="using:AIRoutine.FullStack.App.Presentation"
              xmlns:utu="using:Uno.Toolkit.UI">
 
-  <Border Background="{ThemeResource BackgroundBrush}">
+  <Border Background="{ThemeResource BackgroundBrush}"
+          AutomationProperties.AutomationId="Shell.Root">
     <utu:ExtendedSplashScreen x:Name="Splash"
+                              AutomationProperties.AutomationId="Shell.SplashScreen"
                               HorizontalAlignment="Stretch"
                               VerticalAlignment="Stretch"
                               HorizontalContentAlignment="Stretch"
@@ -19,6 +21,7 @@
             </Grid.RowDefinitions>
 
             <ProgressRing IsActive="True"
+                          AutomationProperties.AutomationId="Shell.LoadingIndicator"
                           Style="{StaticResource LargeProgressRingStyle}"
                           Grid.Row="1"
                           VerticalAlignment="Center"

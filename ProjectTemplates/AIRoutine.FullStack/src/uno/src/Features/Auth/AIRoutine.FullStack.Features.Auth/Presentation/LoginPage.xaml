@@ -6,8 +6,10 @@
       xmlns:utu="using:Uno.Toolkit.UI"
       NavigationCacheMode="Required">
 
-    <Grid Style="{StaticResource PageRootStyle}">
-        <controls:BusyOverlay IsBusy="{Binding IsBusy}" BusyMessage="{Binding BusyMessage}">
+    <Grid Style="{StaticResource PageRootStyle}"
+          AutomationProperties.AutomationId="LoginPage.Root">
+        <controls:BusyOverlay IsBusy="{Binding IsBusy}" BusyMessage="{Binding BusyMessage}"
+                              AutomationProperties.AutomationId="LoginPage.BusyOverlay">
             <Grid utu:SafeArea.Insets="VisibleBounds">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -16,6 +18,7 @@
 
                 <!-- Navigation Header -->
                 <utu:NavigationBar Content="{Binding Title}"
+                                   AutomationProperties.AutomationId="LoginPage.NavigationBar"
                                    Style="{StaticResource DefaultNavigationBarStyle}" />
 
                 <!-- Main Content -->
@@ -27,6 +30,7 @@
 
                     <!-- App Logo / Icon Placeholder -->
                     <Border Background="{ThemeResource PrimaryBrush}"
+                            AutomationProperties.AutomationId="LoginPage.AppLogo"
                             CornerRadius="16"
                             Width="80"
                             Height="80"
@@ -38,17 +42,21 @@
 
                     <!-- Welcome Text -->
                     <TextBlock Text="Welcome"
+                               AutomationProperties.AutomationId="LoginPage.WelcomeText"
                                Style="{StaticResource HeadlineLargeCenteredTextStyle}" />
 
                     <TextBlock Text="Sign in to continue"
+                               AutomationProperties.AutomationId="LoginPage.SubtitleText"
                                Style="{StaticResource BodyMediumCenteredSubtleTextStyle}" />
 
                     <!-- Error Message -->
                     <Border Background="{ThemeResource ErrorContainerBrush}"
+                            AutomationProperties.AutomationId="LoginPage.ErrorContainer"
                             CornerRadius="8"
                             Padding="16"
                             Visibility="{Binding HasError}">
                         <TextBlock Text="{Binding ErrorMessage}"
+                                   AutomationProperties.AutomationId="LoginPage.ErrorMessage"
                                    Foreground="{ThemeResource OnErrorContainerBrush}"
                                    Style="{StaticResource BodyMediumTextStyle}"
                                    TextWrapping="Wrap" />
@@ -56,15 +64,18 @@
 
                     <!-- Sign In Button -->
                     <Button Content="Sign In"
+                            AutomationProperties.AutomationId="LoginPage.SignInButton"
                             Style="{StaticResource PrimaryButtonStyle}"
                             Command="{Binding SignInCommand}"
                             HorizontalAlignment="Stretch" />
 
                     <!-- Divider -->
-                    <utu:Divider Style="{StaticResource DividerStyle}" />
+                    <utu:Divider AutomationProperties.AutomationId="LoginPage.Divider"
+                                 Style="{StaticResource DividerStyle}" />
 
                     <!-- Alternative Sign-In Options -->
                     <TextBlock Text="Or continue with"
+                               AutomationProperties.AutomationId="LoginPage.AlternativeSignInText"
                                Style="{StaticResource BodySmallCenteredSubtleTextStyle}" />
 
                     <!-- Provider Buttons -->
@@ -73,6 +84,7 @@
                                     utu:AutoLayout.PrimaryAlignment="Center">
 
                         <Button Style="{StaticResource OutlinedButtonStyle}"
+                                AutomationProperties.AutomationId="LoginPage.MicrosoftSignInButton"
                                 Command="{Binding SignInWithProviderCommand}"
                                 CommandParameter="Microsoft"
                                 ToolTipService.ToolTip="Sign in with Microsoft">
@@ -82,6 +94,7 @@
                         </Button>
 
                         <Button Style="{StaticResource OutlinedButtonStyle}"
+                                AutomationProperties.AutomationId="LoginPage.GoogleSignInButton"
                                 Command="{Binding SignInWithProviderCommand}"
                                 CommandParameter="Google"
                                 ToolTipService.ToolTip="Sign in with Google">
@@ -91,6 +104,7 @@
                         </Button>
 
                         <Button Style="{StaticResource OutlinedButtonStyle}"
+                                AutomationProperties.AutomationId="LoginPage.AppleSignInButton"
                                 Command="{Binding SignInWithProviderCommand}"
                                 CommandParameter="Apple"
                                 ToolTipService.ToolTip="Sign in with Apple">

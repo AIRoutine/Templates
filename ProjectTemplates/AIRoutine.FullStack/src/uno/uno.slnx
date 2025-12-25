@@ -10,4 +10,9 @@
     <Project Path="src/Features/Auth/AIRoutine.FullStack.Features.Auth/AIRoutine.FullStack.Features.Auth.csproj" />
     <Project Path="src/Features/Auth/AIRoutine.FullStack.Features.Auth.Contracts/AIRoutine.FullStack.Features.Auth.Contracts.csproj" />
   </Folder>
+  <Folder Name="/tests/UITests/">
+    <Project Path="tests/UITests/AIRoutine.FullStack.UITests/AIRoutine.FullStack.UITests.csproj" />
+    <Project Path="tests/UITests/AIRoutine.FullStack.Core.UITests/AIRoutine.FullStack.Core.UITests.csproj" />
+    <Project Path="tests/UITests/AIRoutine.FullStack.Features.Auth.UITests/AIRoutine.FullStack.Features.Auth.UITests.csproj" />
+  </Folder>
 </Solution>
