@@ -4,42 +4,44 @@
       xmlns:local="using:AIRoutine.FullStack.App.Presentation"
       xmlns:controls="using:UnoFramework.Controls"
       xmlns:utu="using:Uno.Toolkit.UI"
-      NavigationCacheMode="Required"
-      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+      NavigationCacheMode="Required">
 
-  <controls:BusyOverlay IsBusy="{Binding IsBusy}" BusyMessage="{Binding BusyMessage}">
-    <Grid utu:SafeArea.Insets="VisibleBounds">
-      <Grid.RowDefinitions>
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="*" />
-      </Grid.RowDefinitions>
+  <Grid Style="{StaticResource PageRootStyle}">
+    <controls:BusyOverlay IsBusy="{Binding IsBusy}" BusyMessage="{Binding BusyMessage}">
+      <Grid utu:SafeArea.Insets="VisibleBounds">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-      <utu:NavigationBar Content="{Binding Title}" />
+        <utu:NavigationBar Content="{Binding Title}" />
 
-      <StackPanel Grid.Row="1"
-                  Padding="16"
-                  VerticalAlignment="Center"
-                  HorizontalAlignment="Center"
-                  Spacing="16">
+        <StackPanel Grid.Row="1"
+                    Style="{StaticResource ContentStackStyle}"
+                    Padding="{StaticResource PaddingLg}"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
 
-        <TextBlock Text="Welcome to AIRoutine.FullStack!"
-                   FontSize="24"
-                   FontWeight="Bold"
-                   HorizontalAlignment="Center" />
+          <TextBlock Text="Welcome to AIRoutine.FullStack!"
+                     Style="{StaticResource HeadlineLargeTextStyle}"
+                     HorizontalAlignment="Center" />
 
-        <TextBlock Text="Full-Stack: API + Uno App with shared configuration"
-                   HorizontalAlignment="Center"
-                   Opacity="0.7" />
+          <TextBlock Text="Full-Stack: API + Uno App with shared configuration"
+                     Style="{StaticResource BodyMediumTextStyle}"
+                     Foreground="{ThemeResource OnSurfaceVariantBrush}"
+                     HorizontalAlignment="Center" />
 
-        <Button Content="Click Me"
-                Command="{Binding ClickCommand}"
-                HorizontalAlignment="Center" />
+          <Button Content="Click Me"
+                  Style="{StaticResource PrimaryButtonStyle}"
+                  Command="{Binding ClickCommand}"
+                  HorizontalAlignment="Center" />
 
-        <TextBlock Text="{Binding ClickCount, Converter={StaticResource NullToCollapsedConverter}}"
-                   HorizontalAlignment="Center"
-                   FontSize="18" />
+          <TextBlock Text="{Binding ClickCount, Converter={StaticResource NullToCollapsedConverter}}"
+                     Style="{StaticResource TitleLargeTextStyle}"
+                     HorizontalAlignment="Center" />
 
-      </StackPanel>
-    </Grid>
-  </controls:BusyOverlay>
+        </StackPanel>
+      </Grid>
+    </controls:BusyOverlay>
+  </Grid>
 </Page>

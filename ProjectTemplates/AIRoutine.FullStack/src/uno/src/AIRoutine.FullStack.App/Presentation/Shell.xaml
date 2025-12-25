@@ -4,7 +4,7 @@
              xmlns:local="using:AIRoutine.FullStack.App.Presentation"
              xmlns:utu="using:Uno.Toolkit.UI">
 
-  <Border Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+  <Border Background="{ThemeResource BackgroundBrush}">
     <utu:ExtendedSplashScreen x:Name="Splash"
                               HorizontalAlignment="Stretch"
                               VerticalAlignment="Stretch"
@@ -19,11 +19,10 @@
             </Grid.RowDefinitions>
 
             <ProgressRing IsActive="True"
+                          Style="{StaticResource LargeProgressRingStyle}"
                           Grid.Row="1"
                           VerticalAlignment="Center"
-                          HorizontalAlignment="Center"
-                          Height="80"
-                          Width="80" />
+                          HorizontalAlignment="Center" />
           </Grid>
         </DataTemplate>
       </utu:ExtendedSplashScreen.LoadingContentTemplate>
