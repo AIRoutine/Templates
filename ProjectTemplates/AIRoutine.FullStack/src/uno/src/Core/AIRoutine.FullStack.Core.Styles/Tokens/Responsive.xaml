@@ -1,0 +1,97 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--
+    ============================================================================
+    RESPONSIVE DESIGN TOKENS
+    ============================================================================
+    Diese Werte definieren die Basis-Konstanten fuer responsive Layouts.
+    Verwende diese in Kombination mit {utu:Responsive} Markup Extension.
+
+    Breakpoints (Uno Toolkit):
+    - Narrowest: Phones, kleinste Fenster
+    - Narrow:    Kleine Tablets, Split-Views
+    - Normal:    Standard/Default (Basis-Design)
+    - Wide:      Tablets, mittlere Desktops
+    - Widest:    Grosse Monitore, Ultra-Wide
+    ============================================================================
+    -->
+
+    <!--
+    ============================================================================
+    PAGE PADDING - Seitenraender pro Breakpoint
+    ============================================================================
+    Verwendung: Padding="{utu:Responsive
+                    Narrowest={StaticResource PagePaddingNarrowest},
+                    Normal={StaticResource PagePaddingNormal},
+                    Wide={StaticResource PagePaddingWide}}"
+    -->
+    <x:Double x:Key="PagePaddingNarrowest">16</x:Double>
+    <x:Double x:Key="PagePaddingNarrow">20</x:Double>
+    <x:Double x:Key="PagePaddingNormal">24</x:Double>
+    <x:Double x:Key="PagePaddingWide">32</x:Double>
+    <x:Double x:Key="PagePaddingWidest">48</x:Double>
+
+    <!--
+    ============================================================================
+    CONTENT SPACING - Abstaende zwischen Elementen
+    ============================================================================
+    -->
+    <x:Double x:Key="ContentSpacingNarrowest">8</x:Double>
+    <x:Double x:Key="ContentSpacingNarrow">12</x:Double>
+    <x:Double x:Key="ContentSpacingNormal">16</x:Double>
+    <x:Double x:Key="ContentSpacingWide">20</x:Double>
+    <x:Double x:Key="ContentSpacingWidest">24</x:Double>
+
+    <!--
+    ============================================================================
+    SECTION SPACING - Abstaende zwischen Sektionen
+    ============================================================================
+    -->
+    <x:Double x:Key="SectionSpacingNarrowest">16</x:Double>
+    <x:Double x:Key="SectionSpacingNarrow">20</x:Double>
+    <x:Double x:Key="SectionSpacingNormal">24</x:Double>
+    <x:Double x:Key="SectionSpacingWide">32</x:Double>
+    <x:Double x:Key="SectionSpacingWidest">48</x:Double>
+
+    <!--
+    ============================================================================
+    CONTENT MAX WIDTH - Maximale Inhaltsbreite
+    ============================================================================
+    Verhindert zu breite Textzeilen auf grossen Bildschirmen.
+    Empfohlen: 45-72 Zeichen pro Zeile (optimal: 66)
+    -->
+    <x:Double x:Key="ContentMaxWidthNarrow">480</x:Double>
+    <x:Double x:Key="ContentMaxWidthNormal">720</x:Double>
+    <x:Double x:Key="ContentMaxWidthWide">960</x:Double>
+    <x:Double x:Key="ContentMaxWidthWidest">1200</x:Double>
+
+    <!--
+    ============================================================================
+    CARD/CONTAINER PADDING
+    ============================================================================
+    -->
+    <x:Double x:Key="CardPaddingNarrowest">12</x:Double>
+    <x:Double x:Key="CardPaddingNarrow">14</x:Double>
+    <x:Double x:Key="CardPaddingNormal">16</x:Double>
+    <x:Double x:Key="CardPaddingWide">20</x:Double>
+    <x:Double x:Key="CardPaddingWidest">24</x:Double>
+
+    <!--
+    ============================================================================
+    GRID COLUMNS - Empfohlene Spaltenanzahl
+    ============================================================================
+    Referenz (nicht direkt verwendbar, nur Dokumentation):
+    - 0-149px:    1 Spalte,  16px Margin
+    - 150-599px:  4 Spalten, 16px Alleys
+    - 600-904px:  8 Spalten, 16px Alleys
+    - 905-1280px: 12 Spalten, 20px Alleys
+    - 1281px+:    12 Spalten, 24px Alleys
+    -->
+    <x:Double x:Key="GridGutterNarrow">16</x:Double>
+    <x:Double x:Key="GridGutterNormal">16</x:Double>
+    <x:Double x:Key="GridGutterWide">20</x:Double>
+    <x:Double x:Key="GridGutterWidest">24</x:Double>
+
+</ResourceDictionary>

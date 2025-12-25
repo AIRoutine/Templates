@@ -6,42 +6,69 @@
       xmlns:utu="using:Uno.Toolkit.UI"
       NavigationCacheMode="Required">
 
-  <Grid Style="{StaticResource PageRootStyle}">
-    <controls:BusyOverlay IsBusy="{Binding IsBusy}" BusyMessage="{Binding BusyMessage}">
-      <Grid utu:SafeArea.Insets="VisibleBounds">
-        <Grid.RowDefinitions>
-          <RowDefinition Height="Auto" />
-          <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+    <!--
+    ============================================================================
+    RESPONSIVE PAGE PATTERN
+    ============================================================================
+    Dieses Pattern zeigt die empfohlene Struktur fuer responsive Pages:
 
-        <utu:NavigationBar Content="{Binding Title}" />
+    1. Grid mit PageRootStyle als aeusserer Container
+    2. SafeArea.Insets fuer Notch/StatusBar
+    3. AutoLayout mit responsivem Padding/Spacing
+    4. {utu:Responsive} fuer breakpoint-basierte Werte
 
-        <StackPanel Grid.Row="1"
-                    Style="{StaticResource ContentStackStyle}"
-                    Padding="{StaticResource PaddingLg}"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Center">
+    Fuer komplett unterschiedliche Layouts (Phone vs Desktop):
+    Verwende <utu:ResponsiveView> mit NarrowTemplate/WideTemplate
+    ============================================================================
+    -->
 
-          <TextBlock Text="Welcome to AIRoutine.FullStack!"
-                     Style="{StaticResource HeadlineLargeTextStyle}"
-                     HorizontalAlignment="Center" />
+    <Grid Style="{StaticResource PageRootStyle}">
+        <controls:BusyOverlay IsBusy="{Binding IsBusy}" BusyMessage="{Binding BusyMessage}">
+            <Grid utu:SafeArea.Insets="VisibleBounds">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
 
-          <TextBlock Text="Full-Stack: API + Uno App with shared configuration"
-                     Style="{StaticResource BodyMediumTextStyle}"
-                     Foreground="{ThemeResource OnSurfaceVariantBrush}"
-                     HorizontalAlignment="Center" />
+                <!-- Navigation Header -->
+                <utu:NavigationBar Content="{Binding Title}" />
 
-          <Button Content="Click Me"
-                  Style="{StaticResource PrimaryButtonStyle}"
-                  Command="{Binding ClickCommand}"
-                  HorizontalAlignment="Center" />
+                <!-- Main Content mit AutoLayout -->
+                <utu:AutoLayout Grid.Row="1"
+                                Orientation="Vertical"
+                                Justify="Center"
+                                CounterAxisAlignment="Center"
+                                Padding="{utu:Responsive Narrowest=16, Narrow=20, Normal=24, Wide=32, Widest=48}"
+                                Spacing="{utu:Responsive Narrowest=12, Narrow=14, Normal=16, Wide=20, Widest=24}">
 
-          <TextBlock Text="{Binding ClickCount, Converter={StaticResource NullToCollapsedConverter}}"
-                     Style="{StaticResource TitleLargeTextStyle}"
-                     HorizontalAlignment="Center" />
+                    <!-- Headline -->
+                    <TextBlock Text="Welcome to AIRoutine.FullStack!"
+                               Style="{StaticResource HeadlineLargeTextStyle}"
+                               HorizontalAlignment="Center"
+                               TextWrapping="Wrap"
+                               TextAlignment="Center" />
 
-        </StackPanel>
-      </Grid>
-    </controls:BusyOverlay>
-  </Grid>
+                    <!-- Subtitle -->
+                    <TextBlock Text="Full-Stack: API + Uno App with shared configuration"
+                               Style="{StaticResource BodyMediumTextStyle}"
+                               Foreground="{ThemeResource OnSurfaceVariantBrush}"
+                               HorizontalAlignment="Center"
+                               TextWrapping="Wrap"
+                               TextAlignment="Center" />
+
+                    <!-- Action Button -->
+                    <Button Content="Click Me"
+                            Style="{StaticResource PrimaryButtonStyle}"
+                            Command="{Binding ClickCommand}"
+                            HorizontalAlignment="Center" />
+
+                    <!-- Click Counter -->
+                    <TextBlock Text="{Binding ClickCount, Converter={StaticResource NullToCollapsedConverter}}"
+                               Style="{StaticResource TitleLargeTextStyle}"
+                               HorizontalAlignment="Center" />
+
+                </utu:AutoLayout>
+            </Grid>
+        </controls:BusyOverlay>
+    </Grid>
 </Page>
