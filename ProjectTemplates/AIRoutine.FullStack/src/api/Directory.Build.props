@@ -5,5 +5,7 @@
   <PropertyGroup>
     <!-- Use NetVersion from root -->
     <TargetFramework>$(NetVersion)</TargetFramework>
+    <!-- Define API for platform-specific code -->
+    <DefineConstants>$(DefineConstants);API</DefineConstants>
   </PropertyGroup>
 </Project>

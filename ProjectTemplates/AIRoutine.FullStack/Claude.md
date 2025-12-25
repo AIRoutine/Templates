@@ -9,6 +9,31 @@
 - **Orchestrierung:** .NET Aspire (AppHost + ServiceDefaults)
 - **Architektur:** Shiny Mediator Pattern ([GitHub](https://github.com/shinyorg/mediator))
 
+## Dependency Injection
+
+Nutze `Shiny.Extensions.DependencyInjection` für automatische Service-Registrierung.
+
+### Attribute
+
+```csharp
+[Service(AppLifetime.Default, TryAdd = true)]
+public class MyService : IMyService { }
+```
+
+### Registrierung
+
+```csharp
+services.AddShinyServiceRegistry();
+```
+
+### Lifetime-Konstanten
+
+`AppLifetime.Default` aus `AIRoutine.FullStack.Shared`:
+- **API:** `Scoped` (via `#if API`)
+- **UNO:** `Singleton` (via `#elif UNO`)
+
+Referenz: [shinylib.net/extensions/di](https://shinylib.net/extensions/di/)
+
 ## Aktuelle Projektstruktur
 
 ```
@@ -111,6 +136,11 @@ AIRoutine.FullStack/
 │   │       └── AIRoutine.FullStack.ServiceDefaults/  # Shared Aspire Config
 │   │           ├── AIRoutine.FullStack.ServiceDefaults.csproj
 │   │           └── Extensions.cs               # AddServiceDefaults(), MapDefaultEndpoints()
+│   │
+│   ├── shared/                                 # Shared zwischen API und Uno
+│   │   └── AIRoutine.FullStack.Shared/
+│   │       ├── AIRoutine.FullStack.Shared.csproj
+│   │       └── README.md                       # DI-Attribute Dokumentation
 │   │
 │   └── uno/                                    # Frontend Uno App
 │       ├── Directory.Build.props

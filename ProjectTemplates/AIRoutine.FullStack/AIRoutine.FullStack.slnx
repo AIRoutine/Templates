@@ -26,9 +26,16 @@
     <Project Path="src/uno/src/Core/AIRoutine.FullStack.Core.Startup/AIRoutine.FullStack.Core.Startup.csproj" />
     <Project Path="src/uno/src/Core/AIRoutine.FullStack.Core.Styles/AIRoutine.FullStack.Core.Styles.csproj" />
   </Folder>
+  <Folder Name="/src/uno/src/Features/Auth/">
+    <Project Path="src/uno/src/Features/Auth/AIRoutine.FullStack.Features.Auth/AIRoutine.FullStack.Features.Auth.csproj" />
+    <Project Path="src/uno/src/Features/Auth/AIRoutine.FullStack.Features.Auth.Contracts/AIRoutine.FullStack.Features.Auth.Contracts.csproj" />
+  </Folder>
   <Folder Name="/src/aspire/src/">
     <Project Path="src/aspire/src/AIRoutine.FullStack.AppHost/AIRoutine.FullStack.AppHost.csproj" />
     <Project Path="src/aspire/src/AIRoutine.FullStack.ServiceDefaults/AIRoutine.FullStack.ServiceDefaults.csproj" />
+  </Folder>
+  <Folder Name="/src/shared/">
+    <Project Path="src/shared/AIRoutine.FullStack.Shared/AIRoutine.FullStack.Shared.csproj" />
   </Folder>
   <Folder Name="/subm/uno/">
     <Project Path="subm/uno/src/UnoFramework/UnoFramework.csproj" />

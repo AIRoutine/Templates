@@ -12,6 +12,7 @@
     <PackageVersion Include="Shiny.Mediator" Version="$(ShinyMediatorVersion)" />
     <PackageVersion Include="Shiny.Mediator.AspNet" Version="$(ShinyMediatorVersion)" />
     <PackageVersion Include="Shiny.Mediator.Contracts" Version="$(ShinyMediatorVersion)" />
+    <PackageVersion Include="Shiny.Extensions.DependencyInjection" Version="2.0.0-beta-0001" />
     <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.4.0" />
 
     <!-- API packages -->

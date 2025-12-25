@@ -24,6 +24,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <!-- Shared -->
+    <ProjectReference Include="..\..\..\..\shared\AIRoutine.FullStack.Shared\AIRoutine.FullStack.Shared.csproj" />
+    <!-- Framework -->
     <ProjectReference Include="..\..\..\..\..\subm\uno\src\UnoFramework\UnoFramework.csproj" />
     <ProjectReference Include="..\..\..\..\..\subm\uno\src\UnoFramework.Contracts\UnoFramework.Contracts.csproj" />
   </ItemGroup>
