@@ -1,7 +1,6 @@
 <Project Sdk="Uno.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>$(NetVersion)-android;$(NetVersion)-ios;$(NetVersion)-desktop;$(NetVersion)</TargetFrameworks>
-    <!-- browserwasm temporarily disabled due to Uno.Resizetizer/Wasm.Bootstrap compatibility issue with dev packages -->
+    <TargetFrameworks>$(UnoFrameworks)</TargetFrameworks>
     <OutputType>Library</OutputType>
     <UnoSingleProject>true</UnoSingleProject>
     <ImplicitUsings>enable</ImplicitUsings>

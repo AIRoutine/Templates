@@ -3,6 +3,10 @@
   <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)..'))" />
 
   <PropertyGroup>
+    <!-- Uno Platform Target Frameworks -->
+    <!-- browserwasm temporarily disabled due to Uno.Resizetizer/Wasm.Bootstrap compatibility issue with dev packages -->
+    <UnoFrameworks>$(NetVersion)-android;$(NetVersion)-ios;$(NetVersion)-desktop;$(NetVersion)</UnoFrameworks>
+
     <!--
       Adding NoWarn to remove build warnings
       NU1507: Warning when there are multiple package sources when using CPM with no source mapping
