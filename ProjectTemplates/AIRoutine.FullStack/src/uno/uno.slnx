@@ -6,4 +6,8 @@
     <Project Path="src/Core/AIRoutine.FullStack.Core.Startup/AIRoutine.FullStack.Core.Startup.csproj" />
     <Project Path="src/Core/AIRoutine.FullStack.Core.Styles/AIRoutine.FullStack.Core.Styles.csproj" />
   </Folder>
+  <Folder Name="/src/Features/Auth/">
+    <Project Path="src/Features/Auth/AIRoutine.FullStack.Features.Auth/AIRoutine.FullStack.Features.Auth.csproj" />
+    <Project Path="src/Features/Auth/AIRoutine.FullStack.Features.Auth.Contracts/AIRoutine.FullStack.Features.Auth.Contracts.csproj" />
+  </Folder>
 </Solution>

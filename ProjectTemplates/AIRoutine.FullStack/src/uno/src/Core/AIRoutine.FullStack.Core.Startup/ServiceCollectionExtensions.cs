@@ -1,3 +1,4 @@
+using AIRoutine.FullStack.Features.Auth.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Shiny.Mediator.Infrastructure;
 using UnoFramework.Mediator;
@@ -12,6 +13,9 @@ public static class ServiceCollectionExtensions
         services.AddShinyMediator();
         services.AddSingleton<IEventCollector, UnoEventCollector>();
         services.AddSingleton<BaseServices>();
+
+        // Features
+        services.AddAuthFeature();
 
         return services;
     }

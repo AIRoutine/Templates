@@ -129,11 +129,49 @@ AIRoutine.FullStack/
 │           │   ├── Presentation/
 │           │   └── Platforms/
 │           │
-│           └── Core/
-│               └── AIRoutine.FullStack.Core.Startup/      # Uno DI Setup
-│                   ├── AIRoutine.FullStack.Core.Startup.csproj
-│                   ├── README.md                          # Projektdokumentation
-│                   └── ServiceCollectionExtensions.cs     # AddAppServices()
+│           ├── Core/
+│           │   ├── AIRoutine.FullStack.Core.Startup/      # Uno DI Setup
+│           │   │   ├── AIRoutine.FullStack.Core.Startup.csproj
+│           │   │   ├── README.md                          # Projektdokumentation
+│           │   │   └── ServiceCollectionExtensions.cs     # AddAppServices()
+│           │   │
+│           │   └── AIRoutine.FullStack.Core.Styles/       # Design System
+│           │       ├── AIRoutine.FullStack.Core.Styles.csproj
+│           │       ├── README.md
+│           │       └── ...                                # Styles, Themes, Controls
+│           │
+│           └── Features/
+│               └── Auth/                                  # Auth Feature
+│                   ├── AIRoutine.FullStack.Features.Auth/
+│                   │   ├── AIRoutine.FullStack.Features.Auth.csproj
+│                   │   ├── README.md                      # Projektdokumentation
+│                   │   ├── Configuration/
+│                   │   │   └── ServiceCollectionExtensions.cs  # AddAuthFeature()
+│                   │   ├── Services/
+│                   │   │   ├── IAuthService.cs            # Token-Management
+│                   │   │   ├── AuthService.cs
+│                   │   │   ├── IAuthApiClient.cs          # API Client
+│                   │   │   └── AuthApiClient.cs
+│                   │   ├── Mediator/
+│                   │   │   └── Requests/
+│                   │   │       ├── SignInHandler.cs
+│                   │   │       ├── RefreshHandler.cs
+│                   │   │       ├── SignOutHandler.cs
+│                   │   │       └── GetAuthStateHandler.cs
+│                   │   └── Presentation/
+│                   │       ├── LoginPage.xaml
+│                   │       ├── LoginPage.xaml.cs
+│                   │       └── LoginViewModel.cs
+│                   │
+│                   └── AIRoutine.FullStack.Features.Auth.Contracts/
+│                       ├── AIRoutine.FullStack.Features.Auth.Contracts.csproj
+│                       ├── README.md                      # Projektdokumentation
+│                       └── Mediator/
+│                           └── Requests/
+│                               ├── SignInRequest.cs
+│                               ├── RefreshRequest.cs
+│                               ├── SignOutCommand.cs
+│                               └── GetAuthStateRequest.cs
 │
 └── subm/
     └── uno/                                    # UnoFramework Submodule
@@ -267,32 +305,70 @@ Bei neuen Uno-Features erstelle Projekte unter `src/uno/src/`:
 ### Contracts-Projekt
 
 ```
-src/uno/src/Features/AIRoutine.FullStack.Features.{FeatureName}.Contracts/
+src/uno/src/Features/{FeatureName}/AIRoutine.FullStack.Features.{FeatureName}.Contracts/
 ├── README.md                     # Projektdokumentation (PFLICHT)
 ├── Models/                       # Data Transfer Objects
 ├── Enums/                        # Shared Enumerations
 ├── Interfaces/                   # Service-Interfaces
 └── Mediator/
-    ├── Commands/                 # Command-Contracts (ICommand)
-    ├── Requests/                 # Request-Contracts (IRequest<TResult>)
-    ├── Events/                   # Event-Contracts (IEvent)
-    └── Navigations/              # Navigation-Contracts
+    └── Requests/
+        ├── {Action}Request.cs    # IRequest<TResponse>
+        └── {Action}Command.cs    # ICommand
 ```
 
 ### Hauptprojekt
 
 ```
-src/uno/src/Features/AIRoutine.FullStack.Features.{FeatureName}/
+src/uno/src/Features/{FeatureName}/AIRoutine.FullStack.Features.{FeatureName}/
 ├── README.md                     # Projektdokumentation (PFLICHT)
-├── Configuration/                # DI Setup, Extensions, Registrierung
-├── Domain/                       # Entities, Value Objects, Aggregates
+├── Configuration/
+│   └── ServiceCollectionExtensions.cs    # Add{FeatureName}Feature()
+├── Services/
+│   ├── I{Service}.cs             # Service-Interfaces
+│   └── {Service}.cs              # Service-Implementierungen
 ├── Mediator/
 │   ├── Commands/                 # Command-Handler
 │   ├── Requests/                 # Request-Handler
-│   ├── Events/                   # Event-Handler
-│   └── Middlewares/              # Mediator-Middlewares
-└── Presentation/                 # UI Vertical Slices
-    └── {Bereich}/
-        ├── {Bereich}ViewModel.cs
-        └── {Bereich}Page.xaml
+│   └── Events/                   # Event-Handler
+└── Presentation/
+    ├── {Page}Page.xaml
+    ├── {Page}Page.xaml.cs
+    └── {Page}ViewModel.cs
+```
+
+### Feature Registration (Uno)
+
+Features werden in `Core.Startup/ServiceCollectionExtensions.cs` registriert:
+
+```csharp
+public static IServiceCollection AddAppServices(this IServiceCollection services)
+{
+    services.AddShinyMediator();
+    services.AddSingleton<IEventCollector, UnoEventCollector>();
+    services.AddSingleton<BaseServices>();
+
+    // Features
+    services.AddAuthFeature();
+    services.Add{FeatureName}Feature();  // Feature Services
+
+    return services;
+}
+```
+
+### Uno Feature Beispiel: Auth
+
+Das Auth-Feature zeigt die empfohlene Struktur:
+
+```csharp
+// In Feature Configuration/ServiceCollectionExtensions.cs
+public static IServiceCollection AddAuthFeature(this IServiceCollection services)
+{
+    // Services
+    services.AddSingleton<IAuthService, AuthService>();
+
+    // API Client
+    services.AddHttpClient<IAuthApiClient, AuthApiClient>();
+
+    return services;
+}
 ```

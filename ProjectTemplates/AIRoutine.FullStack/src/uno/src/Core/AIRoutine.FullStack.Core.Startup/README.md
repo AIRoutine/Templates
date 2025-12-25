@@ -21,11 +21,13 @@ Registriert:
 - Shiny Mediator für CQRS-Pattern
 - `UnoEventCollector` für Event-Handling
 - `BaseServices` für ViewModel-Basisservices
+- Auth Feature für Authentifizierung
 
 ## Abhängigkeiten
 
 - Shiny.Mediator - Mediator Pattern
 - UnoFramework - BaseServices, UnoEventCollector
+- AIRoutine.FullStack.Features.Auth - Auth Feature
 
 ## Verwendung
 
@@ -34,6 +36,12 @@ In `App.xaml.cs` oder Host-Builder:
 ```csharp
 services.AddAppServices();
 ```
+
+## Registrierte Features
+
+| Feature | Methode | Beschreibung |
+|---------|---------|--------------|
+| Auth | `AddAuthFeature()` | JWT-basierte Authentifizierung |
 
 ## Neue Features hinzufügen
 
@@ -47,6 +55,7 @@ public static IServiceCollection AddAppServices(this IServiceCollection services
     services.AddSingleton<BaseServices>();
 
     // Features
+    services.AddAuthFeature();
     services.Add{NeuesFeature}Feature();  // Hier hinzufügen
 
     return services;

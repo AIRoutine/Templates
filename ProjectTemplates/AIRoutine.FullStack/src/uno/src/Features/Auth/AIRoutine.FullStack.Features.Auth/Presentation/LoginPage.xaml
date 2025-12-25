@@ -1,0 +1,108 @@
+<Page x:Class="AIRoutine.FullStack.Features.Auth.Presentation.LoginPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:AIRoutine.FullStack.Features.Auth.Presentation"
+      xmlns:controls="using:UnoFramework.Controls"
+      xmlns:utu="using:Uno.Toolkit.UI"
+      NavigationCacheMode="Required">
+
+    <Grid Style="{StaticResource PageRootStyle}">
+        <controls:BusyOverlay IsBusy="{Binding IsBusy}" BusyMessage="{Binding BusyMessage}">
+            <Grid utu:SafeArea.Insets="VisibleBounds">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <!-- Navigation Header -->
+                <utu:NavigationBar Content="{Binding Title}"
+                                   Style="{StaticResource DefaultNavigationBarStyle}" />
+
+                <!-- Main Content -->
+                <utu:AutoLayout Grid.Row="1"
+                                Style="{StaticResource CenteredContentAutoLayoutStyle}"
+                                Padding="{utu:Responsive Narrowest=24, Narrow=32, Normal=48, Wide=64, Widest=80}"
+                                Spacing="{utu:Responsive Narrowest=16, Narrow=20, Normal=24, Wide=28, Widest=32}"
+                                MaxWidth="400">
+
+                    <!-- App Logo / Icon Placeholder -->
+                    <Border Background="{ThemeResource PrimaryBrush}"
+                            CornerRadius="16"
+                            Width="80"
+                            Height="80"
+                            utu:AutoLayout.PrimaryAlignment="Center">
+                        <FontIcon Glyph="&#xE77B;"
+                                  FontSize="40"
+                                  Foreground="{ThemeResource OnPrimaryBrush}" />
+                    </Border>
+
+                    <!-- Welcome Text -->
+                    <TextBlock Text="Welcome"
+                               Style="{StaticResource HeadlineLargeCenteredTextStyle}" />
+
+                    <TextBlock Text="Sign in to continue"
+                               Style="{StaticResource BodyMediumCenteredSubtleTextStyle}" />
+
+                    <!-- Error Message -->
+                    <Border Background="{ThemeResource ErrorContainerBrush}"
+                            CornerRadius="8"
+                            Padding="16"
+                            Visibility="{Binding HasError}">
+                        <TextBlock Text="{Binding ErrorMessage}"
+                                   Foreground="{ThemeResource OnErrorContainerBrush}"
+                                   Style="{StaticResource BodyMediumTextStyle}"
+                                   TextWrapping="Wrap" />
+                    </Border>
+
+                    <!-- Sign In Button -->
+                    <Button Content="Sign In"
+                            Style="{StaticResource PrimaryButtonStyle}"
+                            Command="{Binding SignInCommand}"
+                            HorizontalAlignment="Stretch" />
+
+                    <!-- Divider -->
+                    <utu:Divider Style="{StaticResource DividerStyle}" />
+
+                    <!-- Alternative Sign-In Options -->
+                    <TextBlock Text="Or continue with"
+                               Style="{StaticResource BodySmallCenteredSubtleTextStyle}" />
+
+                    <!-- Provider Buttons -->
+                    <utu:AutoLayout Orientation="Horizontal"
+                                    Spacing="12"
+                                    utu:AutoLayout.PrimaryAlignment="Center">
+
+                        <Button Style="{StaticResource OutlinedButtonStyle}"
+                                Command="{Binding SignInWithProviderCommand}"
+                                CommandParameter="Microsoft"
+                                ToolTipService.ToolTip="Sign in with Microsoft">
+                            <utu:ControlExtensions.Icon>
+                                <FontIcon Glyph="&#xE7EE;" />
+                            </utu:ControlExtensions.Icon>
+                        </Button>
+
+                        <Button Style="{StaticResource OutlinedButtonStyle}"
+                                Command="{Binding SignInWithProviderCommand}"
+                                CommandParameter="Google"
+                                ToolTipService.ToolTip="Sign in with Google">
+                            <utu:ControlExtensions.Icon>
+                                <FontIcon Glyph="&#xE774;" />
+                            </utu:ControlExtensions.Icon>
+                        </Button>
+
+                        <Button Style="{StaticResource OutlinedButtonStyle}"
+                                Command="{Binding SignInWithProviderCommand}"
+                                CommandParameter="Apple"
+                                ToolTipService.ToolTip="Sign in with Apple">
+                            <utu:ControlExtensions.Icon>
+                                <FontIcon Glyph="&#xE8F6;" />
+                            </utu:ControlExtensions.Icon>
+                        </Button>
+
+                    </utu:AutoLayout>
+
+                </utu:AutoLayout>
+            </Grid>
+        </controls:BusyOverlay>
+    </Grid>
+</Page>
