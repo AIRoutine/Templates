@@ -20,11 +20,29 @@
     <!-- Button Colors -->
     <SolidColorBrush x:Key="PrimaryButtonBackgroundBrush" Color="#FFFFFF" />
     <SolidColorBrush x:Key="PrimaryButtonForegroundBrush" Color="#000000" />
-    <SolidColorBrush x:Key="PrimaryButtonHoverBrush" Color="#E5E5E5" />
+    <SolidColorBrush x:Key="PrimaryButtonBackgroundHoverBrush" Color="#E5E5E5" />
+    <SolidColorBrush x:Key="PrimaryButtonForegroundHoverBrush" Color="#000000" />
+    <SolidColorBrush x:Key="PrimaryButtonBackgroundPressedBrush" Color="#D4D4D4" />
+    <SolidColorBrush x:Key="PrimaryButtonForegroundPressedBrush" Color="#000000" />
+    <SolidColorBrush x:Key="PrimaryButtonBackgroundDisabledBrush" Color="#525252" />
+    <SolidColorBrush x:Key="PrimaryButtonForegroundDisabledBrush" Color="#737373" />
 
     <SolidColorBrush x:Key="SecondaryButtonBackgroundBrush" Color="Transparent" />
     <SolidColorBrush x:Key="SecondaryButtonForegroundBrush" Color="#FFFFFF" />
     <SolidColorBrush x:Key="SecondaryButtonBorderBrush" Color="#404040" />
+    <SolidColorBrush x:Key="SecondaryButtonBackgroundHoverBrush" Color="#262626" />
+    <SolidColorBrush x:Key="SecondaryButtonForegroundHoverBrush" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="SecondaryButtonBorderHoverBrush" Color="#525252" />
+    <SolidColorBrush x:Key="SecondaryButtonBackgroundPressedBrush" Color="#404040" />
+    <SolidColorBrush x:Key="SecondaryButtonForegroundPressedBrush" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="SecondaryButtonBackgroundDisabledBrush" Color="Transparent" />
+    <SolidColorBrush x:Key="SecondaryButtonForegroundDisabledBrush" Color="#525252" />
+    <SolidColorBrush x:Key="SecondaryButtonBorderDisabledBrush" Color="#404040" />
+
+    <SolidColorBrush x:Key="DangerButtonBackgroundHoverBrush" Color="#B91C1C" />
+    <SolidColorBrush x:Key="DangerButtonForegroundHoverBrush" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="DangerButtonBackgroundPressedBrush" Color="#991B1B" />
+    <SolidColorBrush x:Key="DangerButtonForegroundPressedBrush" Color="#FFFFFF" />
 
     <!-- Input Colors -->
     <SolidColorBrush x:Key="InputBackgroundBrush" Color="#262626" />
