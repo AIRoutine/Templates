@@ -5,30 +5,24 @@ Gemeinsame Abhängigkeiten und Utilities für API und Uno.
 ## Zweck
 
 - Bereitstellung von `Shiny.Extensions.DependencyInjection` für automatische Service-Registrierung
-- Plattform-spezifische Lifetime-Konstanten via `AppLifetime`
+- Plattform-spezifische DI-Konstanten via `AppService`
 
 ## Abhängigkeiten
 
 - `Shiny.Extensions.DependencyInjection` - Automatische DI-Registrierung via Attribute
 - `Microsoft.Extensions.DependencyInjection.Abstractions`
 
-## AppLifetime
-
-Plattform-spezifische ServiceLifetime-Konstanten:
+## AppService
 
 ```csharp
-// API (#if API):     Default = Scoped
-// UNO (#elif UNO):   Default = Singleton
-AppLifetime.Default
-AppLifetime.Singleton
-AppLifetime.Transient
-AppLifetime.Scoped
+AppService.Lifetime  // API: Scoped, UNO: Singleton
+AppService.TryAdd    // immer true
 ```
 
 ## Verwendung
 
 ```csharp
-[Service(AppLifetime.Default, TryAdd = true)]
+[Service(AppService.Lifetime, TryAdd = AppService.TryAdd)]
 public class MyService : IMyService { }
 ```
 
