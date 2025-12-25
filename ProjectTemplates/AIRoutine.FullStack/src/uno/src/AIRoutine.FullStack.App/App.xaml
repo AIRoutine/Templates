@@ -12,7 +12,7 @@
         <!-- Load Uno.UI.Toolkit resources -->
         <ToolkitResources xmlns="using:Uno.Toolkit.UI" />
         <!-- Load App Styles -->
-        <ResourceDictionary Source="ms-appx:///AIRoutine.FullStack.Core.Styles/Styles/Styles.xaml" />
+        <ResourceDictionary Source="ms-appx:///AIRoutine.FullStack.Core.Styles/Styles.xaml" />
       </ResourceDictionary.MergedDictionaries>
 
       <!-- Converters -->
