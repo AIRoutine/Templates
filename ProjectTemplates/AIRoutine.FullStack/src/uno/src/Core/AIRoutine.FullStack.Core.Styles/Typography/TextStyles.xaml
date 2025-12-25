@@ -74,4 +74,28 @@
         <Setter Property="Foreground" Value="{ThemeResource OnSurfaceVariantBrush}" />
     </Style>
 
+    <!-- Centered Headlines -->
+    <Style x:Key="HeadlineLargeCenteredTextStyle" TargetType="TextBlock" BasedOn="{StaticResource HeadlineLargeTextStyle}">
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="TextAlignment" Value="Center" />
+    </Style>
+
+    <!-- Centered Body -->
+    <Style x:Key="BodyMediumCenteredTextStyle" TargetType="TextBlock" BasedOn="{StaticResource BodyMediumTextStyle}">
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="TextAlignment" Value="Center" />
+    </Style>
+
+    <!-- Centered Body Subtle -->
+    <Style x:Key="BodyMediumCenteredSubtleTextStyle" TargetType="TextBlock" BasedOn="{StaticResource BodyMediumCenteredTextStyle}">
+        <Setter Property="Foreground" Value="{ThemeResource OnSurfaceVariantBrush}" />
+    </Style>
+
+    <!-- Centered Title -->
+    <Style x:Key="TitleLargeCenteredTextStyle" TargetType="TextBlock" BasedOn="{StaticResource TitleLargeTextStyle}">
+        <Setter Property="HorizontalAlignment" Value="Center" />
+    </Style>
+
 </ResourceDictionary>

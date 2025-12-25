@@ -276,6 +276,11 @@
         </Setter>
     </Style>
 
+    <!-- Primary Button Centered -->
+    <Style x:Key="PrimaryButtonCenteredStyle" TargetType="Button" BasedOn="{StaticResource PrimaryButtonStyle}">
+        <Setter Property="HorizontalAlignment" Value="Center" />
+    </Style>
+
     <!-- Danger Button -->
     <Style x:Key="DangerButtonStyle" TargetType="Button">
         <Setter Property="Background" Value="{ThemeResource DangerBrush}" />

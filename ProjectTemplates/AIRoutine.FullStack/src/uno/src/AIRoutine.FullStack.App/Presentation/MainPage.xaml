@@ -31,41 +31,31 @@
                 </Grid.RowDefinitions>
 
                 <!-- Navigation Header -->
-                <utu:NavigationBar Content="{Binding Title}" />
+                <utu:NavigationBar Content="{Binding Title}"
+                                   Style="{StaticResource DefaultNavigationBarStyle}" />
 
                 <!-- Main Content mit AutoLayout -->
                 <utu:AutoLayout Grid.Row="1"
-                                Orientation="Vertical"
-                                Justify="Center"
-                                CounterAxisAlignment="Center"
+                                Style="{StaticResource CenteredContentAutoLayoutStyle}"
                                 Padding="{utu:Responsive Narrowest=16, Narrow=20, Normal=24, Wide=32, Widest=48}"
                                 Spacing="{utu:Responsive Narrowest=12, Narrow=14, Normal=16, Wide=20, Widest=24}">
 
                     <!-- Headline -->
                     <TextBlock Text="Welcome to AIRoutine.FullStack!"
-                               Style="{StaticResource HeadlineLargeTextStyle}"
-                               HorizontalAlignment="Center"
-                               TextWrapping="Wrap"
-                               TextAlignment="Center" />
+                               Style="{StaticResource HeadlineLargeCenteredTextStyle}" />
 
                     <!-- Subtitle -->
                     <TextBlock Text="Full-Stack: API + Uno App with shared configuration"
-                               Style="{StaticResource BodyMediumTextStyle}"
-                               Foreground="{ThemeResource OnSurfaceVariantBrush}"
-                               HorizontalAlignment="Center"
-                               TextWrapping="Wrap"
-                               TextAlignment="Center" />
+                               Style="{StaticResource BodyMediumCenteredSubtleTextStyle}" />
 
                     <!-- Action Button -->
                     <Button Content="Click Me"
-                            Style="{StaticResource PrimaryButtonStyle}"
-                            Command="{Binding ClickCommand}"
-                            HorizontalAlignment="Center" />
+                            Style="{StaticResource PrimaryButtonCenteredStyle}"
+                            Command="{Binding ClickCommand}" />
 
                     <!-- Click Counter -->
                     <TextBlock Text="{Binding ClickCount, Converter={StaticResource NullToCollapsedConverter}}"
-                               Style="{StaticResource TitleLargeTextStyle}"
-                               HorizontalAlignment="Center" />
+                               Style="{StaticResource TitleLargeCenteredTextStyle}" />
 
                 </utu:AutoLayout>
             </Grid>
