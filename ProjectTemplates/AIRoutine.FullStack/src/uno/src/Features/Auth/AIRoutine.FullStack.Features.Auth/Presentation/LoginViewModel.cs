@@ -1,6 +1,6 @@
 using AIRoutine.FullStack.Features.Auth.Contracts.Mediator.Requests;
 using CommunityToolkit.Mvvm.ComponentModel;
-using UnoFramework.Attributes;
+using UnoFramework.Generators;
 using UnoFramework.ViewModels;
 
 namespace AIRoutine.FullStack.Features.Auth.Presentation;
@@ -31,7 +31,7 @@ public partial class LoginViewModel : PageViewModel
             ErrorMessage = null;
             HasError = false;
 
-            var response = await Mediator.Request(new SignInRequest("default"));
+            var (_, response) = await Mediator.Request(new SignInRequest("default"));
 
             if (!response.Success)
             {
@@ -46,14 +46,19 @@ public partial class LoginViewModel : PageViewModel
     }
 
     [UnoCommand]
-    private async Task SignInWithProviderAsync(string provider)
+    private async Task SignInWithProviderAsync(string? provider)
     {
+        if (string.IsNullOrEmpty(provider))
+        {
+            return;
+        }
+
         using (BeginBusy($"Signing in with {provider}..."))
         {
             ErrorMessage = null;
             HasError = false;
 
-            var response = await Mediator.Request(new SignInRequest(provider));
+            var (_, response) = await Mediator.Request(new SignInRequest(provider));
 
             if (!response.Success)
             {

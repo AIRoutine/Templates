@@ -44,9 +44,9 @@ public sealed class AuthService : IAuthService
 
         try
         {
-            _currentToken = await _storage.GetStringAsync(JwtTokenKey);
-            _userEmail = await _storage.GetStringAsync(UserEmailKey);
-            _displayName = await _storage.GetStringAsync(DisplayNameKey);
+            _currentToken = await _storage.GetStringAsync(JwtTokenKey, CancellationToken.None);
+            _userEmail = await _storage.GetStringAsync(UserEmailKey, CancellationToken.None);
+            _displayName = await _storage.GetStringAsync(DisplayNameKey, CancellationToken.None);
             _isInitialized = true;
 
             _logger.LogInformation("Auth state initialized. IsAuthenticated: {IsAuthenticated}", IsAuthenticated);
@@ -61,13 +61,13 @@ public sealed class AuthService : IAuthService
     {
         try
         {
-            await _storage.SetStringAsync(JwtTokenKey, jwt);
-            await _storage.SetStringAsync(RefreshTokenKey, refreshToken);
-            await _storage.SetStringAsync(UserEmailKey, email);
+            await _storage.SetAsync(JwtTokenKey, jwt, CancellationToken.None);
+            await _storage.SetAsync(RefreshTokenKey, refreshToken, CancellationToken.None);
+            await _storage.SetAsync(UserEmailKey, email, CancellationToken.None);
 
             if (!string.IsNullOrEmpty(displayName))
             {
-                await _storage.SetStringAsync(DisplayNameKey, displayName);
+                await _storage.SetAsync(DisplayNameKey, displayName, CancellationToken.None);
             }
 
             _currentToken = jwt;
@@ -87,10 +87,10 @@ public sealed class AuthService : IAuthService
     {
         try
         {
-            await _storage.ClearAsync(JwtTokenKey);
-            await _storage.ClearAsync(RefreshTokenKey);
-            await _storage.ClearAsync(UserEmailKey);
-            await _storage.ClearAsync(DisplayNameKey);
+            await _storage.ClearAsync(JwtTokenKey, CancellationToken.None);
+            await _storage.ClearAsync(RefreshTokenKey, CancellationToken.None);
+            await _storage.ClearAsync(UserEmailKey, CancellationToken.None);
+            await _storage.ClearAsync(DisplayNameKey, CancellationToken.None);
 
             _currentToken = null;
             _userEmail = null;
@@ -109,7 +109,7 @@ public sealed class AuthService : IAuthService
     {
         try
         {
-            return await _storage.GetStringAsync(RefreshTokenKey);
+            return await _storage.GetStringAsync(RefreshTokenKey, CancellationToken.None);
         }
         catch (Exception ex)
         {

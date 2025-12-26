@@ -1,0 +1,3 @@
+[submodule "ProjectTemplates/AIRoutine.FullStack/subm/uno"]
+	path = ProjectTemplates/AIRoutine.FullStack/subm/uno
+	url = https://github.com/AIRoutine/UnoFramework.git

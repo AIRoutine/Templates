@@ -28,6 +28,7 @@
     <ProjectReference Include="..\AIRoutine.FullStack.Features.Auth.Contracts\AIRoutine.FullStack.Features.Auth.Contracts.csproj" />
     <ProjectReference Include="..\..\..\..\..\..\subm\uno\src\UnoFramework\UnoFramework.csproj" />
     <ProjectReference Include="..\..\..\..\..\..\subm\uno\src\UnoFramework.Contracts\UnoFramework.Contracts.csproj" />
+    <ProjectReference Include="..\..\..\..\..\..\subm\uno\src\UnoFramework.Generators\UnoFramework.Generators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
   </ItemGroup>
 
 </Project>
