@@ -53,5 +53,11 @@
     <PackageVersion Include="NUnit3TestAdapter" Version="4.6.0" />
     <PackageVersion Include="FluentAssertions" Version="7.0.0" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+
+    <!-- Unit & Integration Testing -->
+    <PackageVersion Include="NSubstitute" Version="5.3.0" />
+    <PackageVersion Include="Microsoft.AspNetCore.Mvc.Testing" Version="$(MicrosoftVersion)" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.InMemory" Version="$(MicrosoftVersion)" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="$(MicrosoftVersion)" />
   </ItemGroup>
 </Project>

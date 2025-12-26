@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>$(NetVersion)</TargetFramework>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NUnit" />
+    <PackageReference Include="NUnit3TestAdapter" />
+    <PackageReference Include="FluentAssertions" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="NSubstitute" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AIRoutine.FullStack.Api.UnitTests\AIRoutine.FullStack.Api.UnitTests.csproj" />
+    <ProjectReference Include="..\..\..\src\Core\AIRoutine.FullStack.Api.Core.Data\AIRoutine.FullStack.Api.Core.Data.csproj" />
+    <ProjectReference Include="..\..\..\src\Core\AIRoutine.FullStack.Api.Core.Startup\AIRoutine.FullStack.Api.Core.Startup.csproj" />
+  </ItemGroup>
+</Project>

@@ -29,6 +29,11 @@
           </Grid>
         </DataTemplate>
       </utu:ExtendedSplashScreen.LoadingContentTemplate>
+      <utu:ExtendedSplashScreen.ContentTemplate>
+        <DataTemplate>
+          <Frame />
+        </DataTemplate>
+      </utu:ExtendedSplashScreen.ContentTemplate>
     </utu:ExtendedSplashScreen>
   </Border>
 </UserControl>
