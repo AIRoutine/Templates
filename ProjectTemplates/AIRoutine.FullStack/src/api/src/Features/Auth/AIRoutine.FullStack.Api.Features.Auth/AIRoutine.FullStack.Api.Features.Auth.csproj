@@ -6,11 +6,11 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+    <PackageReference Include="Shiny.Extensions.DependencyInjection" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Core\AIRoutine.FullStack.Api.Core.Data\AIRoutine.FullStack.Api.Core.Data.csproj" />
-    <ProjectReference Include="..\..\..\..\..\shared\AIRoutine.FullStack.Shared\AIRoutine.FullStack.Shared.csproj" />
   </ItemGroup>
 
 </Project>

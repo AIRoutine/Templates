@@ -24,8 +24,19 @@ Nutze `Shiny.Extensions.DependencyInjection` für automatische Service-Registrie
 
 ### Attribute
 
+**API-Services:**
 ```csharp
-[Service(AppService.Lifetime, TryAdd = AppService.TryAdd)]
+using AIRoutine.FullStack.Api;
+
+[Service(ApiService.Lifetime, TryAdd = ApiService.TryAdd)]
+public class MyService : IMyService { }
+```
+
+**Uno-Services:**
+```csharp
+using AIRoutine.FullStack;
+
+[Service(UnoService.Lifetime, TryAdd = UnoService.TryAdd)]
 public class MyService : IMyService { }
 ```
 
@@ -37,9 +48,10 @@ services.AddShinyServiceRegistry();
 
 ### Konstanten
 
-`AppService` aus `AIRoutine.FullStack.Shared`:
-- `Lifetime`: API = `Scoped`, UNO = `Singleton`
-- `TryAdd`: immer `true`
+| Klasse | Namespace | Lifetime | TryAdd |
+|--------|-----------|----------|--------|
+| `ApiService` | `AIRoutine.FullStack.Api` | `Scoped` | `true` |
+| `UnoService` | `AIRoutine.FullStack` | `Singleton` | `true` |
 
 Referenz: [shinylib.net/extensions/di](https://shinylib.net/extensions/di/)
 
