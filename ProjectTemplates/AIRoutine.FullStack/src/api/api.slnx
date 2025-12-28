@@ -11,7 +11,6 @@
   <Folder Name="/src/Features/Auth/">
     <Project Path="src/Features/Auth/AIRoutine.FullStack.Api.Features.Auth/AIRoutine.FullStack.Api.Features.Auth.csproj" />
     <Project Path="src/Features/Auth/AIRoutine.FullStack.Api.Features.Auth.Contracts/AIRoutine.FullStack.Api.Features.Auth.Contracts.csproj" />
-    <Project Path="src/Features/Auth/AIRoutine.FullStack.Api.Features.Auth.Handlers/AIRoutine.FullStack.Api.Features.Auth.Handlers.csproj" />
   </Folder>
   <Folder Name="/tests/UnitTests/">
     <Project Path="tests/UnitTests/AIRoutine.FullStack.Api.UnitTests/AIRoutine.FullStack.Api.UnitTests.csproj" />

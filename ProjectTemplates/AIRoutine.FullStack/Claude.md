@@ -69,9 +69,8 @@ AIRoutine.FullStack/
 │   │       │   ├── *.Api.Core.Data/               # DbContext, BaseEntity
 │   │       │   └── *.Api.Core.Startup/            # DI Setup
 │   │       └── Features/{Name}/
-│   │           ├── *.Api.Features.{Name}/         # Services, Data, Config
-│   │           ├── *.Api.Features.{Name}.Contracts/
-│   │           └── *.Api.Features.{Name}.Handlers/
+│   │           ├── *.Api.Features.{Name}/         # Services, Data, Handlers
+│   │           └── *.Api.Features.{Name}.Contracts/
 │   │
 │   ├── aspire/                     # .NET Aspire Orchestrierung
 │   │   └── src/
@@ -110,9 +109,8 @@ Die README.md dokumentiert:
 ## API Feature-Erweiterungsstruktur
 
 Bei neuen API-Features erstelle Projekte unter `src/api/src/Features/{FeatureName}/`:
-1. **Hauptprojekt** (`Api.Features.{FeatureName}`) - Services, Data, Configuration
+1. **Hauptprojekt** (`Api.Features.{FeatureName}`) - Services, Data, Handlers
 2. **Contracts-Projekt** (`Api.Features.{FeatureName}.Contracts`) - Request/Response DTOs
-3. **Handlers-Projekt** (`Api.Features.{FeatureName}.Handlers`) - Business-Logik
 
 **Jedes dieser Projekte MUSS eine `README.md` enthalten.**
 
@@ -135,6 +133,8 @@ src/api/src/Features/{FeatureName}/AIRoutine.FullStack.Api.Features.{FeatureName
 │   │   └── {Entity}.cs                   # : BaseEntity
 │   └── Configurations/
 │       └── {Entity}Configuration.cs      # IEntityTypeConfiguration<T>
+├── Handlers/
+│   └── {Action}Handler.cs                # IRequestHandler<TRequest, TResponse>
 └── Services/
     ├── I{Service}.cs                     # Service-Interfaces
     └── {Service}.cs                      # Service-Implementierungen
@@ -149,14 +149,6 @@ src/api/src/Features/{FeatureName}/AIRoutine.FullStack.Api.Features.{FeatureName
     └── Requests/
         ├── {Action}Request.cs            # IRequest<TResponse>
         └── {Action}Response.cs           # Response DTO (embedded record)
-```
-
-### API Handlers-Projekt
-
-```
-src/api/src/Features/{FeatureName}/AIRoutine.FullStack.Api.Features.{FeatureName}.Handlers/
-├── README.md                             # Projektdokumentation (PFLICHT)
-└── {Action}Handler.cs                    # IRequestHandler<TRequest, TResponse>
 ```
 
 ### Feature Registration

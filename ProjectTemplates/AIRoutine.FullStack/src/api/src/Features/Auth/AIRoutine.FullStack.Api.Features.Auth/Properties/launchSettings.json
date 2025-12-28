@@ -1,12 +1,12 @@
 {
   "profiles": {
-    "AIRoutine.FullStack.Api.Features.Auth.Handlers": {
+    "AIRoutine.FullStack.Api.Features.Auth": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "https://localhost:63811;http://localhost:63812"
+      "applicationUrl": "https://localhost:49955;http://localhost:49956"
     }
   }
 }

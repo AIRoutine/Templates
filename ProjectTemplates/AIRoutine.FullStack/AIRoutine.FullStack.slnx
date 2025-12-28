@@ -17,7 +17,6 @@
   <Folder Name="/src/api/src/Features/Auth/">
     <Project Path="src/api/src/Features/Auth/AIRoutine.FullStack.Api.Features.Auth/AIRoutine.FullStack.Api.Features.Auth.csproj" />
     <Project Path="src/api/src/Features/Auth/AIRoutine.FullStack.Api.Features.Auth.Contracts/AIRoutine.FullStack.Api.Features.Auth.Contracts.csproj" />
-    <Project Path="src/api/src/Features/Auth/AIRoutine.FullStack.Api.Features.Auth.Handlers/AIRoutine.FullStack.Api.Features.Auth.Handlers.csproj" />
   </Folder>
   <Folder Name="/src/uno/src/">
     <Project Path="src/uno/src/AIRoutine.FullStack.App/AIRoutine.FullStack.App.csproj" />
