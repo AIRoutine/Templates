@@ -9,6 +9,15 @@
 - **Orchestrierung:** .NET Aspire (AppHost + ServiceDefaults)
 - **Architektur:** Shiny Mediator Pattern ([GitHub](https://github.com/shinyorg/mediator))
 
+## Architekturprinzip: Backend-First
+
+**Alle Logik im Backend. Frontend nur für Anzeige.**
+
+| Backend (API) | Frontend (Uno) |
+|---------------|----------------|
+| Geschäftslogik, Validierung, Berechnungen | UI, Navigation, API-Aufrufe |
+| Datenbank, Security, externe Services | Loading-States, UX-Feedback |
+
 ## Dependency Injection
 
 Nutze `Shiny.Extensions.DependencyInjection` für automatische Service-Registrierung.
@@ -156,19 +165,6 @@ public static IServiceCollection AddApiServices(this IServiceCollection services
 ### Entity Configuration Pattern
 
 Entities erben von `BaseEntity` und werden via `IEntityTypeConfiguration<T>` konfiguriert:
-
-```csharp
-// In Feature ServiceCollectionExtensions.cs
-public static IServiceCollection Add{FeatureName}Feature(this IServiceCollection services)
-{
-    // Entity Configurations registrieren
-    AppDbContext.RegisterConfigurations(typeof({Entity}Configuration).Assembly);
-
-    // Services
-    services.AddScoped<I{Service}, {Service}>();
-    return services;
-}
-```
 
 ### Datenbank-Konfiguration
 
