@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Core\AIRoutine.FullStack.Api.Core.Data\AIRoutine.FullStack.Api.Core.Data.csproj" />
+    <ProjectReference Include="..\..\..\..\..\shared\AIRoutine.FullStack.Shared\AIRoutine.FullStack.Shared.csproj" />
   </ItemGroup>
 
 </Project>

@@ -3,12 +3,15 @@ using System.Security.Claims;
 using System.Text;
 using AIRoutine.FullStack.Api.Core.Data;
 using AIRoutine.FullStack.Api.Features.Auth.Data.Entities;
+using AIRoutine.FullStack.Shared;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using Shiny.Extensions.DependencyInjection;
 
 namespace AIRoutine.FullStack.Api.Features.Auth.Services;
 
+[Service(AppService.Lifetime, TryAdd = AppService.TryAdd)]
 public class JwtService
 {
     readonly int tokenExpiryMins;
