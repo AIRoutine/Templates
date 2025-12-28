@@ -16,6 +16,7 @@
       ThemeService;
       Http;
       Storage;
+      SkiaRenderer;
     </UnoFeatures>
   </PropertyGroup>
 

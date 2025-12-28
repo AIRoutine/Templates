@@ -12,28 +12,24 @@
                               VerticalAlignment="Stretch"
                               HorizontalContentAlignment="Stretch"
                               VerticalContentAlignment="Stretch">
-      <utu:ExtendedSplashScreen.LoadingContentTemplate>
-        <DataTemplate>
-          <Grid>
-            <Grid.RowDefinitions>
-              <RowDefinition Height="2*" />
-              <RowDefinition />
-            </Grid.RowDefinitions>
+      <utu:ExtendedSplashScreen.LoadingContent>
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="2*" />
+            <RowDefinition />
+          </Grid.RowDefinitions>
 
-            <ProgressRing IsActive="True"
-                          AutomationProperties.AutomationId="Shell.LoadingIndicator"
-                          Style="{StaticResource LargeProgressRingStyle}"
-                          Grid.Row="1"
-                          VerticalAlignment="Center"
-                          HorizontalAlignment="Center" />
-          </Grid>
-        </DataTemplate>
-      </utu:ExtendedSplashScreen.LoadingContentTemplate>
-      <utu:ExtendedSplashScreen.ContentTemplate>
-        <DataTemplate>
-          <Frame />
-        </DataTemplate>
-      </utu:ExtendedSplashScreen.ContentTemplate>
+          <ProgressRing IsActive="True"
+                        AutomationProperties.AutomationId="Shell.LoadingIndicator"
+                        Style="{StaticResource LargeProgressRingStyle}"
+                        Grid.Row="1"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center" />
+        </Grid>
+      </utu:ExtendedSplashScreen.LoadingContent>
+      <utu:ExtendedSplashScreen.Content>
+        <Frame x:Name="RootFrame" />
+      </utu:ExtendedSplashScreen.Content>
     </utu:ExtendedSplashScreen>
   </Border>
 </UserControl>

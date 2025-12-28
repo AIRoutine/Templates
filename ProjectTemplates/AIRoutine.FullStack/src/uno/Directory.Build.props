@@ -4,14 +4,12 @@
 
   <PropertyGroup>
     <!-- Uno Platform Target Frameworks -->
-    <!-- browserwasm temporarily disabled due to Uno.Resizetizer/Wasm.Bootstrap compatibility issue with dev packages -->
-
     <!-- UNO_SINGLE_TARGET: Standardmäßig true auf Windows für schnellere lokale Builds -->
     <!-- Setze UNO_SINGLE_TARGET=false für alle Targets (CI/CD oder explizit) -->
     <UNO_SINGLE_TARGET Condition="'$(UNO_SINGLE_TARGET)' == '' AND '$(OS)' == 'Windows_NT'">true</UNO_SINGLE_TARGET>
     <UNO_SINGLE_TARGET Condition="'$(UNO_SINGLE_TARGET)' == ''">false</UNO_SINGLE_TARGET>
 
-    <UnoFrameworks Condition="'$(UNO_SINGLE_TARGET)' != 'true'">$(NetVersion)-android;$(NetVersion)-ios;$(NetVersion)-desktop;$(NetVersion)</UnoFrameworks>
+    <UnoFrameworks Condition="'$(UNO_SINGLE_TARGET)' != 'true'">$(NetVersion)-android;$(NetVersion)-ios;$(NetVersion)-desktop;$(NetVersion)-browserwasm;$(NetVersion)</UnoFrameworks>
     <UnoFrameworks Condition="'$(UNO_SINGLE_TARGET)' == 'true'">$(NetVersion)-desktop</UnoFrameworks>
 
     <!--

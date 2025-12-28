@@ -1,4 +1,5 @@
 using System.Net.Http.Json;
+using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging;
 
 namespace AIRoutine.FullStack.Features.Auth.Services;
@@ -21,12 +22,12 @@ public sealed class AuthApiClient : IAuthApiClient
     {
         try
         {
-            var request = new { Scheme = scheme };
-            var response = await _httpClient.PostAsJsonAsync("/auth/signin/mobile", request, cancellationToken);
+            var request = new SignInApiRequest(scheme);
+            var response = await _httpClient.PostAsJsonAsync("/auth/signin/mobile", request, AuthApiJsonContext.Default.SignInApiRequest, cancellationToken);
 
             if (response.IsSuccessStatusCode)
             {
-                var result = await response.Content.ReadFromJsonAsync<SignInApiResult>(cancellationToken: cancellationToken);
+                var result = await response.Content.ReadFromJsonAsync(AuthApiJsonContext.Default.SignInApiResult, cancellationToken);
                 if (result?.Success == true)
                 {
                     return new ApiSignInResponse(true, result.Jwt, result.RefreshToken, result.Email, result.DisplayName, null);
@@ -47,12 +48,12 @@ public sealed class AuthApiClient : IAuthApiClient
     {
         try
         {
-            var request = new { Token = refreshToken };
-            var response = await _httpClient.PostAsJsonAsync("/auth/signin/refresh", request, cancellationToken);
+            var request = new RefreshApiRequest(refreshToken);
+            var response = await _httpClient.PostAsJsonAsync("/auth/signin/refresh", request, AuthApiJsonContext.Default.RefreshApiRequest, cancellationToken);
 
             if (response.IsSuccessStatusCode)
             {
-                var result = await response.Content.ReadFromJsonAsync<RefreshApiResult>(cancellationToken: cancellationToken);
+                var result = await response.Content.ReadFromJsonAsync(AuthApiJsonContext.Default.RefreshApiResult, cancellationToken);
                 if (result?.Success == true)
                 {
                     return new ApiRefreshResponse(true, result.Jwt, result.RefreshToken, null);
@@ -73,8 +74,8 @@ public sealed class AuthApiClient : IAuthApiClient
     {
         try
         {
-            var request = new { RefreshToken = refreshToken, PushToken = pushToken };
-            var response = await _httpClient.PostAsJsonAsync("/auth/signout", request, cancellationToken);
+            var request = new SignOutApiRequest(refreshToken, pushToken);
+            var response = await _httpClient.PostAsJsonAsync("/auth/signout", request, AuthApiJsonContext.Default.SignOutApiRequest, cancellationToken);
 
             if (!response.IsSuccessStatusCode)
             {
@@ -86,7 +87,23 @@ public sealed class AuthApiClient : IAuthApiClient
             _logger.LogError(ex, "Sign-out request failed");
         }
     }
-
-    private sealed record SignInApiResult(bool Success, string? Jwt, string? RefreshToken, string? Email, string? DisplayName);
-    private sealed record RefreshApiResult(bool Success, string? Jwt, string? RefreshToken);
 }
+
+// Request types for AOT/Trimming compatibility
+internal sealed record SignInApiRequest(string Scheme);
+internal sealed record RefreshApiRequest(string Token);
+internal sealed record SignOutApiRequest(string RefreshToken, string? PushToken);
+
+// Response types
+internal sealed record SignInApiResult(bool Success, string? Jwt, string? RefreshToken, string? Email, string? DisplayName);
+internal sealed record RefreshApiResult(bool Success, string? Jwt, string? RefreshToken);
+
+/// <summary>
+/// JSON serializer context for AOT/Trimming compatibility.
+/// </summary>
+[JsonSerializable(typeof(SignInApiRequest))]
+[JsonSerializable(typeof(RefreshApiRequest))]
+[JsonSerializable(typeof(SignOutApiRequest))]
+[JsonSerializable(typeof(SignInApiResult))]
+[JsonSerializable(typeof(RefreshApiResult))]
+internal sealed partial class AuthApiJsonContext : JsonSerializerContext;

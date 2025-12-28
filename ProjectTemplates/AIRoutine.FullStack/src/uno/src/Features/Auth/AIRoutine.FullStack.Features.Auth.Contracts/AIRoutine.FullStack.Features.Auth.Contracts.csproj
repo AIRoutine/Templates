@@ -8,6 +8,7 @@
 
     <UnoFeatures>
       Hosting;
+      SkiaRenderer;
     </UnoFeatures>
   </PropertyGroup>
 
