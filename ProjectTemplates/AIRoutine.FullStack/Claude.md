@@ -34,178 +34,46 @@ services.AddShinyServiceRegistry();
 
 Referenz: [shinylib.net/extensions/di](https://shinylib.net/extensions/di/)
 
-## Aktuelle Projektstruktur
+## Projektstruktur
 
 ```
 AIRoutine.FullStack/
-├── .claude/
-│   └── settings.json                           # Claude Code Einstellungen
-├── .gitignore
-├── .gitmodules
-├── Claude.md                                   # Diese Datei
-├── Directory.Build.props                       # Zentrale Build-Eigenschaften
-├── Directory.Packages.props                    # Zentrale Package-Versionen
-├── global.json                                 # SDK-Versionen (Uno.Sdk)
-├── AIRoutine.FullStack.slnx                    # Haupt-Solution
-│
 ├── src/
-│   ├── api/                                    # Backend API
-│   │   ├── Directory.Build.props
-│   │   ├── Directory.Packages.props
-│   │   ├── api.slnx                            # API Sub-Solution
-│   │   │
+│   ├── api/                        # Backend (ASP.NET)
 │   │   └── src/
-│   │       ├── AIRoutine.FullStack.Api/        # API Host-Projekt
-│   │       │   ├── AIRoutine.FullStack.Api.csproj
-│   │       │   ├── Program.cs                  # Entry Point
-│   │       │   ├── appsettings.json
-│   │       │   ├── appsettings.Development.json
-│   │       │   └── Properties/
-│   │       │       └── launchSettings.json
-│   │       │
-│   │       ├── AIRoutine.FullStack.Api.Contracts/
-│   │       │   ├── AIRoutine.FullStack.Api.Contracts.csproj
-│   │       │   └── Mediator/
-│   │       │       └── Requests/
-│   │       │
-│   │       ├── AIRoutine.FullStack.Api.Handlers/
-│   │       │   ├── AIRoutine.FullStack.Api.Handlers.csproj
-│   │       │   └── {Feature}Handler.cs
-│   │       │
+│   │       ├── *.Api/                             # Host
+│   │       ├── *.Api.Contracts/                   # Globale DTOs
+│   │       ├── *.Api.Handlers/                    # Globale Handler
 │   │       ├── Core/
-│   │       │   ├── AIRoutine.FullStack.Api.Core.Data/     # Zentraler DbContext
-│   │       │   │   ├── AIRoutine.FullStack.Api.Core.Data.csproj
-│   │       │   │   ├── README.md                          # Projektdokumentation
-│   │       │   │   ├── AppDbContext.cs                    # Multi-Provider DbContext
-│   │       │   │   ├── Configuration/
-│   │       │   │   │   └── ServiceCollectionExtensions.cs # AddAppData()
-│   │       │   │   └── Entities/
-│   │       │   │       └── BaseEntity.cs                  # Id, CreatedAt, UpdatedAt
-│   │       │   │
-│   │       │   └── AIRoutine.FullStack.Api.Core.Startup/  # API DI Setup
-│   │       │       ├── AIRoutine.FullStack.Api.Core.Startup.csproj
-│   │       │       ├── README.md                          # Projektdokumentation
-│   │       │       └── ServiceCollectionExtensions.cs     # AddApiServices()
-│   │       │
-│   │       └── Features/
-│   │           └── Auth/                       # Auth Feature
-│   │               ├── AIRoutine.FullStack.Api.Features.Auth/
-│   │               │   ├── AIRoutine.FullStack.Api.Features.Auth.csproj
-│   │               │   ├── README.md                     # Projektdokumentation
-│   │               │   ├── Configuration/
-│   │               │   │   └── ServiceCollectionExtensions.cs  # AddAuthFeature()
-│   │               │   ├── Data/
-│   │               │   │   ├── Entities/
-│   │               │   │   │   ├── User.cs                # : BaseEntity
-│   │               │   │   │   └── RefreshToken.cs        # : BaseEntity
-│   │               │   │   └── Configurations/
-│   │               │   │       ├── UserConfiguration.cs
-│   │               │   │       └── RefreshTokenConfiguration.cs
-│   │               │   └── Services/
-│   │               │       ├── IUserService.cs
-│   │               │       ├── JwtService.cs
-│   │               │       └── UserService.cs
-│   │               │
-│   │               ├── AIRoutine.FullStack.Api.Features.Auth.Contracts/
-│   │               │   ├── AIRoutine.FullStack.Api.Features.Auth.Contracts.csproj
-│   │               │   ├── README.md                     # Projektdokumentation
-│   │               │   └── Mediator/
-│   │               │       └── Requests/
-│   │               │           ├── RefreshRequest.cs
-│   │               │           ├── SignInRequest.cs
-│   │               │           └── SignOutRequest.cs
-│   │               │
-│   │               └── AIRoutine.FullStack.Api.Features.Auth.Handlers/
-│   │                   ├── AIRoutine.FullStack.Api.Features.Auth.Handlers.csproj
-│   │                   ├── README.md                     # Projektdokumentation
-│   │                   ├── RefreshHandler.cs
-│   │                   ├── SignInHandler.cs
-│   │                   └── SignOutHandler.cs
+│   │       │   ├── *.Api.Core.Data/               # DbContext, BaseEntity
+│   │       │   └── *.Api.Core.Startup/            # DI Setup
+│   │       └── Features/{Name}/
+│   │           ├── *.Api.Features.{Name}/         # Services, Data, Config
+│   │           ├── *.Api.Features.{Name}.Contracts/
+│   │           └── *.Api.Features.{Name}.Handlers/
 │   │
-│   ├── aspire/                                 # .NET Aspire Orchestrierung
-│   │   ├── aspire.slnx                         # Aspire Sub-Solution
-│   │   │
+│   ├── aspire/                     # .NET Aspire Orchestrierung
 │   │   └── src/
-│   │       ├── AIRoutine.FullStack.AppHost/    # Aspire Orchestrator
-│   │       │   ├── AIRoutine.FullStack.AppHost.csproj
-│   │       │   ├── Program.cs                  # Orchestriert API
-│   │       │   ├── appsettings.json
-│   │       │   └── Properties/
-│   │       │       └── launchSettings.json
-│   │       │
-│   │       └── AIRoutine.FullStack.ServiceDefaults/  # Shared Aspire Config
-│   │           ├── AIRoutine.FullStack.ServiceDefaults.csproj
-│   │           └── Extensions.cs               # AddServiceDefaults(), MapDefaultEndpoints()
+│   │       ├── *.AppHost/                         # Orchestrator
+│   │       └── *.ServiceDefaults/                 # Shared Config
 │   │
-│   ├── shared/                                 # Shared zwischen API und Uno
-│   │   └── AIRoutine.FullStack.Shared/
-│   │       ├── AIRoutine.FullStack.Shared.csproj
-│   │       └── README.md                       # DI-Attribute Dokumentation
+│   ├── shared/                     # Shared (API + Uno)
+│   │   └── *.Shared/                              # DI-Attribute
 │   │
-│   └── uno/                                    # Frontend Uno App
-│       ├── Directory.Build.props
-│       ├── Directory.Packages.props
-│       ├── uno.slnx                            # Uno Sub-Solution
-│       │
+│   └── uno/                        # Frontend (Uno Platform)
 │       └── src/
-│           ├── AIRoutine.FullStack.App/        # Uno Hauptprojekt
-│           │   ├── AIRoutine.FullStack.App.csproj
-│           │   ├── App.xaml
-│           │   ├── App.xaml.cs
-│           │   ├── GlobalUsings.cs
-│           │   ├── appsettings.json
-│           │   ├── appsettings.development.json
-│           │   ├── Models/
-│           │   ├── Presentation/
-│           │   └── Platforms/
-│           │
+│           ├── *.App/                             # Hauptprojekt
 │           ├── Core/
-│           │   ├── AIRoutine.FullStack.Core.Startup/      # Uno DI Setup
-│           │   │   ├── AIRoutine.FullStack.Core.Startup.csproj
-│           │   │   ├── README.md                          # Projektdokumentation
-│           │   │   └── ServiceCollectionExtensions.cs     # AddAppServices()
-│           │   │
-│           │   └── AIRoutine.FullStack.Core.Styles/       # Design System
-│           │       ├── AIRoutine.FullStack.Core.Styles.csproj
-│           │       ├── README.md
-│           │       └── ...                                # Styles, Themes, Controls
-│           │
-│           └── Features/
-│               └── Auth/                                  # Auth Feature
-│                   ├── AIRoutine.FullStack.Features.Auth/
-│                   │   ├── AIRoutine.FullStack.Features.Auth.csproj
-│                   │   ├── README.md                      # Projektdokumentation
-│                   │   ├── Configuration/
-│                   │   │   └── ServiceCollectionExtensions.cs  # AddAuthFeature()
-│                   │   ├── Services/
-│                   │   │   ├── IAuthService.cs            # Token-Management
-│                   │   │   ├── AuthService.cs
-│                   │   │   ├── IAuthApiClient.cs          # API Client
-│                   │   │   └── AuthApiClient.cs
-│                   │   ├── Mediator/
-│                   │   │   └── Requests/
-│                   │   │       ├── SignInHandler.cs
-│                   │   │       ├── RefreshHandler.cs
-│                   │   │       ├── SignOutHandler.cs
-│                   │   │       └── GetAuthStateHandler.cs
-│                   │   └── Presentation/
-│                   │       ├── LoginPage.xaml
-│                   │       ├── LoginPage.xaml.cs
-│                   │       └── LoginViewModel.cs
-│                   │
-│                   └── AIRoutine.FullStack.Features.Auth.Contracts/
-│                       ├── AIRoutine.FullStack.Features.Auth.Contracts.csproj
-│                       ├── README.md                      # Projektdokumentation
-│                       └── Mediator/
-│                           └── Requests/
-│                               ├── SignInRequest.cs
-│                               ├── RefreshRequest.cs
-│                               ├── SignOutCommand.cs
-│                               └── GetAuthStateRequest.cs
+│           │   ├── *.Core.Startup/                # DI Setup
+│           │   └── *.Core.Styles/                 # Design System
+│           └── Features/{Name}/
+│               ├── *.Features.{Name}/             # Services, Presentation
+│               └── *.Features.{Name}.Contracts/
 │
-└── subm/
-    └── uno/                                    # UnoFramework Submodule
+└── subm/uno/                       # UnoFramework Submodule
 ```
+
+> `*` = `AIRoutine.FullStack` Namespace-Prefix
 
 ## Projektdokumentation
 
@@ -277,9 +145,10 @@ Features werden in `Core.Startup/ServiceCollectionExtensions.cs` registriert:
 ```csharp
 public static IServiceCollection AddApiServices(this IServiceCollection services, IConfiguration configuration)
 {
+    services.AddShinyServiceRegistry();  // [Service] Attribute scannen
     services.AddShinyMediator();
     services.AddAppData(configuration);  // Zentraler DbContext
-    services.Add{FeatureName}Feature();  // Feature Services
+    services.Add{FeatureName}Feature();
     return services;
 }
 ```
@@ -373,13 +242,14 @@ Features werden in `Core.Startup/ServiceCollectionExtensions.cs` registriert:
 ```csharp
 public static IServiceCollection AddAppServices(this IServiceCollection services)
 {
+    services.AddShinyServiceRegistry();  // [Service] Attribute scannen
     services.AddShinyMediator();
     services.AddSingleton<IEventCollector, UnoEventCollector>();
     services.AddSingleton<BaseServices>();
 
     // Features
     services.AddAuthFeature();
-    services.Add{FeatureName}Feature();  // Feature Services
+    services.Add{FeatureName}Feature();
 
     return services;
 }
@@ -387,18 +257,14 @@ public static IServiceCollection AddAppServices(this IServiceCollection services
 
 ### Uno Feature Beispiel: Auth
 
-Das Auth-Feature zeigt die empfohlene Struktur:
+HttpClient-basierte Services erfordern explizite Registrierung:
 
 ```csharp
 // In Feature Configuration/ServiceCollectionExtensions.cs
 public static IServiceCollection AddAuthFeature(this IServiceCollection services)
 {
-    // Services
-    services.AddSingleton<IAuthService, AuthService>();
-
-    // API Client
+    // HttpClient erfordert explizite Registrierung
     services.AddHttpClient<IAuthApiClient, AuthApiClient>();
-
     return services;
 }
 ```

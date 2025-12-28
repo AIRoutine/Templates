@@ -1,4 +1,6 @@
+using AIRoutine.FullStack.Shared;
 using Microsoft.Extensions.Logging;
+using Shiny;
 using Uno.Extensions.Storage;
 
 namespace AIRoutine.FullStack.Features.Auth.Services;
@@ -6,6 +8,7 @@ namespace AIRoutine.FullStack.Features.Auth.Services;
 /// <summary>
 /// Implementation of <see cref="IAuthService"/> using secure storage.
 /// </summary>
+[Service(AppService.Lifetime, TryAdd = AppService.TryAdd)]
 public sealed class AuthService : IAuthService
 {
     private const string JwtTokenKey = "auth_jwt_token";

@@ -11,12 +11,12 @@ public static class ServiceCollectionExtensions
     /// <summary>
     /// Adds the Auth feature services to the service collection.
     /// </summary>
+    /// <remarks>
+    /// Services with [Service] attribute are auto-registered via AddShinyServiceRegistry().
+    /// </remarks>
     public static IServiceCollection AddAuthFeature(this IServiceCollection services)
     {
-        // Services
-        services.AddSingleton<IAuthService, AuthService>();
-
-        // API Client
+        // API Client (HttpClient requires explicit registration)
         services.AddHttpClient<IAuthApiClient, AuthApiClient>();
 
         return services;
@@ -25,11 +25,11 @@ public static class ServiceCollectionExtensions
     /// <summary>
     /// Adds the Auth feature services with a configured base address for the API.
     /// </summary>
+    /// <remarks>
+    /// Services with [Service] attribute are auto-registered via AddShinyServiceRegistry().
+    /// </remarks>
     public static IServiceCollection AddAuthFeature(this IServiceCollection services, string apiBaseAddress)
     {
-        // Services
-        services.AddSingleton<IAuthService, AuthService>();
-
         // API Client with configured base address
         services.AddHttpClient<IAuthApiClient, AuthApiClient>(client =>
         {

@@ -10,6 +10,9 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddAppServices(this IServiceCollection services)
     {
+        // Auto-register services with [Service] attribute
+        services.AddShinyServiceRegistry();
+
         services.AddShinyMediator();
         services.AddSingleton<IEventCollector, UnoEventCollector>();
         services.AddSingleton<BaseServices>();

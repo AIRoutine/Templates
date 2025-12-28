@@ -9,6 +9,9 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddApiServices(this IServiceCollection services, IConfiguration configuration)
     {
+        // Auto-register services with [Service] attribute
+        services.AddShinyServiceRegistry();
+
         services.AddShinyMediator();
 
         // Data (must be before features to register DbContext first)
