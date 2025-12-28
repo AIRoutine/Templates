@@ -1,3 +1,4 @@
+using AIRoutine.FullStack.Api.Generated;
 using AIRoutine.FullStack.Features.Auth.Contracts.Mediator.Requests;
 using AIRoutine.FullStack.Features.Auth.Services;
 using Microsoft.Extensions.Logging;
@@ -7,9 +8,10 @@ namespace AIRoutine.FullStack.Features.Auth.Mediator.Requests;
 
 /// <summary>
 /// Handler for <see cref="SignInRequest"/>.
+/// Uses generated HTTP contracts from OpenAPI for API communication.
 /// </summary>
 public sealed class SignInHandler(
-    IAuthApiClient apiClient,
+    IMediator mediator,
     IAuthService authService,
     ILogger<SignInHandler> logger
 ) : IRequestHandler<SignInRequest, SignInResponse>
@@ -18,21 +20,34 @@ public sealed class SignInHandler(
     {
         logger.LogInformation("Processing sign-in request with scheme: {Scheme}", request.Scheme);
 
-        var response = await apiClient.SignInAsync(request.Scheme, cancellationToken);
+        // Use generated HTTP contract from OpenAPI
+        var httpRequest = new SignInHttpRequest { Scheme = request.Scheme };
+        var response = await mediator.Request(httpRequest, cancellationToken);
 
-        if (!response.Success || string.IsNullOrEmpty(response.Jwt) || string.IsNullOrEmpty(response.RefreshToken))
+        if (!response.Success || string.IsNullOrEmpty(response.Uri))
         {
-            logger.LogWarning("Sign-in failed: {ErrorMessage}", response.ErrorMessage);
-            return SignInResponse.Fail(response.ErrorMessage ?? "Sign-in failed");
+            logger.LogWarning("Sign-in failed");
+            return SignInResponse.Fail("Sign-in failed");
         }
 
-        await authService.SetTokensAsync(
-            response.Jwt,
-            response.RefreshToken,
-            response.Email ?? string.Empty,
-            response.DisplayName);
+        // Parse tokens from callback URI (format: myapp://#newuser=...&access_token=...&refresh_token=...)
+        var uri = new Uri(response.Uri);
+        var fragment = uri.Fragment.TrimStart('#');
+        var parameters = fragment.Split('&')
+            .Select(p => p.Split('='))
+            .Where(p => p.Length == 2)
+            .ToDictionary(p => p[0], p => Uri.UnescapeDataString(p[1]));
 
-        logger.LogInformation("Sign-in successful for user: {Email}", response.Email);
+        if (!parameters.TryGetValue("access_token", out var jwt) ||
+            !parameters.TryGetValue("refresh_token", out var refreshToken))
+        {
+            logger.LogWarning("Sign-in response missing tokens");
+            return SignInResponse.Fail("Invalid sign-in response");
+        }
+
+        await authService.SetTokensAsync(jwt, refreshToken, string.Empty, null);
+
+        logger.LogInformation("Sign-in successful");
         return SignInResponse.Successful();
     }
 }

@@ -2,6 +2,8 @@ namespace AIRoutine.FullStack.Features.Auth.Contracts.Mediator.Requests;
 
 /// <summary>
 /// Request to refresh authentication tokens.
+/// This is a local request handled by the frontend RefreshHandler,
+/// which internally uses the generated RefreshAuthHttpRequest from OpenAPI.
 /// </summary>
 public record RefreshRequest : IRequest<RefreshResponse>;
 

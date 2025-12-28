@@ -26,8 +26,54 @@ Registriert:
 ## Abhängigkeiten
 
 - Shiny.Mediator - Mediator Pattern
+- Shiny.Mediator.Http - HTTP Extension für API-Kommunikation
 - UnoFramework - BaseServices, UnoEventCollector
 - AIRoutine.FullStack.Features.Auth - Auth Feature
+
+## OpenAPI HTTP Contract Generation
+
+Das Projekt generiert automatisch HTTP-Contracts aus der API OpenAPI-Spezifikation.
+
+### Konfiguration (csproj)
+
+```xml
+<ItemGroup>
+  <MediatorHttp Include="ApiContracts"
+                Uri="http://localhost:5292/openapi/v1.json"
+                Namespace="AIRoutine.FullStack.Api.Generated"
+                ContractPostfix="HttpRequest"
+                GenerateJsonConverters="true"
+                Visible="false" />
+</ItemGroup>
+```
+
+### API Base-URL (appsettings.json)
+
+```json
+{
+  "Mediator": {
+    "Http": {
+      "AIRoutine.FullStack.Api.Generated.*": "http://localhost:5292"
+    }
+  }
+}
+```
+
+### Verwendung
+
+Die generierten Contracts können direkt über den Mediator verwendet werden:
+
+```csharp
+// Beispiel: Weather Forecast abrufen
+var response = await mediator.Request(new GetWeatherForecastHttpRequest());
+```
+
+### Voraussetzungen
+
+- Die API muss laufen, damit die OpenAPI-Spezifikation zur Build-Zeit verfügbar ist
+- Alle API-Endpunkte müssen eine `OperationId` definiert haben
+
+Referenz: [Shiny Mediator HTTP Extension](https://shinylib.net/mediator/extensions/http/)
 
 ## Verwendung
 

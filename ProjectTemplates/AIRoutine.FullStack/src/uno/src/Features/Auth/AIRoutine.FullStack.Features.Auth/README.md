@@ -6,8 +6,7 @@ Authentifizierungs-Feature für die Uno Platform App mit JWT-basierter Benutzera
 
 - Token-Management (JWT und Refresh-Token)
 - Secure Storage für Authentifizierungsdaten
-- API-Client für Auth-Endpoints
-- Mediator-Handler für Auth-Operationen
+- Mediator-Handler für Auth-Operationen (nutzt generierte OpenAPI HTTP-Contracts)
 - Login-UI (Page und ViewModel)
 
 ## Struktur
@@ -18,13 +17,11 @@ Auth/
 │   └── ServiceCollectionExtensions.cs  # AddAuthFeature()
 ├── Services/
 │   ├── IAuthService.cs                 # Token-Management Interface
-│   ├── AuthService.cs                  # Secure Storage Implementation
-│   ├── IAuthApiClient.cs               # API Client Interface
-│   └── AuthApiClient.cs                # HttpClient Implementation
+│   └── AuthService.cs                  # Secure Storage Implementation
 ├── Mediator/
 │   └── Requests/
-│       ├── SignInHandler.cs
-│       ├── RefreshHandler.cs
+│       ├── SignInHandler.cs            # Nutzt SignInHttpRequest (OpenAPI)
+│       ├── RefreshHandler.cs           # Nutzt RefreshAuthHttpRequest (OpenAPI)
 │       ├── SignOutHandler.cs
 │       └── GetAuthStateHandler.cs
 └── Presentation/
@@ -32,6 +29,15 @@ Auth/
     ├── LoginPage.xaml.cs
     └── LoginViewModel.cs
 ```
+
+## OpenAPI HTTP Contract Generation
+
+Die Handler nutzen automatisch generierte HTTP-Contracts aus der API OpenAPI-Spezifikation:
+
+- `SignInHandler` → `SignInHttpRequest` (generiert aus `/auth/signin/mobile`)
+- `RefreshHandler` → `RefreshAuthHttpRequest` (generiert aus `/auth/signin/refresh`)
+
+Die Contracts werden in `Core.Startup.csproj` konfiguriert und zur Build-Zeit generiert.
 
 ## Öffentliche APIs
 
@@ -52,25 +58,10 @@ public interface IAuthService
 }
 ```
 
-### IAuthApiClient
-
-```csharp
-public interface IAuthApiClient
-{
-    Task<ApiSignInResponse> SignInAsync(string scheme, CancellationToken ct = default);
-    Task<ApiRefreshResponse> RefreshAsync(string refreshToken, CancellationToken ct = default);
-    Task SignOutAsync(string refreshToken, string? pushToken = null, CancellationToken ct = default);
-}
-```
-
 ### ServiceCollectionExtensions
 
 ```csharp
-// Einfache Registrierung
 services.AddAuthFeature();
-
-// Mit konfigurierter API-Adresse
-services.AddAuthFeature("https://api.example.com");
 ```
 
 ## Abhängigkeiten

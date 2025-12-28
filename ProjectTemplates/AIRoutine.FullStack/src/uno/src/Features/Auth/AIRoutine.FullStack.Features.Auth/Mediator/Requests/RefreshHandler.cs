@@ -1,3 +1,4 @@
+using AIRoutine.FullStack.Api.Generated;
 using AIRoutine.FullStack.Features.Auth.Contracts.Mediator.Requests;
 using AIRoutine.FullStack.Features.Auth.Services;
 using Microsoft.Extensions.Logging;
@@ -7,9 +8,10 @@ namespace AIRoutine.FullStack.Features.Auth.Mediator.Requests;
 
 /// <summary>
 /// Handler for <see cref="RefreshRequest"/>.
+/// Uses generated HTTP contracts from OpenAPI for API communication.
 /// </summary>
 public sealed class RefreshHandler(
-    IAuthApiClient apiClient,
+    IMediator mediator,
     IAuthService authService,
     ILogger<RefreshHandler> logger
 ) : IRequestHandler<RefreshRequest, RefreshResponse>
@@ -25,13 +27,15 @@ public sealed class RefreshHandler(
             return RefreshResponse.Fail("No refresh token available");
         }
 
-        var response = await apiClient.RefreshAsync(refreshToken, cancellationToken);
+        // Use generated HTTP contract from OpenAPI
+        var httpRequest = new RefreshAuthHttpRequest { Token = refreshToken };
+        var response = await mediator.Request(httpRequest, cancellationToken);
 
         if (!response.Success || string.IsNullOrEmpty(response.Jwt) || string.IsNullOrEmpty(response.RefreshToken))
         {
-            logger.LogWarning("Token refresh failed: {ErrorMessage}", response.ErrorMessage);
+            logger.LogWarning("Token refresh failed");
             await authService.ClearTokensAsync();
-            return RefreshResponse.Fail(response.ErrorMessage ?? "Token refresh failed");
+            return RefreshResponse.Fail("Token refresh failed");
         }
 
         await authService.SetTokensAsync(
