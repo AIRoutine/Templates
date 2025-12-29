@@ -1,10 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+  <PropertyGroup>
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+  </PropertyGroup>
+
   <ItemGroup>
-    <PackageReference Include="AIRoutine.CodeStyle.AspNetCore" PrivateAssets="all" />
-	<PackageReference Include="Shiny.Mediator" />
-	<PackageReference Include="Shiny.Mediator.AspNet" />
-	<PackageReference Include="Shiny.Extensions.DependencyInjection" />
+    <PackageReference Include="Shiny.Mediator" />
+    <PackageReference Include="Shiny.Mediator.AspNet" />
+    <PackageReference Include="Shiny.Extensions.DependencyInjection" />
   </ItemGroup>
 
   <ItemGroup>

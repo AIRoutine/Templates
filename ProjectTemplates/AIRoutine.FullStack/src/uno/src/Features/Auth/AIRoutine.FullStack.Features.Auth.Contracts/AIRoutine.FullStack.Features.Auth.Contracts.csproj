@@ -13,7 +13,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AIRoutine.CodeStyle.Uno" PrivateAssets="all" />
     <PackageReference Include="Shiny.Mediator" />
   </ItemGroup>
 

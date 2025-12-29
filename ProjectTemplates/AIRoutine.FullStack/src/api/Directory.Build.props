@@ -8,4 +8,8 @@
     <!-- Define API for platform-specific code -->
     <DefineConstants>$(DefineConstants);API</DefineConstants>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AIRoutine.CodeStyle.AspNetCore" PrivateAssets="all" />
+  </ItemGroup>
 </Project>

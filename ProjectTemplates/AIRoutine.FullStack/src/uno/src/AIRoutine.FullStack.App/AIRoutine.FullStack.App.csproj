@@ -37,10 +37,6 @@
     </UnoFeatures>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="AIRoutine.CodeStyle.Uno" PrivateAssets="all" />
-  </ItemGroup>
-
   <!-- App Icon -->
   <ItemGroup>
     <UnoIcon Include="Assets\Icons\icon.svg" ForegroundFile="Assets\Icons\icon_foreground.svg" Color="#00000000" />
