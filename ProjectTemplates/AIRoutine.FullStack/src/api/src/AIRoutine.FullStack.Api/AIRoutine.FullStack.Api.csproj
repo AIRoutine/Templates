@@ -4,10 +4,12 @@
     <PackageReference Include="AIRoutine.CodeStyle.AspNetCore" PrivateAssets="all" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
     <PackageReference Include="Scalar.AspNetCore" />
+    <PackageReference Include="Shiny.Mediator.AspNet" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Core\AIRoutine.FullStack.Api.Core.Startup\AIRoutine.FullStack.Api.Core.Startup.csproj" />
+    <ProjectReference Include="..\Features\Auth\AIRoutine.FullStack.Api.Features.Auth.Contracts\AIRoutine.FullStack.Api.Features.Auth.Contracts.csproj" />
     <ProjectReference Include="..\..\..\aspire\src\AIRoutine.FullStack.ServiceDefaults\AIRoutine.FullStack.ServiceDefaults.csproj" />
   </ItemGroup>
 
