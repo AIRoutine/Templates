@@ -1,6 +1,6 @@
 using AIRoutine.FullStack.Api.Generated;
 using AIRoutine.FullStack.Features.Auth.Contracts.Mediator.Requests;
-using AIRoutine.FullStack.Features.Auth.Services;
+using AIRoutine.FullStack.Features.Auth.Contracts.Services;
 using Microsoft.Extensions.Logging;
 using Shiny.Mediator;
 

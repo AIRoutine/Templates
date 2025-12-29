@@ -13,6 +13,9 @@
     <UnoFrameworks Condition="'$(UNO_SINGLE_TARGET)' == 'desktop'">$(NetVersion)-desktop</UnoFrameworks>
     <UnoFrameworks Condition="'$(UNO_SINGLE_TARGET)' == 'wasm'">$(NetVersion)-browserwasm</UnoFrameworks>
 
+    <!-- Contracts use only NetVersion (no platform-specific TFMs) -->
+    <UnoContractsFrameworks>$(NetVersion)</UnoContractsFrameworks>
+
     <!--
       Adding NoWarn to remove build warnings
       NU1507: Warning when there are multiple package sources when using CPM with no source mapping

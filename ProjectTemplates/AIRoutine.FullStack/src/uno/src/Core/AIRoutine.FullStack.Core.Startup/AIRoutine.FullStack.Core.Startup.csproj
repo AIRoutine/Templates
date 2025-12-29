@@ -23,19 +23,11 @@
     <PackageReference Include="Shiny.Mediator" />
   </ItemGroup>
 
-  <!-- OpenAPI HTTP Contract Generation from localhost API -->
-  <ItemGroup>
-    <MediatorHttp Include="ApiContracts"
-                  Uri="http://localhost:5292/openapi/v1.json"
-                  Namespace="AIRoutine.FullStack.Api.Generated"
-                  ContractPostfix="HttpRequest"
-                  GenerateJsonConverters="true"
-                  Visible="false" />
-  </ItemGroup>
-
   <ItemGroup>
     <!-- Shared -->
     <ProjectReference Include="..\..\Shared\AIRoutine.FullStack.Shared\AIRoutine.FullStack.Shared.csproj" />
+    <!-- Core -->
+    <ProjectReference Include="..\AIRoutine.FullStack.Core.ApiClient\AIRoutine.FullStack.Core.ApiClient.csproj" />
     <!-- Framework -->
     <ProjectReference Include="..\..\..\..\..\subm\uno\src\UnoFramework\UnoFramework.csproj" />
     <ProjectReference Include="..\..\..\..\..\subm\uno\src\UnoFramework.Contracts\UnoFramework.Contracts.csproj" />

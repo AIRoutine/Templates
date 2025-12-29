@@ -1,4 +1,4 @@
-namespace AIRoutine.FullStack.Features.Auth.Services;
+namespace AIRoutine.FullStack.Features.Auth.Contracts.Services;
 
 /// <summary>
 /// Service for managing authentication state and tokens.
