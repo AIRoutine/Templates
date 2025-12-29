@@ -1,7 +1,6 @@
 using AIRoutine.FullStack.Api.Core.Data.Configuration;
 using AIRoutine.FullStack.Api.Features.Auth.Configuration;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace AIRoutine.FullStack.Api.Core.Startup;
 
@@ -22,10 +21,4 @@ public static class ServiceCollectionExtensions
 
         return services;
     }
-}
-
-[MediatorScoped]
-public partial class Test
-{
-
 }
