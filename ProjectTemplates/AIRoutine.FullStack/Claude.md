@@ -48,10 +48,10 @@ services.AddShinyServiceRegistry();
 
 ### Konstanten
 
-| Klasse | Namespace | Lifetime | TryAdd |
-|--------|-----------|----------|--------|
-| `ApiService` | `AIRoutine.FullStack.Api` | `Scoped` | `true` |
-| `UnoService` | `AIRoutine.FullStack` | `Singleton` | `true` |
+| Klasse | Namespace | Projekt | Lifetime | TryAdd |
+|--------|-----------|---------|----------|--------|
+| `ApiService` | `AIRoutine.FullStack.Api` | `src/api/src/Shared/Api.Shared` | `Scoped` | `true` |
+| `UnoService` | `AIRoutine.FullStack` | `src/uno/src/Shared/Shared` | `Singleton` | `true` |
 
 Referenz: [shinylib.net/extensions/di](https://shinylib.net/extensions/di/)
 
@@ -65,6 +65,8 @@ AIRoutine.FullStack/
 │   │       ├── *.Api/                             # Host
 │   │       ├── *.Api.Contracts/                   # Globale DTOs
 │   │       ├── *.Api.Handlers/                    # Globale Handler
+│   │       ├── Shared/
+│   │       │   └── *.Api.Shared/                  # ApiService DI-Konstanten
 │   │       ├── Core/
 │   │       │   ├── *.Api.Core.Data/               # DbContext, BaseEntity
 │   │       │   └── *.Api.Core.Startup/            # DI Setup
@@ -77,12 +79,11 @@ AIRoutine.FullStack/
 │   │       ├── *.AppHost/                         # Orchestrator
 │   │       └── *.ServiceDefaults/                 # Shared Config
 │   │
-│   ├── shared/                     # Shared (API + Uno)
-│   │   └── *.Shared/                              # DI-Attribute
-│   │
 │   └── uno/                        # Frontend (Uno Platform)
 │       └── src/
 │           ├── *.App/                             # Hauptprojekt
+│           ├── Shared/
+│           │   └── *.Shared/                      # UnoService DI-Konstanten
 │           ├── Core/
 │           │   ├── *.Core.Startup/                # DI Setup
 │           │   └── *.Core.Styles/                 # Design System

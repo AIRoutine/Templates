@@ -33,8 +33,11 @@
     <Project Path="src/aspire/src/AIRoutine.FullStack.AppHost/AIRoutine.FullStack.AppHost.csproj" />
     <Project Path="src/aspire/src/AIRoutine.FullStack.ServiceDefaults/AIRoutine.FullStack.ServiceDefaults.csproj" />
   </Folder>
-  <Folder Name="/src/shared/">
-    <Project Path="src/shared/AIRoutine.FullStack.Shared/AIRoutine.FullStack.Shared.csproj" />
+  <Folder Name="/src/api/src/Shared/">
+    <Project Path="src/api/src/Shared/AIRoutine.FullStack.Api.Shared/AIRoutine.FullStack.Api.Shared.csproj" />
+  </Folder>
+  <Folder Name="/src/uno/src/Shared/">
+    <Project Path="src/uno/src/Shared/AIRoutine.FullStack.Shared/AIRoutine.FullStack.Shared.csproj" />
   </Folder>
   <Folder Name="/subm/uno/">
     <Project Path="subm/uno/src/UnoFramework/UnoFramework.csproj" />

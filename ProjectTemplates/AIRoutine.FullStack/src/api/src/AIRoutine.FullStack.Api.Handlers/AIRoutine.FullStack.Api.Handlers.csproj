@@ -5,8 +5,4 @@
     <PackageReference Include="Shiny.Mediator" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\AIRoutine.FullStack.Api.Contracts\AIRoutine.FullStack.Api.Contracts.csproj" />
-  </ItemGroup>
-
 </Project>

@@ -16,6 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\AIRoutine.FullStack.Api.Features.Auth.Contracts\AIRoutine.FullStack.Api.Features.Auth.Contracts.csproj" />
     <ProjectReference Include="..\..\..\Core\AIRoutine.FullStack.Api.Core.Data\AIRoutine.FullStack.Api.Core.Data.csproj" />
+    <ProjectReference Include="..\..\..\Shared\AIRoutine.FullStack.Api.Shared\AIRoutine.FullStack.Api.Shared.csproj" />
   </ItemGroup>
 
 </Project>

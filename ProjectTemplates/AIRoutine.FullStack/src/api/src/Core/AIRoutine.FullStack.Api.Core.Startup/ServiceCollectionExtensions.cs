@@ -12,7 +12,7 @@ public static class ServiceCollectionExtensions
         // Auto-register services with [Service] attribute
         services.AddShinyServiceRegistry();
 
-        services.AddShinyMediator();
+        services.AddShinyMediator(x => x.AddMediatorRegistry());
 
         // Data (must be before features to register DbContext first)
         services.AddAppData(configuration);
@@ -22,4 +22,10 @@ public static class ServiceCollectionExtensions
 
         return services;
     }
+}
+
+[MediatorScoped]
+public partial class Test
+{
+
 }

@@ -26,7 +26,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <!-- Shared -->
+    <ProjectReference Include="..\..\..\Shared\AIRoutine.FullStack.Shared\AIRoutine.FullStack.Shared.csproj" />
+    <!-- Contracts -->
     <ProjectReference Include="..\AIRoutine.FullStack.Features.Auth.Contracts\AIRoutine.FullStack.Features.Auth.Contracts.csproj" />
+    <!-- Framework -->
     <ProjectReference Include="..\..\..\..\..\..\subm\uno\src\UnoFramework\UnoFramework.csproj" />
     <ProjectReference Include="..\..\..\..\..\..\subm\uno\src\UnoFramework.Contracts\UnoFramework.Contracts.csproj" />
     <ProjectReference Include="..\..\..\..\..\..\subm\uno\src\UnoFramework.Generators\UnoFramework.Generators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
