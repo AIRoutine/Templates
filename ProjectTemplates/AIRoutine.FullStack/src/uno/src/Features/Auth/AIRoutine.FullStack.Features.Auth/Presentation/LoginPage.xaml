@@ -24,19 +24,19 @@
                 <!-- Main Content -->
                 <utu:AutoLayout Grid.Row="1"
                                 Style="{StaticResource CenteredContentAutoLayoutStyle}"
-                                Padding="{utu:Responsive Narrowest=24, Narrow=32, Normal=48, Wide=64, Widest=80}"
-                                Spacing="{utu:Responsive Narrowest=16, Narrow=20, Normal=24, Wide=28, Widest=32}"
-                                MaxWidth="400">
+                                Padding="{utu:Responsive Narrowest=16, Narrow=24, Normal=32, Wide=48, Widest=64}"
+                                Spacing="{utu:Responsive Narrowest=12, Narrow=16, Normal=20, Wide=24, Widest=28}"
+                                MaxWidth="{utu:Responsive Narrowest=320, Narrow=360, Normal=400, Wide=440, Widest=480}">
 
                     <!-- App Logo / Icon Placeholder -->
                     <Border Background="{ThemeResource PrimaryBrush}"
                             AutomationProperties.AutomationId="LoginPage.AppLogo"
-                            CornerRadius="16"
-                            Width="80"
-                            Height="80"
+                            CornerRadius="{utu:Responsive Narrowest=12, Narrow=14, Normal=16, Wide=18, Widest=20}"
+                            Width="{utu:Responsive Narrowest=64, Narrow=72, Normal=80, Wide=88, Widest=96}"
+                            Height="{utu:Responsive Narrowest=64, Narrow=72, Normal=80, Wide=88, Widest=96}"
                             HorizontalAlignment="Center">
                         <FontIcon Glyph="&#xE77B;"
-                                  FontSize="40"
+                                  FontSize="{utu:Responsive Narrowest=28, Narrow=32, Normal=40, Wide=44, Widest=48}"
                                   Foreground="{ThemeResource OnPrimaryBrush}" />
                     </Border>
 
@@ -52,8 +52,8 @@
                     <!-- Error Message -->
                     <Border Background="{ThemeResource ErrorContainerBrush}"
                             AutomationProperties.AutomationId="LoginPage.ErrorContainer"
-                            CornerRadius="8"
-                            Padding="16"
+                            CornerRadius="{utu:Responsive Narrowest=6, Narrow=7, Normal=8, Wide=9, Widest=10}"
+                            Padding="{utu:Responsive Narrowest=12, Narrow=14, Normal=16, Wide=18, Widest=20}"
                             Visibility="{Binding HasError}">
                         <TextBlock Text="{Binding ErrorMessage}"
                                    AutomationProperties.AutomationId="LoginPage.ErrorMessage"
@@ -67,6 +67,7 @@
                             AutomationProperties.AutomationId="LoginPage.SignInButton"
                             Style="{StaticResource PrimaryButtonStyle}"
                             Command="{Binding SignInCommand}"
+                            MinHeight="{utu:Responsive Narrowest=44, Narrow=46, Normal=48, Wide=50, Widest=52}"
                             HorizontalAlignment="Stretch" />
 
                     <!-- Divider -->
@@ -80,31 +81,40 @@
 
                     <!-- Provider Buttons -->
                     <utu:AutoLayout Orientation="Horizontal"
-                                    Spacing="12"
+                                    Spacing="{utu:Responsive Narrowest=8, Narrow=10, Normal=12, Wide=14, Widest=16}"
                                     HorizontalAlignment="Center">
 
                         <Button Style="{StaticResource OutlinedButtonStyle}"
                                 AutomationProperties.AutomationId="LoginPage.MicrosoftSignInButton"
                                 Command="{Binding SignInWithProviderCommand}"
                                 CommandParameter="Microsoft"
+                                MinWidth="{utu:Responsive Narrowest=44, Narrow=48, Normal=52, Wide=56, Widest=60}"
+                                MinHeight="{utu:Responsive Narrowest=44, Narrow=48, Normal=52, Wide=56, Widest=60}"
                                 ToolTipService.ToolTip="Sign in with Microsoft">
-                            <FontIcon Glyph="&#xE7EE;" />
+                            <FontIcon Glyph="&#xE7EE;"
+                                      FontSize="{utu:Responsive Narrowest=16, Narrow=18, Normal=20, Wide=22, Widest=24}" />
                         </Button>
 
                         <Button Style="{StaticResource OutlinedButtonStyle}"
                                 AutomationProperties.AutomationId="LoginPage.GoogleSignInButton"
                                 Command="{Binding SignInWithProviderCommand}"
                                 CommandParameter="Google"
+                                MinWidth="{utu:Responsive Narrowest=44, Narrow=48, Normal=52, Wide=56, Widest=60}"
+                                MinHeight="{utu:Responsive Narrowest=44, Narrow=48, Normal=52, Wide=56, Widest=60}"
                                 ToolTipService.ToolTip="Sign in with Google">
-                            <FontIcon Glyph="&#xE774;" />
+                            <FontIcon Glyph="&#xE774;"
+                                      FontSize="{utu:Responsive Narrowest=16, Narrow=18, Normal=20, Wide=22, Widest=24}" />
                         </Button>
 
                         <Button Style="{StaticResource OutlinedButtonStyle}"
                                 AutomationProperties.AutomationId="LoginPage.AppleSignInButton"
                                 Command="{Binding SignInWithProviderCommand}"
                                 CommandParameter="Apple"
+                                MinWidth="{utu:Responsive Narrowest=44, Narrow=48, Normal=52, Wide=56, Widest=60}"
+                                MinHeight="{utu:Responsive Narrowest=44, Narrow=48, Normal=52, Wide=56, Widest=60}"
                                 ToolTipService.ToolTip="Sign in with Apple">
-                            <FontIcon Glyph="&#xE8F6;" />
+                            <FontIcon Glyph="&#xE8F6;"
+                                      FontSize="{utu:Responsive Narrowest=16, Narrow=18, Normal=20, Wide=22, Widest=24}" />
                         </Button>
 
                     </utu:AutoLayout>
