@@ -1,4 +1,5 @@
 using AIRoutine.FullStack.Core.Startup;
+using AIRoutine.FullStack.Features.Auth.Presentation;
 using Uno.Resizetizer;
 
 namespace AIRoutine.FullStack.App;
@@ -58,14 +59,16 @@ public partial class App : Application
     {
         views.Register(
             new ViewMap(ViewModel: typeof(ShellViewModel)),
-            new ViewMap<MainPage, MainViewModel>()
+            new ViewMap<MainPage, MainViewModel>(),
+            new ViewMap<LoginPage, LoginViewModel>()
         );
 
         routes.Register(
             new RouteMap("", View: views.FindByViewModel<ShellViewModel>(),
                 Nested:
                 [
-                    new ("Main", View: views.FindByViewModel<MainViewModel>(), IsDefault: true)
+                    new ("Main", View: views.FindByViewModel<MainViewModel>()),
+                    new ("Login", View: views.FindByViewModel<LoginViewModel>())
                 ]
             )
         );
