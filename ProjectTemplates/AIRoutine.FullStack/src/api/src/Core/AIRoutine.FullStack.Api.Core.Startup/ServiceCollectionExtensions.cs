@@ -8,17 +8,19 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddApiServices(this IServiceCollection services, IConfiguration configuration)
     {
-        // Auto-register services with [Service] attribute
-        services.AddShinyServiceRegistry();
-
-        services.AddShinyMediator(x => x.AddMediatorRegistry());
-
         // Data (must be before features to register DbContext first)
         services.AddAppData(configuration);
+
+        services.AddShinyServiceRegistry();
 
         // Features
         services.AddAuthFeature();
 
         return services;
+    }
+
+    public static WebApplication MapEndpoints(this WebApplication app)
+    {
+        return app.MapAuthEndpoints();
     }
 }

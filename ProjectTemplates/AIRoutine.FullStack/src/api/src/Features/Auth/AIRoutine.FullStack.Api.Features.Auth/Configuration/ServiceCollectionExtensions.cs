@@ -12,9 +12,16 @@ public static class ServiceCollectionExtensions
         // Register entity configurations
         AppDbContext.RegisterConfigurations(typeof(UserConfiguration).Assembly);
 
+        services.AddMediatorRegistry();
         services.AddShinyServiceRegistry();
+
         services.AddHttpContextAccessor();
 
         return services;
+    }
+    public static WebApplication MapAuthEndpoints(this WebApplication app)
+    {
+        app.MapGeneratedMediatorEndpoints();
+        return app;
     }
 }

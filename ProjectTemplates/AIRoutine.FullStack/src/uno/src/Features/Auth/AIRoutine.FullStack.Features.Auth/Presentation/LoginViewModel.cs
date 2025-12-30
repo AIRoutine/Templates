@@ -1,4 +1,4 @@
-using AIRoutine.FullStack.Features.Auth.Contracts.Mediator.Requests;
+using AIRoutine.FullStack.Core.ApiClient.Generated;
 using CommunityToolkit.Mvvm.ComponentModel;
 using UnoFramework.Generators;
 using UnoFramework.ViewModels;
@@ -31,11 +31,14 @@ public partial class LoginViewModel : PageViewModel
             ErrorMessage = null;
             HasError = false;
 
-            var (_, response) = await Mediator.Request(new SignInRequest("default"));
+            var (_, response) = await Mediator.Request(new SignInHttpRequest
+            {
+                Body = new SignInRequest { Scheme = "default" }
+            });
 
             if (!response.Success)
             {
-                ErrorMessage = response.ErrorMessage ?? "Sign-in failed. Please try again.";
+                ErrorMessage = "Sign-in failed. Please try again.";
                 HasError = true;
                 return;
             }
@@ -58,11 +61,14 @@ public partial class LoginViewModel : PageViewModel
             ErrorMessage = null;
             HasError = false;
 
-            var (_, response) = await Mediator.Request(new SignInRequest(provider));
+            var (_, response) = await Mediator.Request(new SignInHttpRequest
+            {
+                Body = new SignInRequest { Scheme = provider }
+            });
 
             if (!response.Success)
             {
-                ErrorMessage = response.ErrorMessage ?? $"Sign-in with {provider} failed. Please try again.";
+                ErrorMessage = $"Sign-in with {provider} failed. Please try again.";
                 HasError = true;
                 return;
             }

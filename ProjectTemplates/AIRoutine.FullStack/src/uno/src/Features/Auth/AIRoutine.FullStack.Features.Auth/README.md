@@ -6,8 +6,23 @@ Authentifizierungs-Feature für die Uno Platform App mit JWT-basierter Benutzera
 
 - Token-Management (JWT und Refresh-Token)
 - Secure Storage für Authentifizierungsdaten
-- Mediator-Handler für Auth-Operationen (nutzt generierte OpenAPI HTTP-Contracts)
+- Middleware für automatische Token-Verarbeitung nach API-Aufrufen
 - Login-UI (Page und ViewModel)
+
+## Architektur
+
+Die Auth-Logik nutzt direkt die **generierten HTTP-Contracts** aus dem ApiClient-Projekt.
+Middleware verarbeitet die API-Responses und speichert/löscht Tokens automatisch.
+
+```
+UI (ViewModel)
+    ↓ SignInHttpRequest
+Generated HTTP Handler (macht API-Call)
+    ↓ SignInResponse
+SignInMiddleware (speichert Tokens)
+    ↓
+AuthService (Secure Storage)
+```
 
 ## Struktur
 
@@ -16,28 +31,28 @@ Auth/
 ├── Configuration/
 │   └── ServiceCollectionExtensions.cs  # AddAuthFeature()
 ├── Services/
-│   ├── IAuthService.cs                 # Token-Management Interface
-│   └── AuthService.cs                  # Secure Storage Implementation
-├── Mediator/
-│   └── Requests/
-│       ├── SignInHandler.cs            # Nutzt SignInHttpRequest (OpenAPI)
-│       ├── RefreshHandler.cs           # Nutzt RefreshAuthHttpRequest (OpenAPI)
-│       ├── SignOutHandler.cs
-│       └── GetAuthStateHandler.cs
+│   ├── AuthService.cs                  # Token-Management (Secure Storage)
+│   └── AuthHeaderContributor.cs        # Fügt Bearer-Token zu Requests hinzu
+├── Middleware/
+│   ├── SignInMiddleware.cs             # Speichert Tokens nach SignIn
+│   └── RefreshMiddleware.cs            # Aktualisiert Tokens nach Refresh
 └── Presentation/
     ├── LoginPage.xaml
     ├── LoginPage.xaml.cs
     └── LoginViewModel.cs
 ```
 
-## OpenAPI HTTP Contract Generation
+## Verwendete generierte HTTP-Contracts
 
-Die Handler nutzen automatisch generierte HTTP-Contracts aus der API OpenAPI-Spezifikation:
+Die ViewModels rufen direkt die generierten HTTP-Requests auf:
 
-- `SignInHandler` → `SignInHttpRequest` (generiert aus `/auth/signin/mobile`)
-- `RefreshHandler` → `RefreshAuthHttpRequest` (generiert aus `/auth/signin/refresh`)
+| Aktion      | Generierter Request          | Middleware              |
+|-------------|------------------------------|-------------------------|
+| Sign-In     | `SignInHttpRequest`          | `SignInMiddleware`      |
+| Refresh     | `RefreshAuthHttpRequest`     | `RefreshMiddleware`     |
+| Sign-Out    | `SignOutHttpRequest`         | (direkt ClearTokens)    |
 
-Die Contracts werden in `Core.Startup.csproj` konfiguriert und zur Build-Zeit generiert.
+Die Contracts werden in `Core.ApiClient.csproj` via `MediatorHttp` aus der OpenAPI-Spezifikation generiert.
 
 ## Öffentliche APIs
 
@@ -66,10 +81,10 @@ services.AddAuthFeature();
 
 ## Abhängigkeiten
 
-- `AIRoutine.FullStack.Features.Auth.Contracts` - Request/Response DTOs
+- `AIRoutine.FullStack.Features.Auth.Contracts` - IAuthService Interface
+- `AIRoutine.FullStack.Core.ApiClient` - Generierte HTTP-Contracts
 - `UnoFramework` - BaseServices, PageViewModel
 - `Uno.Extensions.Storage` - IKeyValueStorage
-- `System.Net.Http` - HttpClient
 
 ## Verwendung
 
@@ -84,32 +99,42 @@ services.AddAuthFeature();
 ### Navigation zur Login-Page
 
 ```csharp
-// Von ViewModel
 await Navigator.NavigateRouteAsync(this, "/Login");
 ```
 
 ### Auth-Status prüfen
 
 ```csharp
-var authState = await Mediator.Request(new GetAuthStateRequest());
-if (!authState.IsAuthenticated)
+// Direkt über IAuthService
+if (!authService.IsAuthenticated)
 {
-    // Zur Login-Page navigieren
+    await Navigator.NavigateRouteAsync(this, "/Login");
 }
 ```
 
 ### Sign-In durchführen
 
 ```csharp
-var response = await Mediator.Request(new SignInRequest("Microsoft"));
+// Im ViewModel - nutzt generierten HTTP-Request direkt
+var (_, response) = await Mediator.Request(new SignInHttpRequest
+{
+    Body = new SignInRequest { Scheme = "Microsoft" }
+});
+
 if (response.Success)
 {
-    // Navigation zur Hauptseite
+    // Tokens werden automatisch via SignInMiddleware gespeichert
+    await Navigator.NavigateRouteAsync(this, "/Main");
 }
 ```
 
 ### Sign-Out durchführen
 
 ```csharp
-await Mediator.Send(new SignOutCommand());
+// API-Call + Tokens löschen
+await Mediator.Send(new SignOutHttpRequest
+{
+    Body = new SignOutCommand { RefreshToken = refreshToken }
+});
+await authService.ClearTokensAsync();
 ```

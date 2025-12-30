@@ -11,6 +11,7 @@ builder.Services.AddApiServices(builder.Configuration);
 var app = builder.Build();
 
 app.MapDefaultEndpoints();
+app.MapEndpoints();
 
 if (app.Environment.IsDevelopment())
 {
