@@ -20,9 +20,11 @@ public partial class App : Application
         var builder = this.CreateBuilder(args)
             .UseToolkitNavigation()
             .Configure(host => host
+//-:cnd:noEmit
 #if DEBUG
                 .UseEnvironment(Environments.Development)
 #endif
+//+:cnd:noEmit
                 .UseLogging(configure: (context, logBuilder) =>
                 {
                     logBuilder
@@ -47,9 +49,11 @@ public partial class App : Application
             );
         MainWindow = builder.Window;
 
+//-:cnd:noEmit
 #if DEBUG
         MainWindow.UseStudio();
 #endif
+//+:cnd:noEmit
         MainWindow.SetWindowIcon();
 
         Host = await builder.NavigateAsync<Shell>();
