@@ -6,23 +6,9 @@
     <Project Path="src/Core/AIRoutine.FullStack.Core.Startup/AIRoutine.FullStack.Core.Startup.csproj" />
     <Project Path="src/Core/AIRoutine.FullStack.Core.Styles/AIRoutine.FullStack.Core.Styles.csproj" />
   </Folder>
+  <Folder Name="/src/Features/" />
   <Folder Name="/src/Features/Auth/">
     <Project Path="src/Features/Auth/AIRoutine.FullStack.Features.Auth/AIRoutine.FullStack.Features.Auth.csproj" />
     <Project Path="src/Features/Auth/AIRoutine.FullStack.Features.Auth.Contracts/AIRoutine.FullStack.Features.Auth.Contracts.csproj" />
-  </Folder>
-  <Folder Name="/tests/UITests/">
-    <Project Path="tests/UITests/AIRoutine.FullStack.UITests/AIRoutine.FullStack.UITests.csproj" />
-    <Project Path="tests/UITests/AIRoutine.FullStack.Core.UITests/AIRoutine.FullStack.Core.UITests.csproj" />
-    <Project Path="tests/UITests/AIRoutine.FullStack.Features.Auth.UITests/AIRoutine.FullStack.Features.Auth.UITests.csproj" />
-  </Folder>
-  <Folder Name="/tests/UnitTests/">
-    <Project Path="tests/UnitTests/AIRoutine.FullStack.UnitTests/AIRoutine.FullStack.UnitTests.csproj" />
-    <Project Path="tests/UnitTests/AIRoutine.FullStack.Core.UnitTests/AIRoutine.FullStack.Core.UnitTests.csproj" />
-    <Project Path="tests/UnitTests/AIRoutine.FullStack.Features.Auth.UnitTests/AIRoutine.FullStack.Features.Auth.UnitTests.csproj" />
-  </Folder>
-  <Folder Name="/tests/IntegrationTests/">
-    <Project Path="tests/IntegrationTests/AIRoutine.FullStack.IntegrationTests/AIRoutine.FullStack.IntegrationTests.csproj" />
-    <Project Path="tests/IntegrationTests/AIRoutine.FullStack.Core.IntegrationTests/AIRoutine.FullStack.Core.IntegrationTests.csproj" />
-    <Project Path="tests/IntegrationTests/AIRoutine.FullStack.Features.Auth.IntegrationTests/AIRoutine.FullStack.Features.Auth.IntegrationTests.csproj" />
   </Folder>
 </Solution>
