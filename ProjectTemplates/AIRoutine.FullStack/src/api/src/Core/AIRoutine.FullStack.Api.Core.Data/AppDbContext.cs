@@ -6,21 +6,32 @@ namespace AIRoutine.FullStack.Api.Core.Data;
 
 public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
 {
-    static readonly List<Assembly> ConfigurationAssemblies = [];
-
-    public static void RegisterConfigurations(Assembly assembly)
-    {
-        if (!ConfigurationAssemblies.Contains(assembly))
-            ConfigurationAssemblies.Add(assembly);
-    }
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
 
-        foreach (var assembly in ConfigurationAssemblies)
+        // Auto-scan all loaded assemblies for IEntityTypeConfiguration implementations
+        var assemblies = AppDomain.CurrentDomain.GetAssemblies()
+            .Where(a => a.FullName?.StartsWith("AIRoutine.FullStack") == true);
+
+        foreach (var assembly in assemblies)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(assembly);
+        }
+
+        // Auto-register entities inheriting from BaseEntity (for entities without explicit configuration)
+        foreach (var assembly in assemblies)
+        {
+            var entityTypes = assembly.GetTypes()
+                .Where(t => t is { IsClass: true, IsAbstract: false } && t.IsSubclassOf(typeof(BaseEntity)));
+
+            foreach (var entityType in entityTypes)
+            {
+                if (modelBuilder.Model.FindEntityType(entityType) == null)
+                {
+                    modelBuilder.Entity(entityType);
+                }
+            }
         }
     }
 

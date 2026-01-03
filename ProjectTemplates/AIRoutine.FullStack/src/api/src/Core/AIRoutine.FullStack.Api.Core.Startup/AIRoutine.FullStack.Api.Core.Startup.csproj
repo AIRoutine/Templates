@@ -15,6 +15,7 @@
     <ProjectReference Include="..\..\Shared\AIRoutine.FullStack.Api.Shared\AIRoutine.FullStack.Api.Shared.csproj" />
     <!-- Core -->
     <ProjectReference Include="..\AIRoutine.FullStack.Api.Core.Data\AIRoutine.FullStack.Api.Core.Data.csproj" />
+    <ProjectReference Include="..\AIRoutine.FullStack.Api.Core.Data.Seeding\AIRoutine.FullStack.Api.Core.Data.Seeding.csproj" />
     <!-- Contracts & Handlers -->
     <!-- Features -->
   </ItemGroup>

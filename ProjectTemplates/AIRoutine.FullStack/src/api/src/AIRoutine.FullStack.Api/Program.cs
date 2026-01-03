@@ -12,6 +12,7 @@ builder.Services.AddApiServices(builder.Configuration);
 var app = builder.Build();
 
 app.Services.EnsureDatabaseCreated();
+await app.RunSeedersAsync();
 
 app.MapDefaultEndpoints();
 app.MapEndpoints();

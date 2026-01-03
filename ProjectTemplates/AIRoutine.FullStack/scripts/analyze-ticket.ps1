@@ -155,6 +155,64 @@ Nutze die passenden Skills falls angegeben. Implementiere vollstaendig und teste
     }
 
     Write-Host "`n=== Alle Tasks implementiert ===" -ForegroundColor Green
+
+    # Datenbank Seeding
+    Write-Host "`n=== Datenbank Seeding ===" -ForegroundColor Cyan
+
+    $dbPrompt = @"
+$sharedContext
+
+Alle Code-Tasks wurden implementiert. Jetzt muessen Mock-Daten erstellt werden.
+
+Fuer jedes Feature das neue Entities hat:
+
+1. Erstelle einen Seeder im Feature-Projekt:
+   - Datei: Features/{FeatureName}/AIRoutine.FullStack.Api.Features.{FeatureName}/Data/Seeding/{FeatureName}Seeder.cs
+   - Implementiere ISeeder aus AIRoutine.FullStack.Api.Core.Data.Seeding
+   - Pruefe ob Daten bereits existieren (idempotent!)
+   - Fuege 5-10 realistische Testdaten pro Entity hinzu
+
+2. Registriere den Seeder in der Feature ServiceCollectionExtensions:
+   services.AddSeeder<{FeatureName}Seeder>();
+
+Beispiel Seeder:
+```csharp
+using AIRoutine.FullStack.Api.Core.Data;
+using AIRoutine.FullStack.Api.Core.Data.Seeding;
+using Microsoft.EntityFrameworkCore;
+
+public class MyFeatureSeeder(AppDbContext dbContext) : ISeeder
+{
+    public int Order => 10;
+
+    public async Task SeedAsync(CancellationToken cancellationToken = default)
+    {
+        if (await dbContext.Set<MyEntity>().AnyAsync(cancellationToken))
+            return;
+
+        dbContext.Set<MyEntity>().AddRange(
+            new MyEntity { Name = "Test 1", ... },
+            new MyEntity { Name = "Test 2", ... }
+        );
+
+        await dbContext.SaveChangesAsync(cancellationToken);
+    }
+}
+```
+
+WICHTIG:
+- Seeder MUSS idempotent sein (pruefen ob Daten existieren)
+- Datenbank wird NICHT geloescht
+- Nach Implementierung: dotnet build ausfuehren um zu pruefen ob alles kompiliert
+"@
+
+    claude --dangerously-skip-permissions -p $dbPrompt
+
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "Fehler bei Datenbank Seeding" -ForegroundColor Red
+    } else {
+        Write-Host "Datenbank Seeding abgeschlossen" -ForegroundColor Green
+    }
 }
 catch {
     Write-Host "Fehler beim Parsen der Tasks: $_" -ForegroundColor Red
