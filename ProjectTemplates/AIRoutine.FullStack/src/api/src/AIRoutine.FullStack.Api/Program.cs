@@ -1,4 +1,5 @@
 
+using AIRoutine.FullStack.Api.Core.Data.Configuration;
 using AIRoutine.FullStack.Api.Core.Startup;
 using Scalar.AspNetCore;
 
@@ -9,6 +10,8 @@ builder.Services.AddOpenApi();
 builder.Services.AddApiServices(builder.Configuration);
 
 var app = builder.Build();
+
+app.Services.EnsureDatabaseCreated();
 
 app.MapDefaultEndpoints();
 app.MapEndpoints();

@@ -105,3 +105,59 @@ foreach ($step in $steps) {
 }
 
 Write-Host "`n=== Ticket Analyse abgeschlossen ===" -ForegroundColor Green
+
+# Tasks vom Ticket laden und implementieren
+Write-Host "`n=== Tasks laden und implementieren ===" -ForegroundColor Cyan
+
+$loadTasksPrompt = @"
+$sharedContext
+
+Lade alle SubTasks/Tasks von diesem Ticket und gib sie als JSON Array zurueck.
+Format: ["Task 1 Beschreibung", "Task 2 Beschreibung", ...]
+
+Gib NUR das JSON Array zurueck, keine andere Ausgabe.
+"@
+
+$tasksJson = claude --dangerously-skip-permissions -p $loadTasksPrompt
+
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "Fehler beim Laden der Tasks" -ForegroundColor Red
+    exit 1
+}
+
+try {
+    $tasks = $tasksJson | ConvertFrom-Json
+    Write-Host "Gefundene Tasks: $($tasks.Count)" -ForegroundColor Green
+
+    $taskNumber = 1
+    foreach ($task in $tasks) {
+        Write-Host "`n=== Task $taskNumber/$($tasks.Count) implementieren ===" -ForegroundColor Cyan
+        Write-Host "Task: $task" -ForegroundColor Yellow
+
+        $implementPrompt = @"
+$sharedContext
+
+Implementiere folgenden Task:
+$task
+
+Nutze die passenden Skills falls angegeben. Implementiere vollstaendig und teste ob der Code kompiliert.
+"@
+
+        claude --dangerously-skip-permissions -p $implementPrompt
+
+        if ($LASTEXITCODE -ne 0) {
+            Write-Host "Fehler bei Task $taskNumber" -ForegroundColor Red
+        } else {
+            Write-Host "Task $taskNumber abgeschlossen" -ForegroundColor Green
+        }
+
+        $taskNumber++
+    }
+
+    Write-Host "`n=== Alle Tasks implementiert ===" -ForegroundColor Green
+}
+catch {
+    Write-Host "Fehler beim Parsen der Tasks: $_" -ForegroundColor Red
+    Write-Host "Ausgabe war: $tasksJson" -ForegroundColor Yellow
+    exit 1
+}

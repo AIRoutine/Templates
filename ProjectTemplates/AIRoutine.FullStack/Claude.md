@@ -173,18 +173,17 @@ Entities erben von `BaseEntity` und werden via `IEntityTypeConfiguration<T>` kon
 
 ### Datenbank-Konfiguration
 
-Der Datenbank-Provider wird in `appsettings.json` konfiguriert:
+Die Datenbank verwendet SQLite. Der Connection-String wird in `appsettings.json` konfiguriert:
 
 ```json
 {
-  "Database": {
-    "Provider": "sqlite"  // sqlite, postgresql, sqlserver
-  },
   "ConnectionStrings": {
     "DefaultConnection": "Data Source=app.db"
   }
 }
 ```
+
+Die Datenbank-Datei wird beim Start automatisch erstellt (`EnsureCreated`).
 
 ## Uno Feature-Erweiterungsstruktur
 
