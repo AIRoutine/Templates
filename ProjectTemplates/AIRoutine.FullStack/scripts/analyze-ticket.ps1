@@ -9,6 +9,12 @@ $ErrorActionPreference = "Stop"
 $sharedContext = @"
 Ticket: $TicketDescription
 
+Du hast Zugriff auf die GitHub CLI (gh). Falls das Ticket eine GitHub Issue URL ist, lade den vollstaendigen Inhalt mit:
+  gh issue view <issue-number> --repo <owner/repo>
+  gh issue view <issue-number> --repo <owner/repo> --comments
+
+Nutze diese Tools um alle Details, Beschreibungen und SubTasks des Tickets zu laden bevor du mit der Analyse beginnst.
+
 Fuer die folgenden Tasks beachte du musst nicht Backwards kompatibel sein.
 "@
 
@@ -109,28 +115,46 @@ Write-Host "`n=== Ticket Analyse abgeschlossen ===" -ForegroundColor Green
 # Tasks vom Ticket laden und implementieren
 Write-Host "`n=== Tasks laden und implementieren ===" -ForegroundColor Cyan
 
-$loadTasksPrompt = @"
-$sharedContext
+# Issue-Nummer und Repo aus der Ticket-Beschreibung extrahieren
+$tasks = @()
 
-Lade alle SubTasks/Tasks von diesem Ticket und gib sie als JSON Array zurueck.
-Format: ["Task 1 Beschreibung", "Task 2 Beschreibung", ...]
+if ($TicketDescription -match 'github\.com/([^/]+/[^/]+)/issues/(\d+)') {
+    $repo = $matches[1]
+    $issueNumber = $matches[2]
 
-Gib NUR das JSON Array zurueck, keine andere Ausgabe.
-"@
+    Write-Host "Lade Issue #$issueNumber von $repo..." -ForegroundColor Yellow
 
-$tasksJson = claude --dangerously-skip-permissions -p $loadTasksPrompt
+    # Issue-Body laden und Task-Listen extrahieren
+    $issueBody = gh issue view $issueNumber --repo $repo --json body --jq '.body' 2>$null
 
-if ($LASTEXITCODE -ne 0) {
-    Write-Host "Fehler beim Laden der Tasks" -ForegroundColor Red
-    exit 1
+    if ($LASTEXITCODE -eq 0 -and $issueBody) {
+        # Markdown Task-Listen extrahieren: - [ ] Task oder - [x] Task
+        $taskMatches = [regex]::Matches($issueBody, '- \[[ x]\] (.+)')
+        foreach ($match in $taskMatches) {
+            $tasks += $match.Groups[1].Value.Trim()
+        }
+    }
+
+    # Falls keine Tasks im Body, Sub-Issues laden (falls vorhanden)
+    if ($tasks.Count -eq 0) {
+        $subIssues = gh issue list --repo $repo --search "linked:$issueNumber" --json title --jq '.[].title' 2>$null
+        if ($subIssues) {
+            $tasks = $subIssues -split "`n" | Where-Object { $_ }
+        }
+    }
+} else {
+    Write-Host "Keine GitHub Issue URL erkannt - ueberspringe Task-Laden" -ForegroundColor Yellow
 }
 
-try {
-    $tasks = $tasksJson | ConvertFrom-Json
-    Write-Host "Gefundene Tasks: $($tasks.Count)" -ForegroundColor Green
+Write-Host "Gefundene Tasks: $($tasks.Count)" -ForegroundColor Green
 
-    # Seeding Prompt Template
-    $seedingPrompt = @"
+if ($tasks.Count -eq 0) {
+    Write-Host "Keine Tasks gefunden - beende Skript" -ForegroundColor Yellow
+    exit 0
+}
+
+# Seeding Prompt Template
+$seedingPrompt = @"
 $sharedContext
 
 Fuer das gerade implementierte Data/Entity Feature muessen jetzt Mock-Daten erstellt werden.
@@ -175,12 +199,12 @@ WICHTIG:
 - Nach Implementierung: dotnet build ausfuehren um zu pruefen ob alles kompiliert
 "@
 
-    $taskNumber = 1
-    foreach ($task in $tasks) {
-        Write-Host "`n=== Task $taskNumber/$($tasks.Count) implementieren ===" -ForegroundColor Cyan
-        Write-Host "Task: $task" -ForegroundColor Yellow
+$taskNumber = 1
+foreach ($task in $tasks) {
+    Write-Host "`n=== Task $taskNumber/$($tasks.Count) implementieren ===" -ForegroundColor Cyan
+    Write-Host "Task: $task" -ForegroundColor Yellow
 
-        $implementPrompt = @"
+    $implementPrompt = @"
 $sharedContext
 
 Implementiere folgenden Task:
@@ -189,34 +213,28 @@ $task
 Nutze die passenden Skills falls angegeben. Implementiere vollstaendig und teste ob der Code kompiliert.
 "@
 
-        claude --dangerously-skip-permissions -p $implementPrompt
+    claude --dangerously-skip-permissions -p $implementPrompt
 
-        if ($LASTEXITCODE -ne 0) {
-            Write-Host "Fehler bei Task $taskNumber" -ForegroundColor Red
-        } else {
-            Write-Host "Task $taskNumber abgeschlossen" -ForegroundColor Green
-        }
-
-        # Nach Data/Entity Tasks direkt Seeding erstellen
-        if ($task -match "Data|Entity|Entities|Daten") {
-            Write-Host "`n=== Seeding fuer Data Task erstellen ===" -ForegroundColor Magenta
-
-            claude --dangerously-skip-permissions -p $seedingPrompt
-
-            if ($LASTEXITCODE -ne 0) {
-                Write-Host "Fehler bei Seeding" -ForegroundColor Red
-            } else {
-                Write-Host "Seeding erstellt" -ForegroundColor Green
-            }
-        }
-
-        $taskNumber++
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "Fehler bei Task $taskNumber" -ForegroundColor Red
+    } else {
+        Write-Host "Task $taskNumber abgeschlossen" -ForegroundColor Green
     }
 
-    Write-Host "`n=== Alle Tasks implementiert ===" -ForegroundColor Green
+    # Nach Data/Entity Tasks direkt Seeding erstellen
+    if ($task -match "Data|Entity|Entities|Daten") {
+        Write-Host "`n=== Seeding fuer Data Task erstellen ===" -ForegroundColor Magenta
+
+        claude --dangerously-skip-permissions -p $seedingPrompt
+
+        if ($LASTEXITCODE -ne 0) {
+            Write-Host "Fehler bei Seeding" -ForegroundColor Red
+        } else {
+            Write-Host "Seeding erstellt" -ForegroundColor Green
+        }
+    }
+
+    $taskNumber++
 }
-catch {
-    Write-Host "Fehler beim Parsen der Tasks: $_" -ForegroundColor Red
-    Write-Host "Ausgabe war: $tasksJson" -ForegroundColor Yellow
-    exit 1
-}
+
+Write-Host "`n=== Alle Tasks implementiert ===" -ForegroundColor Green
