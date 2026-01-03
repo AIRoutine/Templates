@@ -129,42 +129,11 @@ try {
     $tasks = $tasksJson | ConvertFrom-Json
     Write-Host "Gefundene Tasks: $($tasks.Count)" -ForegroundColor Green
 
-    $taskNumber = 1
-    foreach ($task in $tasks) {
-        Write-Host "`n=== Task $taskNumber/$($tasks.Count) implementieren ===" -ForegroundColor Cyan
-        Write-Host "Task: $task" -ForegroundColor Yellow
-
-        $implementPrompt = @"
+    # Seeding Prompt Template
+    $seedingPrompt = @"
 $sharedContext
 
-Implementiere folgenden Task:
-$task
-
-Nutze die passenden Skills falls angegeben. Implementiere vollstaendig und teste ob der Code kompiliert.
-"@
-
-        claude --dangerously-skip-permissions -p $implementPrompt
-
-        if ($LASTEXITCODE -ne 0) {
-            Write-Host "Fehler bei Task $taskNumber" -ForegroundColor Red
-        } else {
-            Write-Host "Task $taskNumber abgeschlossen" -ForegroundColor Green
-        }
-
-        $taskNumber++
-    }
-
-    Write-Host "`n=== Alle Tasks implementiert ===" -ForegroundColor Green
-
-    # Datenbank Seeding
-    Write-Host "`n=== Datenbank Seeding ===" -ForegroundColor Cyan
-
-    $dbPrompt = @"
-$sharedContext
-
-Alle Code-Tasks wurden implementiert. Jetzt muessen Mock-Daten erstellt werden.
-
-Fuer jedes Feature das neue Entities hat:
+Fuer das gerade implementierte Data/Entity Feature muessen jetzt Mock-Daten erstellt werden.
 
 1. Erstelle einen Seeder im Feature-Projekt:
    - Datei: Features/{FeatureName}/AIRoutine.FullStack.Api.Features.{FeatureName}/Data/Seeding/{FeatureName}Seeder.cs
@@ -206,13 +175,45 @@ WICHTIG:
 - Nach Implementierung: dotnet build ausfuehren um zu pruefen ob alles kompiliert
 "@
 
-    claude --dangerously-skip-permissions -p $dbPrompt
+    $taskNumber = 1
+    foreach ($task in $tasks) {
+        Write-Host "`n=== Task $taskNumber/$($tasks.Count) implementieren ===" -ForegroundColor Cyan
+        Write-Host "Task: $task" -ForegroundColor Yellow
 
-    if ($LASTEXITCODE -ne 0) {
-        Write-Host "Fehler bei Datenbank Seeding" -ForegroundColor Red
-    } else {
-        Write-Host "Datenbank Seeding abgeschlossen" -ForegroundColor Green
+        $implementPrompt = @"
+$sharedContext
+
+Implementiere folgenden Task:
+$task
+
+Nutze die passenden Skills falls angegeben. Implementiere vollstaendig und teste ob der Code kompiliert.
+"@
+
+        claude --dangerously-skip-permissions -p $implementPrompt
+
+        if ($LASTEXITCODE -ne 0) {
+            Write-Host "Fehler bei Task $taskNumber" -ForegroundColor Red
+        } else {
+            Write-Host "Task $taskNumber abgeschlossen" -ForegroundColor Green
+        }
+
+        # Nach Data/Entity Tasks direkt Seeding erstellen
+        if ($task -match "Data|Entity|Entities|Daten") {
+            Write-Host "`n=== Seeding fuer Data Task erstellen ===" -ForegroundColor Magenta
+
+            claude --dangerously-skip-permissions -p $seedingPrompt
+
+            if ($LASTEXITCODE -ne 0) {
+                Write-Host "Fehler bei Seeding" -ForegroundColor Red
+            } else {
+                Write-Host "Seeding erstellt" -ForegroundColor Green
+            }
+        }
+
+        $taskNumber++
     }
+
+    Write-Host "`n=== Alle Tasks implementiert ===" -ForegroundColor Green
 }
 catch {
     Write-Host "Fehler beim Parsen der Tasks: $_" -ForegroundColor Red
