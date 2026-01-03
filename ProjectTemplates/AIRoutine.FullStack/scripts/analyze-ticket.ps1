@@ -137,7 +137,8 @@ if ($TicketDescription -match 'github\.com/([^/]+/[^/]+)/issues/(\d+)') {
 
     # Falls keine Tasks im Body, Sub-Issues laden (falls vorhanden)
     if ($tasks.Count -eq 0) {
-        $subIssues = gh issue list --repo $repo --search "linked:$issueNumber" --json title --jq '.[].title' 2>$null
+        # --json createdAt fuer Sortierung nach Erstelldatum (aelteste zuerst)
+        $subIssues = gh issue list --repo $repo --search "linked:$issueNumber" --json title,createdAt --jq 'sort_by(.createdAt) | .[].title' 2>$null
         if ($subIssues) {
             $tasks = $subIssues -split "`n" | Where-Object { $_ }
         }
