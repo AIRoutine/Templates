@@ -35,6 +35,5 @@
 
   <ItemGroup>
     <!-- Features -->
-    <ProjectReference Include="..\..\Features\Auth\AIRoutine.FullStack.Features.Auth\AIRoutine.FullStack.Features.Auth.csproj" />
   </ItemGroup>
 </Project>

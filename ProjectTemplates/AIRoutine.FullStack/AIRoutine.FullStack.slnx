@@ -7,16 +7,10 @@
   </Folder>
   <Folder Name="/src/api/src/">
     <Project Path="src/api/src/AIRoutine.FullStack.Api/AIRoutine.FullStack.Api.csproj" />
-    <Project Path="src/api/src/AIRoutine.FullStack.Api.Contracts/AIRoutine.FullStack.Api.Contracts.csproj" />
-    <Project Path="src/api/src/AIRoutine.FullStack.Api.Handlers/AIRoutine.FullStack.Api.Handlers.csproj" />
   </Folder>
   <Folder Name="/src/api/src/Core/">
     <Project Path="src/api/src/Core/AIRoutine.FullStack.Api.Core.Data/AIRoutine.FullStack.Api.Core.Data.csproj" />
     <Project Path="src/api/src/Core/AIRoutine.FullStack.Api.Core.Startup/AIRoutine.FullStack.Api.Core.Startup.csproj" />
-  </Folder>
-  <Folder Name="/src/api/src/Features/Auth/">
-    <Project Path="src/api/src/Features/Auth/AIRoutine.FullStack.Api.Features.Auth/AIRoutine.FullStack.Api.Features.Auth.csproj" />
-    <Project Path="src/api/src/Features/Auth/AIRoutine.FullStack.Api.Features.Auth.Contracts/AIRoutine.FullStack.Api.Features.Auth.Contracts.csproj" />
   </Folder>
   <Folder Name="/src/uno/src/">
     <Project Path="src/uno/src/AIRoutine.FullStack.App/AIRoutine.FullStack.App.csproj" />
@@ -25,10 +19,6 @@
     <Project Path="src/uno/src/Core/AIRoutine.FullStack.Core.ApiClient/AIRoutine.FullStack.Core.ApiClient.csproj" />
     <Project Path="src/uno/src/Core/AIRoutine.FullStack.Core.Startup/AIRoutine.FullStack.Core.Startup.csproj" />
     <Project Path="src/uno/src/Core/AIRoutine.FullStack.Core.Styles/AIRoutine.FullStack.Core.Styles.csproj" />
-  </Folder>
-  <Folder Name="/src/uno/src/Features/Auth/">
-    <Project Path="src/uno/src/Features/Auth/AIRoutine.FullStack.Features.Auth/AIRoutine.FullStack.Features.Auth.csproj" />
-    <Project Path="src/uno/src/Features/Auth/AIRoutine.FullStack.Features.Auth.Contracts/AIRoutine.FullStack.Features.Auth.Contracts.csproj" />
   </Folder>
   <Folder Name="/src/aspire/src/">
     <Project Path="src/aspire/src/AIRoutine.FullStack.AppHost/AIRoutine.FullStack.AppHost.csproj" />

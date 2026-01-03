@@ -17,7 +17,6 @@
     <ProjectReference Include="..\AIRoutine.FullStack.Api.Core.Data\AIRoutine.FullStack.Api.Core.Data.csproj" />
     <!-- Contracts & Handlers -->
     <!-- Features -->
-    <ProjectReference Include="..\..\Features\Auth\AIRoutine.FullStack.Api.Features.Auth\AIRoutine.FullStack.Api.Features.Auth.csproj" />
   </ItemGroup>
 
 </Project>

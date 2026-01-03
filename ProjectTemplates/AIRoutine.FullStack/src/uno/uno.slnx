@@ -11,10 +11,6 @@
     <Project Path="src/Shared/AIRoutine.FullStack.Shared/AIRoutine.FullStack.Shared.csproj" />
   </Folder>
   <Folder Name="/src/Features/" />
-  <Folder Name="/src/Features/Auth/">
-    <Project Path="src/Features/Auth/AIRoutine.FullStack.Features.Auth/AIRoutine.FullStack.Features.Auth.csproj" />
-    <Project Path="src/Features/Auth/AIRoutine.FullStack.Features.Auth.Contracts/AIRoutine.FullStack.Features.Auth.Contracts.csproj" />
-  </Folder>
   <Folder Name="/subm/uno/">
     <Project Path="../../subm/uno/src/UnoFramework/UnoFramework.csproj" />
     <Project Path="../../subm/uno/src/UnoFramework.Contracts/UnoFramework.Contracts.csproj" />
