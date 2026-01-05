@@ -1,3 +1,6 @@
 [submodule "ProjectTemplates/AIRoutine.FullStack/subm/uno"]
 	path = ProjectTemplates/AIRoutine.FullStack/subm/uno
 	url = https://github.com/AIRoutine/UnoFramework.git
+[submodule "ProjectTemplates/AIRoutine.FullStack/subm/cli"]
+	path = ProjectTemplates/AIRoutine.FullStack/subm/cli
+	url = https://github.com/AIRoutine/Automation.Cli.git

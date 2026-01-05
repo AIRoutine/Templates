@@ -35,4 +35,7 @@
     <Project Path="subm/uno/src/UnoFramework.Contracts/UnoFramework.Contracts.csproj" />
     <Project Path="subm/uno/src/UnoFramework.Generators/UnoFramework.Generators.csproj" />
   </Folder>
+  <Folder Name="/subm/cli/">
+    <Project Path="subm/cli/Automation.Cli.csproj" />
+  </Folder>
 </Solution>
