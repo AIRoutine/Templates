@@ -14,7 +14,8 @@
   "sources": [
     {
       "exclude": [
-        "subm/**/.git"
+        "subm/**",
+        ".gitmodules"
       ]
     }
   ],
@@ -25,14 +26,19 @@
   ],
   "postActions": [
     {
-      "id": "git-setup",
-      "actionId": "AC1156F7-BB77-4DB8-B28F-24EEBCCA1E5C",
-      "description": "Git Repository Setup",
+      "id": "init-script",
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "description": "Initialize git and add submodules",
+      "args": {
+        "executable": "pwsh",
+        "args": "-ExecutionPolicy Bypass -File init.ps1"
+      },
       "manualInstructions": [
         {
-          "text": "Run the following commands to initialize git with submodules:\n  git init\n  git submodule init\n  git submodule update"
+          "text": "Run './init.ps1' (Windows) or './init.sh' (Linux/macOS) to initialize git and add submodules."
         }
-      ]
+      ],
+      "continueOnError": false
     },
     {
       "id": "claude-setup",
