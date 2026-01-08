@@ -34,7 +34,11 @@
         "hooks": [
           {
             "type": "command",
-            "command": "claude plugin marketplace add AIRoutine/ClaudePlugins 2>nul || true && claude plugin install uno-dev@daniel-claude-marketplace --scope project 2>nul || claude plugin update uno-dev@daniel-claude-marketplace 2>nul || true"
+            "command": "powershell -Command \"if (-not ((claude plugin marketplace list 2>$null) -match 'daniel-claude-marketplace')) { claude plugin marketplace add AIRoutine/ClaudePlugins }\""
+          },
+          {
+            "type": "command",
+            "command": "powershell -Command \"if (-not ((claude plugin list --scope project 2>$null) -match 'uno-dev@daniel-claude-marketplace')) { claude plugin install uno-dev@daniel-claude-marketplace --scope project } else { claude plugin update uno-dev@daniel-claude-marketplace 2>$null }\""
           },
           {
             "type": "command",
