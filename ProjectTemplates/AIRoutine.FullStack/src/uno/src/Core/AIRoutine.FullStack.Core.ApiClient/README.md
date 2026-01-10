@@ -34,6 +34,21 @@ public class MyViewModel(IMediator mediator)
 }
 ```
 
+### Handler-Registrierung
+
+**Wichtig:** Die generierten HTTP-Handler müssen explizit registriert werden:
+
+```csharp
+// In ServiceCollectionExtensions.cs
+public static IServiceCollection AddApiClientFeature(this IServiceCollection services)
+{
+    services.AddGeneratedOpenApiClient(); // Generiert vom Source Generator
+    return services;
+}
+```
+
+Ohne diesen Aufruf: `No request handler found for XxxHttpRequest`
+
 ### Konfiguration
 
 Base-URL in `appsettings.json`:
