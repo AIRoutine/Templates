@@ -1,10 +1,10 @@
 <Project>
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
-    <MicrosoftVersion>10.0.1</MicrosoftVersion>
+    <MicrosoftVersion>10.0.2</MicrosoftVersion>
     <AspireVersion>13.1.0</AspireVersion>
     <OpenTelemetryVersion>1.14.0</OpenTelemetryVersion>
-    <ShinyMediatorVersion>6.0.2</ShinyMediatorVersion>
+    <ShinyMediatorVersion>6.1.0</ShinyMediatorVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,12 +17,12 @@
 
     <!-- API packages -->
     <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="$(MicrosoftVersion)" />
-    <PackageVersion Include="Scalar.AspNetCore" Version="2.11.10" />
+    <PackageVersion Include="Scalar.AspNetCore" Version="2.12.11" />
 
     <!-- Aspire packages -->
     <PackageVersion Include="Aspire.Hosting.AppHost" Version="$(AspireVersion)" />
-    <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="10.1.0" />
-    <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="10.1.0" />
+    <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="10.2.0" />
+    <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="10.2.0" />
     <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="$(OpenTelemetryVersion)" />
     <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="$(OpenTelemetryVersion)" />
     <PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="$(OpenTelemetryVersion)" />
@@ -30,8 +30,8 @@
     <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="$(OpenTelemetryVersion)" />
 
     <!-- Code Style -->
-    <PackageVersion Include="AIRoutine.CodeStyle.AspNetCore" Version="1.1.0" />
-    <PackageVersion Include="AIRoutine.CodeStyle.Uno" Version="1.1.0" />
+    <PackageVersion Include="AIRoutine.CodeStyle.AspNetCore" Version="1.1.2" />
+    <PackageVersion Include="AIRoutine.CodeStyle.Uno" Version="1.1.2" />
 
     <!-- Microsoft Extensions -->
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="$(MicrosoftVersion)" />
@@ -54,7 +54,7 @@
     <PackageVersion Include="Uno.UITest.Helpers" Version="1.1.0-dev.70" />
     <PackageVersion Include="Uno.UITest.Selenium" Version="1.1.0-dev.70" />
     <PackageVersion Include="NUnit" Version="4.4.0" />
-    <PackageVersion Include="NUnit3TestAdapter" Version="6.0.0" />
+    <PackageVersion Include="NUnit3TestAdapter" Version="6.1.0" />
     <PackageVersion Include="FluentAssertions" Version="8.8.0" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.0.1" />
 
