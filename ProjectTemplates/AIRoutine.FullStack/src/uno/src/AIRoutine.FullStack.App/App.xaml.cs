@@ -1,5 +1,9 @@
 using AIRoutine.FullStack.Core.Startup;
+using AIRoutine.FullStack.Core.Styles;
 using Uno.Resizetizer;
+using UnoFramework.Converters;
+using Microsoft.UI.Xaml.Controls;
+using Uno.Toolkit.UI;
 
 namespace AIRoutine.FullStack.App;
 
@@ -7,7 +11,8 @@ public partial class App : Application
 {
     public App()
     {
-        this.InitializeComponent();
+        RequestedTheme = ApplicationTheme.Dark;
+        ConfigureResources();
     }
 
     protected Window? MainWindow { get; private set; }
@@ -56,6 +61,15 @@ public partial class App : Application
         MainWindow.SetWindowIcon();
 
         Host = await builder.NavigateAsync<Shell>();
+    }
+
+    private void ConfigureResources()
+    {
+        Resources.MergedDictionaries.Add(new XamlControlsResources());
+        Resources.MergedDictionaries.Add(new ToolkitResources());
+        Resources.MergedDictionaries.Add(AppStyles.Create());
+
+        Resources["NullToCollapsedConverter"] = new NullToCollapsedConverter();
     }
 
     private static void RegisterRoutes(IViewRegistry views, IRouteRegistry routes)

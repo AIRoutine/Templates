@@ -27,6 +27,7 @@
     <UnoFeatures>
       Hosting;
       Toolkit;
+      CSharpMarkup;
       Logging;
       Mvvm;
       Configuration;
