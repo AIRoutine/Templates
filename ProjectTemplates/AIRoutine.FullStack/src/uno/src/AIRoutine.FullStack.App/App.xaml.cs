@@ -66,7 +66,8 @@ public partial class App : Application
     private void ConfigureResources()
     {
         Resources.MergedDictionaries.Add(new XamlControlsResources());
-        Resources.MergedDictionaries.Add(new ToolkitResources());
+        // TODO: ToolkitResources causes resource loading issues on Skia Desktop
+        // Resources.MergedDictionaries.Add(new ToolkitResources());
         Resources.MergedDictionaries.Add(AppStyles.Create());
 
         Resources["NullToCollapsedConverter"] = new NullToCollapsedConverter();
