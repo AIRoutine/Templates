@@ -26,24 +26,14 @@ public sealed partial class MainPage : Page
 
         var safeAreaGrid = new Grid();
 #pragma warning disable ACS0002 // Static call is required for SafeArea attached property
-        SafeArea.SetInsets(safeAreaGrid, SafeArea.InsetMask.VisibleBounds);
+        SafeArea.SetInsets(safeAreaGrid, SafeArea.InsetMask.Left | SafeArea.InsetMask.Right);
 #pragma warning restore ACS0002
-        safeAreaGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-        safeAreaGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
-
-        var navigationBar = new NavigationBar
-        {
-            Style = (Style)Application.Current.Resources["DefaultNavigationBarStyle"]
-        };
-        navigationBar.SetValue(AutomationProperties.AutomationIdProperty, "MainPage.NavigationBar");
-        navigationBar.SetBinding(ContentControl.ContentProperty, new Binding { Path = new PropertyPath("Title") });
 
         var contentLayout = new AutoLayout
         {
             Style = (Style)Application.Current.Resources["CenteredContentAutoLayoutStyle"]
         };
         contentLayout.SetValue(AutomationProperties.AutomationIdProperty, "MainPage.Content");
-        Grid.SetRow(contentLayout, 1);
 #pragma warning disable ACS0002 // Static call is required for ResponsiveExtension setup
         ResponsiveExtension.Install(contentLayout, typeof(AutoLayout), nameof(AutoLayout.Padding), new ResponsiveExtension
         {
@@ -101,7 +91,6 @@ public sealed partial class MainPage : Page
         contentLayout.Children.Add(actionButton);
         contentLayout.Children.Add(clickCount);
 
-        safeAreaGrid.Children.Add(navigationBar);
         safeAreaGrid.Children.Add(contentLayout);
 
         busyOverlay.Content = safeAreaGrid;

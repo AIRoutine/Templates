@@ -2,60 +2,110 @@ using Microsoft.UI.Xaml.Automation;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using Uno.Toolkit.UI;
+using UnoFramework.Contracts.Navigation;
 
 namespace AIRoutine.FullStack.App.Presentation;
 
-public sealed partial class Shell : UserControl, IContentControlProvider
+public sealed partial class Shell : UserControl, IContentControlProvider, IRegionHost
 {
-    private readonly ExtendedSplashScreen _splash;
-    private readonly Frame _rootFrame;
+    private readonly Grid _mainGrid;
+    private readonly ContentControl _contentRegion;
 
-    public ContentControl ContentControl => _splash;
+    public ContentControl ContentControl => _contentRegion;
 
-    public Frame NavigationFrame => _rootFrame;
+    public string ContentRegionName => "ContentRegion";
 
     public Shell()
     {
-        _rootFrame = new Frame();
-        _splash = BuildSplash();
-
-        var root = new Border();
-        root.SetValue(AutomationProperties.AutomationIdProperty, "Shell.Root");
-        root.Background = (Brush)Application.Current.Resources["BackgroundBrush"];
-        root.Child = _splash;
-
-        Content = root;
-    }
-
-    private ExtendedSplashScreen BuildSplash()
-    {
-        var loadingGrid = new Grid();
-        loadingGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(2, GridUnitType.Star) });
-        loadingGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
-
-        var loadingRing = new ProgressRing
+        _mainGrid = new Grid
         {
-            IsActive = true,
-            Style = (Style)Application.Current.Resources["LargeProgressRingStyle"],
-            VerticalAlignment = VerticalAlignment.Center,
+            Background = (Brush)Application.Current.Resources["BackgroundBrush"]
+        };
+        _mainGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        _mainGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
+        _mainGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+
+        // Header
+        var headerBorder = new Border
+        {
+            Background = (Brush)Application.Current.Resources["SurfaceBrush"],
+            Padding = new Thickness(16, 12, 16, 12)
+        };
+        var headerGrid = new Grid();
+        headerGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        headerGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+
+        var headerText = new TextBlock
+        {
+            Text = "Header",
+            Style = (Style)Application.Current.Resources["TitleMediumTextStyle"],
             HorizontalAlignment = HorizontalAlignment.Center
         };
-        loadingRing.SetValue(AutomationProperties.AutomationIdProperty, "Shell.LoadingIndicator");
-        Grid.SetRow(loadingRing, 1);
+        Grid.SetRow(headerText, 0);
 
-        loadingGrid.Children.Add(loadingRing);
+        var headerSeparator = new Border
+        {
+            Height = 1,
+            Background = (Brush)Application.Current.Resources["DividerBrush"],
+            Margin = new Thickness(0, 8, 0, 0)
+        };
+        Grid.SetRow(headerSeparator, 1);
 
-        var splash = new ExtendedSplashScreen
+        headerGrid.Children.Add(headerText);
+        headerGrid.Children.Add(headerSeparator);
+        headerBorder.Child = headerGrid;
+        Grid.SetRow(headerBorder, 0);
+
+        // Content Region
+        _contentRegion = new ContentControl
         {
             HorizontalAlignment = HorizontalAlignment.Stretch,
             VerticalAlignment = VerticalAlignment.Stretch,
             HorizontalContentAlignment = HorizontalAlignment.Stretch,
-            VerticalContentAlignment = VerticalAlignment.Stretch,
-            LoadingContent = loadingGrid,
-            Content = _rootFrame
+            VerticalContentAlignment = VerticalAlignment.Stretch
         };
-        splash.SetValue(AutomationProperties.AutomationIdProperty, "Shell.SplashScreen");
+        _contentRegion.SetValue(AutomationProperties.AutomationIdProperty, "Shell.ContentRegion");
+#pragma warning disable ACS0002 // Static call is required for Region attached property
+        Region.SetName(_contentRegion, "ContentRegion");
+        Region.SetAttached(_contentRegion, true);
+#pragma warning restore ACS0002
+        Grid.SetRow(_contentRegion, 1);
 
-        return splash;
+        // Footer
+        var footerBorder = new Border
+        {
+            Background = (Brush)Application.Current.Resources["SurfaceBrush"],
+            Padding = new Thickness(16, 12, 16, 12)
+        };
+        var footerGrid = new Grid();
+        footerGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+        footerGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+
+        var footerSeparator = new Border
+        {
+            Height = 1,
+            Background = (Brush)Application.Current.Resources["DividerBrush"],
+            Margin = new Thickness(0, 0, 0, 8)
+        };
+        Grid.SetRow(footerSeparator, 0);
+
+        var footerText = new TextBlock
+        {
+            Text = "Footer",
+            Style = (Style)Application.Current.Resources["TitleMediumTextStyle"],
+            HorizontalAlignment = HorizontalAlignment.Center
+        };
+        Grid.SetRow(footerText, 1);
+
+        footerGrid.Children.Add(footerSeparator);
+        footerGrid.Children.Add(footerText);
+        footerBorder.Child = footerGrid;
+        Grid.SetRow(footerBorder, 2);
+
+        _mainGrid.Children.Add(headerBorder);
+        _mainGrid.Children.Add(_contentRegion);
+        _mainGrid.Children.Add(footerBorder);
+
+        Content = _mainGrid;
     }
 }

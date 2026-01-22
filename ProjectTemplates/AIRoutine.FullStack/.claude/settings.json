@@ -1,15 +1,7 @@
 {
-  "enableAllProjectMcpServers": true,
-  "extraKnownMarketplaces": {
-    "daniel-claude-marketplace": {
-      "source": {
-        "source": "github",
-        "repo": "AIRoutine/ClaudePlugins"
-      }
-    }
-  },
-  "enabledPlugins": {
-    "uno-dev@daniel-claude-marketplace": true
+  "env": {
+    "DOTNET_MODIFIABLE_ASSEMBLIES": "debug",
+    "MCP_TIMEOUT": "90000"
   },
   "permissions": {
     "allow": [
@@ -23,10 +15,7 @@
     ],
     "deny": []
   },
-  "env": {
-    "DOTNET_MODIFIABLE_ASSEMBLIES": "debug",
-    "MCP_TIMEOUT": "90000"
-  },
+  "enableAllProjectMcpServers": true,
   "hooks": {
     "SessionStart": [
       {
@@ -47,5 +36,16 @@
         ]
       }
     ]
+  },
+  "enabledPlugins": {
+    "uno-dev@daniel-claude-marketplace": true
+  },
+  "extraKnownMarketplaces": {
+    "daniel-claude-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "AIRoutine/ClaudePlugins"
+      }
+    }
   }
 }

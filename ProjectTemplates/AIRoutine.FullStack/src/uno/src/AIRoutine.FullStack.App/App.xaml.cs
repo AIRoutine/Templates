@@ -1,3 +1,4 @@
+using AIRoutine.FullStack.App.Presentation;
 using AIRoutine.FullStack.Core.Startup;
 using AIRoutine.FullStack.Core.Styles;
 using Uno.Resizetizer;
@@ -78,7 +79,9 @@ public partial class App : Application
     private static void RegisterRoutes(IViewRegistry views, IRouteRegistry routes)
     {
         views.Register(
-            new ViewMap(ViewModel: typeof(ShellViewModel)),
+            new ViewMap<Shell, ShellViewModel>(),
+            new ViewMap<HeaderPage, HeaderViewModel>(),
+            new ViewMap<FooterPage, FooterViewModel>(),
             new ViewMap<MainPage, MainViewModel>()
         );
 
@@ -86,7 +89,14 @@ public partial class App : Application
             new RouteMap("", View: views.FindByViewModel<ShellViewModel>(),
                 Nested:
                 [
-                    new ("Main", View: views.FindByViewModel<MainViewModel>())
+                    new ("HeaderRegion", View: views.FindByViewModel<HeaderViewModel>()),
+                    new ("FooterRegion", View: views.FindByViewModel<FooterViewModel>()),
+                    new ("ContentRegion", View: views.FindByViewModel<MainViewModel>(),
+                        Nested:
+                        [
+                            new ("Main", View: views.FindByViewModel<MainViewModel>())
+                        ]
+                    )
                 ]
             )
         );
