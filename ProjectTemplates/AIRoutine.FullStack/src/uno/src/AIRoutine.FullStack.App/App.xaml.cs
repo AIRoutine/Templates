@@ -68,7 +68,9 @@ public partial class App : Application
         Resources.MergedDictionaries.Add(new XamlControlsResources());
         // TODO: ToolkitResources causes resource loading issues on Skia Desktop
         // Resources.MergedDictionaries.Add(new ToolkitResources());
+#pragma warning disable ACS0002 // Static call is required for AppStyles factory method
         Resources.MergedDictionaries.Add(AppStyles.Create());
+#pragma warning restore ACS0002
 
         Resources["NullToCollapsedConverter"] = new NullToCollapsedConverter();
     }

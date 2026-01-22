@@ -25,7 +25,9 @@ public sealed partial class MainPage : Page
         busyOverlay.SetBinding(BusyOverlay.BusyMessageProperty, new Binding { Path = new PropertyPath("BusyMessage") });
 
         var safeAreaGrid = new Grid();
+#pragma warning disable ACS0002 // Static call is required for SafeArea attached property
         SafeArea.SetInsets(safeAreaGrid, SafeArea.InsetMask.VisibleBounds);
+#pragma warning restore ACS0002
         safeAreaGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         safeAreaGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
 
@@ -42,6 +44,7 @@ public sealed partial class MainPage : Page
         };
         contentLayout.SetValue(AutomationProperties.AutomationIdProperty, "MainPage.Content");
         Grid.SetRow(contentLayout, 1);
+#pragma warning disable ACS0002 // Static call is required for ResponsiveExtension setup
         ResponsiveExtension.Install(contentLayout, typeof(AutoLayout), nameof(AutoLayout.Padding), new ResponsiveExtension
         {
             Narrowest = 16,
@@ -58,6 +61,7 @@ public sealed partial class MainPage : Page
             Wide = 20,
             Widest = 24
         });
+#pragma warning restore ACS0002
 
         var headline = new TextBlock
         {
