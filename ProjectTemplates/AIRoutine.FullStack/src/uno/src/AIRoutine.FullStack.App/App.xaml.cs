@@ -82,7 +82,8 @@ public partial class App : Application
             new ViewMap<Shell, ShellViewModel>(),
             new ViewMap<HeaderPage, HeaderViewModel>(),
             new ViewMap<FooterPage, FooterViewModel>(),
-            new ViewMap<MainPage, MainViewModel>()
+            new ViewMap<MainPage, MainViewModel>(),
+            new ViewMap<SecondPage, SecondViewModel>()
         );
 
         routes.Register(
@@ -94,7 +95,8 @@ public partial class App : Application
                     new ("ContentRegion", View: views.FindByViewModel<MainViewModel>(),
                         Nested:
                         [
-                            new ("Main", View: views.FindByViewModel<MainViewModel>())
+                            new ("Main", View: views.FindByViewModel<MainViewModel>()),
+                            new ("Second", View: views.FindByViewModel<SecondViewModel>())
                         ]
                     )
                 ]

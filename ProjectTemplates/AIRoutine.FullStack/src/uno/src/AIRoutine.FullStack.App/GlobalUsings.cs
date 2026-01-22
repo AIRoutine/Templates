@@ -15,6 +15,7 @@ global using UnoFramework.ViewModels;
 global using UnoFramework.Controls;
 global using UnoFramework.Converters;
 global using UnoFramework.Mediator;
+global using UnoFramework.Navigation.Commands;
 
 // App namespaces
 global using AIRoutine.FullStack.App.Models;

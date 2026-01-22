@@ -86,10 +86,19 @@ public sealed partial class MainPage : Page
             Converter = (IValueConverter)Application.Current.Resources["NullToCollapsedConverter"]
         });
 
+        var navigateButton = new Button
+        {
+            Content = "Go to Second Page",
+            Style = (Style)Application.Current.Resources["SecondaryButtonCenteredStyle"]
+        };
+        navigateButton.SetValue(AutomationProperties.AutomationIdProperty, "MainPage.NavigateButton");
+        navigateButton.SetBinding(Button.CommandProperty, new Binding { Path = new PropertyPath("GoToSecondPageCommand") });
+
         contentLayout.Children.Add(headline);
         contentLayout.Children.Add(subtitle);
         contentLayout.Children.Add(actionButton);
         contentLayout.Children.Add(clickCount);
+        contentLayout.Children.Add(navigateButton);
 
         safeAreaGrid.Children.Add(contentLayout);
 

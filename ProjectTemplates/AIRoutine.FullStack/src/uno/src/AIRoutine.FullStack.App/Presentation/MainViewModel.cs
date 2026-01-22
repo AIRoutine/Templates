@@ -17,4 +17,13 @@ public partial class MainViewModel(BaseServices baseServices) : PageViewModel(ba
             ClickCount++;
         }
     }
+
+    [UnoCommand]
+    private async Task GoToSecondPageAsync()
+    {
+        await Mediator.Send(new UnoNavigationRecord("Second")
+        {
+            Navigator = Navigator
+        });
+    }
 }
