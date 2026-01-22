@@ -1,3 +1,4 @@
+using AIRoutine.FullStack.Core.Styles;
 using Microsoft.UI.Xaml.Automation;
 using Microsoft.UI.Xaml.Controls;
 using Uno.Toolkit.UI;
@@ -21,7 +22,7 @@ public sealed partial class SecondPage : Page
     private Grid CreateContent(SecondViewModel vm)
     {
         var rootGrid = new Grid()
-            .Style(x => x.StaticResource("PageRootStyle"))
+            .Style(x => x.StaticResource(StyleKeys.PageRootStyle))
             .AutomationProperties(ap => ap.AutomationId("SecondPage.Root"));
 
         var busyOverlay = new BusyOverlay();
@@ -37,19 +38,20 @@ public sealed partial class SecondPage : Page
         safeAreaGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
 
         var navigationBar = new NavigationBar()
-            .Style(x => x.StaticResource("DefaultNavigationBarStyle"))
+            .Style(x => x.StaticResource(StyleKeys.DefaultNavigationBarStyle))
             .AutomationProperties(ap => ap.AutomationId("SecondPage.NavigationBar"));
         navigationBar.SetBinding(ContentControl.ContentProperty, new Binding { Path = new PropertyPath(nameof(vm.Title)) });
 
         var backButton = new AppBarButton()
-            .Icon(new SymbolIcon(Symbol.Back))
+            .Style(x => x.StaticResource(StyleKeys.AppBarButtonStyle))
+            .Icon(new SymbolIcon(Symbol.Back).Style(x => x.StaticResource(StyleKeys.SymbolIconStyle)))
             .AutomationProperties(ap => ap.AutomationId("SecondPage.BackButton"));
         backButton.SetBinding(Button.CommandProperty, new Binding { Path = new PropertyPath(nameof(vm.GoBackCommand)) });
         navigationBar.MainCommand = backButton;
         Grid.SetRow(navigationBar, 0);
 
         var contentLayout = new AutoLayout()
-            .Style(x => x.StaticResource("CenteredContentAutoLayoutStyle"))
+            .Style(x => x.StaticResource(StyleKeys.CenteredContentAutoLayoutStyle))
             .AutomationProperties(ap => ap.AutomationId("SecondPage.Content"));
 
 #pragma warning disable ACS0002
@@ -75,14 +77,14 @@ public sealed partial class SecondPage : Page
         contentLayout.Children.Add(
             new TextBlock()
                 .Text("This is the Second Page")
-                .Style(x => x.StaticResource("HeadlineLargeCenteredTextStyle"))
+                .Style(x => x.StaticResource(StyleKeys.HeadlineLargeCenteredTextStyle))
                 .AutomationProperties(ap => ap.AutomationId("SecondPage.HeadlineText"))
         );
 
         contentLayout.Children.Add(
             new TextBlock()
                 .Text("Use the back arrow to return to the main page")
-                .Style(x => x.StaticResource("BodyMediumCenteredSubtleTextStyle"))
+                .Style(x => x.StaticResource(StyleKeys.BodyMediumCenteredSubtleTextStyle))
                 .AutomationProperties(ap => ap.AutomationId("SecondPage.SubtitleText"))
         );
 

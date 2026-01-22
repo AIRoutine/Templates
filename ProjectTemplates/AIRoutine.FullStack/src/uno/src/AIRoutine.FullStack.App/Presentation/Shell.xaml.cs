@@ -1,3 +1,4 @@
+using AIRoutine.FullStack.Core.Styles;
 using Microsoft.UI.Xaml.Automation;
 using Microsoft.UI.Xaml.Controls;
 using Uno.Toolkit.UI;
@@ -16,7 +17,7 @@ public sealed partial class Shell : UserControl, IContentControlProvider, IRegio
     public Shell()
     {
         var grid = new Grid()
-            .Background(x => x.StaticResource("BackgroundBrush"));
+            .Style(x => x.StaticResource(StyleKeys.GridStyle));
 
         grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
@@ -24,8 +25,7 @@ public sealed partial class Shell : UserControl, IContentControlProvider, IRegio
 
         // Header
         var headerBorder = new Border()
-            .Background(x => x.StaticResource("SurfaceBrush"))
-            .Padding(16, 12, 16, 12);
+            .Style(x => x.StaticResource(StyleKeys.BorderStyle));
         Grid.SetRow(headerBorder, 0);
 
         var headerGrid = new Grid();
@@ -34,14 +34,13 @@ public sealed partial class Shell : UserControl, IContentControlProvider, IRegio
 
         var headerText = new TextBlock()
             .Text("Header")
-            .Style(x => x.StaticResource("TitleMediumTextStyle"))
+            .Style(x => x.StaticResource(StyleKeys.TitleMediumTextStyle))
             .HorizontalAlignment(HorizontalAlignment.Center);
         Grid.SetRow(headerText, 0);
 
         var headerSeparator = new Border()
-            .Height(1)
-            .Background(x => x.StaticResource("DividerBrush"))
-            .Margin(0, 8, 0, 0);
+            .Style(x => x.StaticResource(StyleKeys.BorderStyle))
+            .Height(1);
         Grid.SetRow(headerSeparator, 1);
 
         headerGrid.Children.Add(headerText);
@@ -50,6 +49,7 @@ public sealed partial class Shell : UserControl, IContentControlProvider, IRegio
 
         // Content Region
         _contentRegion = new ContentControl()
+            .Style(x => x.StaticResource(StyleKeys.ContentControlStyle))
             .HorizontalAlignment(HorizontalAlignment.Stretch)
             .VerticalAlignment(VerticalAlignment.Stretch)
             .HorizontalContentAlignment(HorizontalAlignment.Stretch)
@@ -63,8 +63,7 @@ public sealed partial class Shell : UserControl, IContentControlProvider, IRegio
 
         // Footer
         var footerBorder = new Border()
-            .Background(x => x.StaticResource("SurfaceBrush"))
-            .Padding(16, 12, 16, 12);
+            .Style(x => x.StaticResource(StyleKeys.BorderStyle));
         Grid.SetRow(footerBorder, 2);
 
         var footerGrid = new Grid();
@@ -72,14 +71,13 @@ public sealed partial class Shell : UserControl, IContentControlProvider, IRegio
         footerGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
 
         var footerSeparator = new Border()
-            .Height(1)
-            .Background(x => x.StaticResource("DividerBrush"))
-            .Margin(0, 0, 0, 8);
+            .Style(x => x.StaticResource(StyleKeys.BorderStyle))
+            .Height(1);
         Grid.SetRow(footerSeparator, 0);
 
         var footerText = new TextBlock()
             .Text("Footer")
-            .Style(x => x.StaticResource("TitleMediumTextStyle"))
+            .Style(x => x.StaticResource(StyleKeys.TitleMediumTextStyle))
             .HorizontalAlignment(HorizontalAlignment.Center);
         Grid.SetRow(footerText, 1);
 

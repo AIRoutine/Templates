@@ -1,3 +1,4 @@
+using AIRoutine.FullStack.Core.Styles;
 using Microsoft.UI.Xaml.Automation;
 using Microsoft.UI.Xaml.Controls;
 using Uno.Toolkit.UI;
@@ -9,8 +10,7 @@ public sealed partial class FooterPage : UserControl
     public FooterPage()
     {
         var grid = new Grid()
-            .Background(x => x.StaticResource("SurfaceBrush"))
-            .Padding(16, 12, 16, 12)
+            .Style(x => x.StaticResource(StyleKeys.GridStyle))
             .AutomationProperties(ap => ap.AutomationId("FooterPage.Root"));
 
 #pragma warning disable ACS0002
@@ -21,14 +21,13 @@ public sealed partial class FooterPage : UserControl
         grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
 
         var separator = new Border()
-            .Height(1)
-            .Background(x => x.StaticResource("DividerBrush"))
-            .Margin(0, 0, 0, 8);
+            .Style(x => x.StaticResource(StyleKeys.BorderStyle))
+            .Height(1);
         Grid.SetRow(separator, 0);
 
         var footerText = new TextBlock()
             .Text("Footer")
-            .Style(x => x.StaticResource("TitleMediumTextStyle"))
+            .Style(x => x.StaticResource(StyleKeys.TitleMediumTextStyle))
             .HorizontalAlignment(HorizontalAlignment.Center)
             .AutomationProperties(ap => ap.AutomationId("FooterPage.FooterText"));
         Grid.SetRow(footerText, 1);

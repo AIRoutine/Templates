@@ -1,3 +1,4 @@
+using AIRoutine.FullStack.Core.Styles;
 using Microsoft.UI.Xaml.Automation;
 using Microsoft.UI.Xaml.Controls;
 using Uno.Toolkit.UI;
@@ -9,8 +10,7 @@ public sealed partial class HeaderPage : UserControl
     public HeaderPage()
     {
         var grid = new Grid()
-            .Background(x => x.StaticResource("SurfaceBrush"))
-            .Padding(16, 12, 16, 12)
+            .Style(x => x.StaticResource(StyleKeys.GridStyle))
             .AutomationProperties(ap => ap.AutomationId("HeaderPage.Root"));
 
 #pragma warning disable ACS0002
@@ -22,15 +22,14 @@ public sealed partial class HeaderPage : UserControl
 
         var headerText = new TextBlock()
             .Text("Header")
-            .Style(x => x.StaticResource("TitleMediumTextStyle"))
+            .Style(x => x.StaticResource(StyleKeys.TitleMediumTextStyle))
             .HorizontalAlignment(HorizontalAlignment.Center)
             .AutomationProperties(ap => ap.AutomationId("HeaderPage.HeaderText"));
         Grid.SetRow(headerText, 0);
 
         var separator = new Border()
-            .Height(1)
-            .Background(x => x.StaticResource("DividerBrush"))
-            .Margin(0, 8, 0, 0);
+            .Style(x => x.StaticResource(StyleKeys.BorderStyle))
+            .Height(1);
         Grid.SetRow(separator, 1);
 
         grid.Children.Add(headerText);
