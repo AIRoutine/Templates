@@ -14,7 +14,7 @@ public static class ServiceCollectionExtensions
 
         services.AddShinyMediator();
         services.AddSingleton<IEventCollector, UnoEventCollector>();
-        services.AddSingleton<BaseServices>();
+        // BaseServices wird automatisch durch [Service] Attribute registriert
 
         // Features
 
