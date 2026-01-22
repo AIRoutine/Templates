@@ -1,6 +1,0 @@
-<Solution>
-  <Folder Name="/src/">
-    <Project Path="src/AIRoutine.FullStack.AppHost/AIRoutine.FullStack.AppHost.csproj" />
-    <Project Path="src/AIRoutine.FullStack.ServiceDefaults/AIRoutine.FullStack.ServiceDefaults.csproj" />
-  </Folder>
-</Solution>

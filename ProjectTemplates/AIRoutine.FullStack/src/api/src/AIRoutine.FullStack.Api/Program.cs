@@ -6,9 +6,9 @@ using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.AddServiceDefaults();
 builder.Services.AddOpenApi();
 builder.Services.AddApiServices(builder.Configuration);
+builder.Services.AddHealthChecks();
 
 // JSON Serialization: Enums als Strings fuer OpenAPI Enum-Generierung
 builder.Services.ConfigureHttpJsonOptions(options =>
@@ -21,7 +21,7 @@ var app = builder.Build();
 app.Services.EnsureDatabaseCreated();
 await app.RunSeedersAsync();
 
-app.MapDefaultEndpoints();
+app.MapHealthChecks("/health");
 app.MapEndpoints();
 
 if (app.Environment.IsDevelopment())
