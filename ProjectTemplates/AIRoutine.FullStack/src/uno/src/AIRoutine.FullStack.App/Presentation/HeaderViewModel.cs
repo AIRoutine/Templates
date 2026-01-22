@@ -1,5 +1,5 @@
 namespace AIRoutine.FullStack.App.Presentation;
 
-public class HeaderViewModel
+public partial class HeaderViewModel(BaseServices baseServices) : RegionViewModel(baseServices)
 {
 }

@@ -1,7 +1,5 @@
 using Microsoft.UI.Xaml.Automation;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Media;
 using Uno.Toolkit.UI;
 using UnoFramework.Controls;
 
@@ -13,28 +11,31 @@ public sealed partial class MainPage : Page
     {
         NavigationCacheMode = NavigationCacheMode.Required;
 
-        var rootGrid = new Grid
-        {
-            Style = (Style)Application.Current.Resources["PageRootStyle"]
-        };
-        rootGrid.SetValue(AutomationProperties.AutomationIdProperty, "MainPage.Root");
+        this.DataContext<MainViewModel>((page, vm) => page
+            .Content(
+                CreateContent(vm)
+            )
+        );
+    }
+
+    private Grid CreateContent(MainViewModel vm)
+    {
+        var rootGrid = new Grid()
+            .Style(x => x.StaticResource("PageRootStyle"))
+            .AutomationProperties(ap => ap.AutomationId("MainPage.Root"));
 
         var busyOverlay = new BusyOverlay();
         busyOverlay.SetValue(AutomationProperties.AutomationIdProperty, "MainPage.BusyOverlay");
-        busyOverlay.SetBinding(BusyOverlay.IsBusyProperty, new Binding { Path = new PropertyPath("IsBusy") });
-        busyOverlay.SetBinding(BusyOverlay.BusyMessageProperty, new Binding { Path = new PropertyPath("BusyMessage") });
+        busyOverlay.SetBinding(BusyOverlay.IsBusyProperty, new Binding { Path = new PropertyPath(nameof(vm.IsBusy)) });
+        busyOverlay.SetBinding(BusyOverlay.BusyMessageProperty, new Binding { Path = new PropertyPath(nameof(vm.BusyMessage)) });
 
         var safeAreaGrid = new Grid();
-#pragma warning disable ACS0002 // Static call is required for SafeArea attached property
         SafeArea.SetInsets(safeAreaGrid, SafeArea.InsetMask.Left | SafeArea.InsetMask.Right);
-#pragma warning restore ACS0002
 
-        var contentLayout = new AutoLayout
-        {
-            Style = (Style)Application.Current.Resources["CenteredContentAutoLayoutStyle"]
-        };
-        contentLayout.SetValue(AutomationProperties.AutomationIdProperty, "MainPage.Content");
-#pragma warning disable ACS0002 // Static call is required for ResponsiveExtension setup
+        var contentLayout = new AutoLayout()
+            .Style(x => x.StaticResource("CenteredContentAutoLayoutStyle"))
+            .AutomationProperties(ap => ap.AutomationId("MainPage.Content"));
+
         ResponsiveExtension.Install(contentLayout, typeof(AutoLayout), nameof(AutoLayout.Padding), new ResponsiveExtension
         {
             Narrowest = 16,
@@ -51,59 +52,45 @@ public sealed partial class MainPage : Page
             Wide = 20,
             Widest = 24
         });
-#pragma warning restore ACS0002
 
-        var headline = new TextBlock
-        {
-            Text = "Welcome to AIRoutine.FullStack!",
-            Style = (Style)Application.Current.Resources["HeadlineLargeCenteredTextStyle"]
-        };
-        headline.SetValue(AutomationProperties.AutomationIdProperty, "MainPage.HeadlineText");
+        contentLayout.Children.Add(
+            new TextBlock()
+                .Text("Welcome to AIRoutine.FullStack!")
+                .Style(x => x.StaticResource("HeadlineLargeCenteredTextStyle"))
+                .AutomationProperties(ap => ap.AutomationId("MainPage.HeadlineText"))
+        );
 
-        var subtitle = new TextBlock
-        {
-            Text = "Full-Stack: API + Uno App with shared configuration",
-            Style = (Style)Application.Current.Resources["BodyMediumCenteredSubtleTextStyle"]
-        };
-        subtitle.SetValue(AutomationProperties.AutomationIdProperty, "MainPage.SubtitleText");
+        contentLayout.Children.Add(
+            new TextBlock()
+                .Text("Full-Stack: API + Uno App with shared configuration")
+                .Style(x => x.StaticResource("BodyMediumCenteredSubtleTextStyle"))
+                .AutomationProperties(ap => ap.AutomationId("MainPage.SubtitleText"))
+        );
 
-        var actionButton = new Button
-        {
-            Content = "Click Me",
-            Style = (Style)Application.Current.Resources["PrimaryButtonCenteredStyle"]
-        };
-        actionButton.SetValue(AutomationProperties.AutomationIdProperty, "MainPage.ClickButton");
-        actionButton.SetBinding(Button.CommandProperty, new Binding { Path = new PropertyPath("ClickCommand") });
+        var clickButton = new Button()
+            .Content("Click Me")
+            .Style(x => x.StaticResource("PrimaryButtonCenteredStyle"))
+            .AutomationProperties(ap => ap.AutomationId("MainPage.ClickButton"));
+        clickButton.SetBinding(Button.CommandProperty, new Binding { Path = new PropertyPath(nameof(vm.ClickCommand)) });
+        contentLayout.Children.Add(clickButton);
 
-        var clickCount = new TextBlock
-        {
-            Style = (Style)Application.Current.Resources["TitleLargeCenteredTextStyle"]
-        };
-        clickCount.SetValue(AutomationProperties.AutomationIdProperty, "MainPage.ClickCountText");
-        clickCount.SetBinding(TextBlock.TextProperty, new Binding
-        {
-            Path = new PropertyPath("ClickCount"),
-            Converter = (IValueConverter)Application.Current.Resources["NullToCollapsedConverter"]
-        });
-
-        var navigateButton = new Button
-        {
-            Content = "Go to Second Page",
-            Style = (Style)Application.Current.Resources["SecondaryButtonCenteredStyle"]
-        };
-        navigateButton.SetValue(AutomationProperties.AutomationIdProperty, "MainPage.NavigateButton");
-        navigateButton.SetBinding(Button.CommandProperty, new Binding { Path = new PropertyPath("GoToSecondPageCommand") });
-
-        contentLayout.Children.Add(headline);
-        contentLayout.Children.Add(subtitle);
-        contentLayout.Children.Add(actionButton);
+        var clickCount = new TextBlock()
+            .Style(x => x.StaticResource("TitleLargeCenteredTextStyle"))
+            .AutomationProperties(ap => ap.AutomationId("MainPage.ClickCountText"));
+        clickCount.SetBinding(TextBlock.TextProperty, new Binding { Path = new PropertyPath(nameof(vm.ClickCount)) });
         contentLayout.Children.Add(clickCount);
+
+        var navigateButton = new Button()
+            .Content("Go to Second Page")
+            .Style(x => x.StaticResource("SecondaryButtonCenteredStyle"))
+            .AutomationProperties(ap => ap.AutomationId("MainPage.NavigateButton"));
+        navigateButton.SetBinding(Button.CommandProperty, new Binding { Path = new PropertyPath(nameof(vm.GoToSecondPageCommand)) });
         contentLayout.Children.Add(navigateButton);
 
         safeAreaGrid.Children.Add(contentLayout);
-
         busyOverlay.Content = safeAreaGrid;
         rootGrid.Children.Add(busyOverlay);
-        Content = rootGrid;
+
+        return rootGrid;
     }
 }

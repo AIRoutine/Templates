@@ -1,5 +1,5 @@
 namespace AIRoutine.FullStack.App.Presentation;
 
-public class FooterViewModel
+public partial class FooterViewModel(BaseServices baseServices) : RegionViewModel(baseServices)
 {
 }
