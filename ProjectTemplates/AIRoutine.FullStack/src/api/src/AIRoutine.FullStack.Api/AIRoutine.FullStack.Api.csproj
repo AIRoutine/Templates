@@ -1,7 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
+  <PropertyGroup>
+    <!-- Gemeinsames Output-Verzeichnis für generated API contracts -->
+    <ApiGeneratedDir>$(MSBuildProjectDirectory)\..\..\..\api\Generated</ApiGeneratedDir>
+    <OpenApiOutputFile>$(ApiGeneratedDir)\openapi.json</OpenApiOutputFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+    <PackageReference Include="Microsoft.Extensions.ApiDescription.Server" PrivateAssets="All" />
     <PackageReference Include="Scalar.AspNetCore" />
     <PackageReference Include="Shiny.Mediator.AspNet" />
   </ItemGroup>
@@ -9,5 +16,18 @@
   <ItemGroup>
     <ProjectReference Include="..\Core\AIRoutine.FullStack.Api.Core.Startup\AIRoutine.FullStack.Api.Core.Startup.csproj" />
   </ItemGroup>
+
+  <Target Name="EnsureApiGeneratedDirectory" BeforeTargets="Build">
+    <MakeDir Directories="$(ApiGeneratedDir)" Condition="!Exists('$(ApiGeneratedDir)')" />
+  </Target>
+
+  <Target Name="CopyOpenApiDocument"
+          AfterTargets="Build"
+          Condition="Exists('$(MSBuildProjectDirectory)\obj\AIRoutine.FullStack.Api.json')">
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\obj\AIRoutine.FullStack.Api.json"
+          DestinationFiles="$(OpenApiOutputFile)"
+          SkipUnchangedFiles="true" />
+    <Message Text="OpenAPI document copied to: $(OpenApiOutputFile)" Importance="high" />
+  </Target>
 
 </Project>

@@ -30,3 +30,6 @@ Thumbs.db
 
 # MSBuild
 MSBuild_Logs/
+
+# Generated API Contracts
+src/api/Generated/

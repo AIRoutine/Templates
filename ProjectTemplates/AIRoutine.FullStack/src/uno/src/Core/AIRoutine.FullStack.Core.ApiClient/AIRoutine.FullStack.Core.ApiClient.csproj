@@ -16,6 +16,9 @@
       Http;
       SkiaRenderer;
     </UnoFeatures>
+
+    <!-- Relativer Pfad zur generierten OpenAPI-Datei -->
+    <ApiOpenApiFile>$(MSBuildThisFileDirectory)..\..\..\..\api\Generated\openapi.json</ApiOpenApiFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -24,13 +27,18 @@
 
   <!-- OpenAPI HTTP Contract Generation from API -->
   <ItemGroup>
-    <MediatorHttp Include="ApiContracts"
-                  Uri="http://localhost:5292/openapi/v1.json"
+    <MediatorHttp Include="$(ApiOpenApiFile)"
                   Namespace="AIRoutine.FullStack.Core.ApiClient.Generated"
                   ContractPostfix="HttpRequest"
                   GenerateJsonConverters="false"
                   Visible="false" />
   </ItemGroup>
+
+  <!-- Validierung: Fehler wenn openapi.json nicht existiert -->
+  <Target Name="ValidateOpenApiFile" BeforeTargets="CoreCompile">
+    <Error Condition="!Exists('$(ApiOpenApiFile)')"
+           Text="OpenAPI file not found at: $(ApiOpenApiFile)%0A%0APlease build the API project first:%0A  cd src/api/src/AIRoutine.FullStack.Api%0A  dotnet build" />
+  </Target>
 
   <ItemGroup>
     <!-- Shared -->

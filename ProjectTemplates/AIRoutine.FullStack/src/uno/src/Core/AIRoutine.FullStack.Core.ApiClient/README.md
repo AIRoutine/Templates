@@ -10,16 +10,28 @@ Dieses Projekt generiert automatisch HTTP-Contracts aus der OpenAPI-Spezifikatio
 
 ### OpenAPI Contract Generation
 
-Die Contracts werden zur Build-Zeit aus der API-Spezifikation generiert:
+Die Contracts werden zur Build-Zeit aus der generierten OpenAPI-Datei des Backend-Projekts generiert:
 
 ```xml
-<MediatorHttp Include="ApiContracts"
-              Uri="http://localhost:5292/openapi/v1.json"
+<MediatorHttp Include="$(ApiOpenApiFile)"
               Namespace="AIRoutine.FullStack.Core.ApiClient.Generated"
               ContractPostfix="HttpRequest"
-              GenerateJsonConverters="true"
+              GenerateJsonConverters="false"
               Visible="false" />
 ```
+
+**Setup:**
+1. Das API-Projekt generiert automatisch `openapi.json` beim Build
+2. Diese Datei wird in `src/api/Generated/` gespeichert
+3. Der ApiClient referenziert diese Datei zur Contract-Generierung
+
+**Wichtig:** Bei einem Fresh Clone muss zuerst das API-Projekt gebaut werden:
+```bash
+cd src/api/src/AIRoutine.FullStack.Api
+dotnet build
+```
+
+Danach kann das Uno-Projekt gebaut werden. Falls die `openapi.json` fehlt, erscheint eine klare Fehlermeldung mit Anweisungen.
 
 ### Verwendung in Features
 
