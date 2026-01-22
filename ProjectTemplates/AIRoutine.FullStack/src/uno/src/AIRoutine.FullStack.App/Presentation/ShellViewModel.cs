@@ -13,8 +13,8 @@ public class ShellViewModel
 
     public async Task Start()
     {
-        await _navigator.NavigateRouteAsync(this, "HeaderRegion");
-        await _navigator.NavigateRouteAsync(this, "FooterRegion");
-        await _navigator.NavigateRouteAsync(this, "ContentRegion");
+        await _navigator.NavigateRouteAsync(this, Routes.Regions.Header);
+        await _navigator.NavigateRouteAsync(this, Routes.Regions.Footer);
+        await _navigator.NavigateRouteAsync(this, Routes.Regions.Content);
     }
 }

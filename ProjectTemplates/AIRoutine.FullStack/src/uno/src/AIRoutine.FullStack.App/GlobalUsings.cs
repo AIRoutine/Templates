@@ -20,5 +20,6 @@ global using UnoFramework.Navigation.Commands;
 // App namespaces
 global using AIRoutine.FullStack.App.Models;
 global using AIRoutine.FullStack.App.Presentation;
+global using AIRoutine.FullStack.Shared;
 
 global using ApplicationExecutionState = Windows.ApplicationModel.Activation.ApplicationExecutionState;

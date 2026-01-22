@@ -90,13 +90,13 @@ public partial class App : Application
             new RouteMap("", View: views.FindByViewModel<ShellViewModel>(),
                 Nested:
                 [
-                    new ("HeaderRegion", View: views.FindByViewModel<HeaderViewModel>()),
-                    new ("FooterRegion", View: views.FindByViewModel<FooterViewModel>()),
-                    new ("ContentRegion", View: views.FindByViewModel<MainViewModel>(),
+                    new (Routes.Regions.Header, View: views.FindByViewModel<HeaderViewModel>()),
+                    new (Routes.Regions.Footer, View: views.FindByViewModel<FooterViewModel>()),
+                    new (Routes.Regions.Content, View: views.FindByViewModel<MainViewModel>(),
                         Nested:
                         [
-                            new ("Main", View: views.FindByViewModel<MainViewModel>()),
-                            new ("Second", View: views.FindByViewModel<SecondViewModel>())
+                            new (Routes.Pages.Main, View: views.FindByViewModel<MainViewModel>()),
+                            new (Routes.Pages.Second, View: views.FindByViewModel<SecondViewModel>())
                         ]
                     )
                 ]

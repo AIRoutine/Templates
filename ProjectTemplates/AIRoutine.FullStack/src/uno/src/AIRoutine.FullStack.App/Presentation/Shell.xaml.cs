@@ -13,7 +13,7 @@ public sealed partial class Shell : UserControl, IContentControlProvider, IRegio
 
     public ContentControl ContentControl => _contentRegion;
 
-    public string ContentRegionName => "ContentRegion";
+    public string ContentRegionName => Routes.Regions.Content;
 
     public Shell()
     {
@@ -66,7 +66,7 @@ public sealed partial class Shell : UserControl, IContentControlProvider, IRegio
         };
         _contentRegion.SetValue(AutomationProperties.AutomationIdProperty, "Shell.ContentRegion");
 #pragma warning disable ACS0002 // Static call is required for Region attached property
-        Region.SetName(_contentRegion, "ContentRegion");
+        Region.SetName(_contentRegion, Routes.Regions.Content);
         Region.SetAttached(_contentRegion, true);
 #pragma warning restore ACS0002
         Grid.SetRow(_contentRegion, 1);
