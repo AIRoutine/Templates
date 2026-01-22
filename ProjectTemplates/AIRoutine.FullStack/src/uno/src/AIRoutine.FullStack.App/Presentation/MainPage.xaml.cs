@@ -25,34 +25,19 @@ public sealed partial class MainPage : Page
             .Style(x => x.StaticResource(StyleKeys.PageRootStyle))
             .AutomationProperties(ap => ap.AutomationId("MainPage.Root"));
 
-        var busyOverlay = new BusyOverlay();
-        busyOverlay.SetValue(AutomationProperties.AutomationIdProperty, "MainPage.BusyOverlay");
-        busyOverlay.SetBinding(BusyOverlay.IsBusyProperty, new Binding { Path = new PropertyPath(nameof(vm.IsBusy)) });
-        busyOverlay.SetBinding(BusyOverlay.BusyMessageProperty, new Binding { Path = new PropertyPath(nameof(vm.BusyMessage)) });
+        var busyOverlay = new BusyOverlay()
+            .AutomationProperties(ap => ap.AutomationId("MainPage.BusyOverlay"))
+            .IsBusy(() => vm.IsBusy)
+            .BusyMessage(() => vm.BusyMessage);
 
         var safeAreaGrid = new Grid();
         SafeArea.SetInsets(safeAreaGrid, SafeArea.InsetMask.Left | SafeArea.InsetMask.Right);
 
         var contentLayout = new AutoLayout()
             .Style(x => x.StaticResource(StyleKeys.CenteredContentAutoLayoutStyle))
-            .AutomationProperties(ap => ap.AutomationId("MainPage.Content"));
-
-        ResponsiveExtension.Install(contentLayout, typeof(AutoLayout), nameof(AutoLayout.Padding), new ResponsiveExtension
-        {
-            Narrowest = 16,
-            Narrow = 20,
-            Normal = 24,
-            Wide = 32,
-            Widest = 48
-        });
-        ResponsiveExtension.Install(contentLayout, typeof(AutoLayout), nameof(AutoLayout.Spacing), new ResponsiveExtension
-        {
-            Narrowest = 12,
-            Narrow = 14,
-            Normal = 16,
-            Wide = 20,
-            Widest = 24
-        });
+            .AutomationProperties(ap => ap.AutomationId("MainPage.Content"))
+            .ResponsivePadding(narrowest: 16, narrow: 20, normal: 24, wide: 32, widest: 48)
+            .ResponsiveSpacing(narrowest: 12, narrow: 14, normal: 16, wide: 20, widest: 24);
 
         contentLayout.Children.Add(
             new TextBlock()
@@ -68,25 +53,28 @@ public sealed partial class MainPage : Page
                 .AutomationProperties(ap => ap.AutomationId("MainPage.SubtitleText"))
         );
 
-        var clickButton = new Button()
-            .Content("Click Me")
-            .Style(x => x.StaticResource(StyleKeys.PrimaryButtonCenteredStyle))
-            .AutomationProperties(ap => ap.AutomationId("MainPage.ClickButton"));
-        clickButton.SetBinding(Button.CommandProperty, new Binding { Path = new PropertyPath(nameof(vm.ClickCommand)) });
-        contentLayout.Children.Add(clickButton);
+        contentLayout.Children.Add(
+            new Button()
+                .Content("Click Me")
+                .Style(x => x.StaticResource(StyleKeys.PrimaryButtonCenteredStyle))
+                .AutomationProperties(ap => ap.AutomationId("MainPage.ClickButton"))
+                .Command(() => vm.ClickCommand)
+        );
 
-        var clickCount = new TextBlock()
-            .Style(x => x.StaticResource(StyleKeys.TitleLargeCenteredTextStyle))
-            .AutomationProperties(ap => ap.AutomationId("MainPage.ClickCountText"));
-        clickCount.SetBinding(TextBlock.TextProperty, new Binding { Path = new PropertyPath(nameof(vm.ClickCount)) });
-        contentLayout.Children.Add(clickCount);
+        contentLayout.Children.Add(
+            new TextBlock()
+                .Style(x => x.StaticResource(StyleKeys.TitleLargeCenteredTextStyle))
+                .AutomationProperties(ap => ap.AutomationId("MainPage.ClickCountText"))
+                .Text(() => vm.ClickCount)
+        );
 
-        var navigateButton = new Button()
-            .Content("Go to Second Page")
-            .Style(x => x.StaticResource(StyleKeys.SecondaryButtonCenteredStyle))
-            .AutomationProperties(ap => ap.AutomationId("MainPage.NavigateButton"));
-        navigateButton.SetBinding(Button.CommandProperty, new Binding { Path = new PropertyPath(nameof(vm.GoToSecondPageCommand)) });
-        contentLayout.Children.Add(navigateButton);
+        contentLayout.Children.Add(
+            new Button()
+                .Content("Go to Second Page")
+                .Style(x => x.StaticResource(StyleKeys.SecondaryButtonCenteredStyle))
+                .AutomationProperties(ap => ap.AutomationId("MainPage.NavigateButton"))
+                .Command(() => vm.GoToSecondPageCommand)
+        );
 
         safeAreaGrid.Children.Add(contentLayout);
         busyOverlay.Content = safeAreaGrid;
