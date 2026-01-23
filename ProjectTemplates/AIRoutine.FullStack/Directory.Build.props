@@ -13,5 +13,8 @@
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+
+    <!-- Exclude generated code from analysis (source generators, etc.) -->
+    <GeneratedCodeAnalysisFlags>None</GeneratedCodeAnalysisFlags>
   </PropertyGroup>
 </Project>

@@ -1,21 +1,21 @@
-using Android.App;
-using Android.Content.PM;
 using Android.OS;
 using Android.Views;
 
-namespace AIRoutine.FullStack.App.Droid;
+namespace AIRoutine.FullStack.App.Platforms.Android;
 
-[Activity(
+[global::Android.App.Activity(
     MainLauncher = true,
     ConfigurationChanges = global::Uno.UI.ActivityHelper.AllConfigChanges,
     WindowSoftInputMode = SoftInput.AdjustNothing | SoftInput.StateHidden
 )]
 public class MainActivity : Microsoft.UI.Xaml.ApplicationActivity
 {
-    protected override void OnCreate(Bundle? savedInstanceState)
+#pragma warning disable ACS0002 // SplashScreen requires static call - Android platform requirement
+    protected override void OnCreate(Bundle? bundle)
     {
         global::AndroidX.Core.SplashScreen.SplashScreen.InstallSplashScreen(this);
 
-        base.OnCreate(savedInstanceState);
+        base.OnCreate(bundle);
     }
+#pragma warning restore ACS0002
 }

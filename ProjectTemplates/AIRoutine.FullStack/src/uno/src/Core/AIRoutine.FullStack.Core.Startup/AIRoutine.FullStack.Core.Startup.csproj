@@ -5,8 +5,6 @@
     <UnoSingleProject>true</UnoSingleProject>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <NoWarn>$(NoWarn);CS0162</NoWarn>
-
     <UnoFeatures>
       Hosting;
       Toolkit;

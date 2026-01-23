@@ -13,9 +13,8 @@ namespace AIRoutine.FullStack.Api.Core.UnitTests.Data;
 [Category(TestCategories.Unit)]
 internal class AppDbContextTests : BaseApiUnitTest
 {
+    // TODO: Implementiere mit InMemory-DbContext
     [Test]
     [Category(TestCategories.Smoke)]
-    public void AppDbContext_CanBeCreated() =>
-        // TODO: Implementiere mit InMemory-DbContext
-        _ = true.Should().BeTrue("Placeholder-Test");
+    public void AppDbContext_CanBeCreated() => _ = true.Should().BeTrue("Placeholder-Test");
 }

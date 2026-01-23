@@ -267,3 +267,16 @@ dotnet_diagnostic.CA1010.severity = none
 
 # CA1724: Type names should not match namespaces (App and Shell are standard UI names)
 dotnet_diagnostic.CA1724.severity = none
+
+# === Generated Code ===
+# Disable analyzer and compiler warnings for source-generated files
+[*.g.cs]
+generated_code = true
+dotnet_analyzer_diagnostic.severity = none
+# CS1591: Missing XML comment (compiler warning, not analyzer)
+dotnet_diagnostic.CS1591.severity = none
+
+[*.generated.cs]
+generated_code = true
+dotnet_analyzer_diagnostic.severity = none
+dotnet_diagnostic.CS1591.severity = none

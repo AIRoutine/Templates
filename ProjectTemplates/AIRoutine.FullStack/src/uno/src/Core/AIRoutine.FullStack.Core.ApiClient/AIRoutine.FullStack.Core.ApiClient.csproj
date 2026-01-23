@@ -6,11 +6,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 
-    <!-- Exclude warnings from generated code (Source Generators) -->
-    <!-- CS8669: Nullable annotation context, CS9107: Captured parameter, CS1591: Missing XML comment -->
-    <WarningsNotAsErrors>CS8669;CS9107;CS1591</WarningsNotAsErrors>
-    <NoWarn>$(NoWarn);CS8669;CS9107;CS1591</NoWarn>
-
     <UnoFeatures>
       Hosting;
       Http;
