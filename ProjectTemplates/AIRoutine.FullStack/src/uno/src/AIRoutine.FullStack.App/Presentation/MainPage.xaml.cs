@@ -1,12 +1,9 @@
 using AIRoutine.FullStack.Core.Styles;
-using Microsoft.UI.Xaml.Automation;
-using Microsoft.UI.Xaml.Controls;
-using Uno.Toolkit.UI;
-using UnoFramework.Controls;
+using UnoFramework.Pages;
 
 namespace AIRoutine.FullStack.App.Presentation;
 
-public sealed partial class MainPage : Page
+public sealed partial class MainPage : BasePage
 {
     public MainPage()
     {
@@ -21,15 +18,6 @@ public sealed partial class MainPage : Page
 
     private Grid CreateContent(MainViewModel vm)
     {
-        var rootGrid = new Grid()
-            .Style(x => x.StaticResource(StyleKeys.PageRootStyle))
-            .AutomationProperties(ap => ap.AutomationId("MainPage.Root"));
-
-        var busyOverlay = new BusyOverlay()
-            .AutomationProperties(ap => ap.AutomationId("MainPage.BusyOverlay"))
-            .IsBusy(() => vm.IsBusy)
-            .BusyMessage(() => vm.BusyMessage);
-
         var safeAreaGrid = new Grid();
         SafeArea.SetInsets(safeAreaGrid, SafeArea.InsetMask.Left | SafeArea.InsetMask.Right);
 
@@ -77,9 +65,16 @@ public sealed partial class MainPage : Page
         );
 
         safeAreaGrid.Children.Add(contentLayout);
-        busyOverlay.Content = safeAreaGrid;
-        rootGrid.Children.Add(busyOverlay);
 
-        return rootGrid;
+        var busyOverlay = new BusyOverlay()
+            .AutomationProperties(ap => ap.AutomationId("MainPage.BusyOverlay"))
+            .IsBusy(() => vm.IsBusy)
+            .BusyMessage(() => vm.BusyMessage)
+            .Content(safeAreaGrid);
+
+        return new Grid()
+            .Style(x => x.StaticResource(StyleKeys.PageRootStyle))
+            .AutomationProperties(ap => ap.AutomationId("MainPage.Root"))
+            .Children(busyOverlay);
     }
 }

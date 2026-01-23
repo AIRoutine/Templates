@@ -1,4 +1,3 @@
-
 using System.Text.Json.Serialization;
 using AIRoutine.FullStack.Api.Core.Data.Configuration;
 using AIRoutine.FullStack.Api.Core.Startup;
@@ -10,11 +9,8 @@ builder.Services.AddOpenApi();
 builder.Services.AddApiServices(builder.Configuration);
 builder.Services.AddHealthChecks();
 
-// JSON Serialization: Enums als Strings fuer OpenAPI Enum-Generierung
 builder.Services.ConfigureHttpJsonOptions(options =>
-{
-    options.SerializerOptions.Converters.Add(new JsonStringEnumConverter());
-});
+    options.SerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
 var app = builder.Build();
 
@@ -26,10 +22,10 @@ app.MapEndpoints();
 
 if (app.Environment.IsDevelopment())
 {
-    _ = app.MapOpenApi();
-    _ = app.MapScalarApiReference();
+    app.MapOpenApi();
+    app.MapScalarApiReference();
 }
 
 app.UseHttpsRedirection();
 
-app.Run();
+await app.RunAsync();

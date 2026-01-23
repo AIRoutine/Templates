@@ -16,10 +16,10 @@ public class HealthEndpointTests : BaseApiIntegrationTest
 {
     [Test]
     [Category(TestCategories.Smoke)]
-    public async Task HealthEndpoint_ReturnsOk()
+    public async Task HealthEndpoint_ReturnsOkAsync()
     {
         // Arrange & Act
-        var response = await Client.GetAsync("/health");
+        var response = await Client.GetAsync(new Uri("/health", UriKind.Relative));
 
         // Assert
         response.StatusCode.Should().Be(HttpStatusCode.OK);

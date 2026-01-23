@@ -15,10 +15,8 @@ public class AppDbContextTests : BaseApiUnitTest
 {
     [Test]
     [Category(TestCategories.Smoke)]
-    public void AppDbContext_CanBeCreated()
-    {
+    public void AppDbContext_CanBeCreated() =>
         // Arrange & Act & Assert
         // TODO: Implementiere mit InMemory-DbContext
         true.Should().BeTrue("Placeholder-Test");
-    }
 }

@@ -1,6 +1,3 @@
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Media;
 using Windows.UI;
 
 namespace AIRoutine.FullStack.Core.Styles;
@@ -225,47 +222,28 @@ public static class AppStyles
         resources["ResponsiveScrollableContentStyle"] = responsiveScrollableContentStyle;
     }
 
-    private static Color Rgb(byte r, byte g, byte b)
+    private static Color Rgb(byte r, byte g, byte b) => new()
     {
-        return new Color
-        {
-            A = 255,
-            R = r,
-            G = g,
-            B = b
-        };
-    }
+        A = 255,
+        R = r,
+        G = g,
+        B = b
+    };
 
-    private static SolidColorBrush Solid(Color color)
-    {
-        return new SolidColorBrush(color);
-    }
+    private static SolidColorBrush Solid(Color color) => new(color);
 
-    private static Color GetColorResource(string key)
-    {
-        if (Application.Current?.Resources.TryGetValue(key, out var value) == true)
-        {
-            if (value is Color color)
+    private static Color GetColorResource(string key) =>
+        Application.Current?.Resources.TryGetValue(key, out var value) != true
+            ? default
+            : value switch
             {
-                return color;
-            }
+                Color color => color,
+                SolidColorBrush brush => brush.Color,
+                _ => default
+            };
 
-            if (value is SolidColorBrush brush)
-            {
-                return brush.Color;
-            }
-        }
-
-        return default;
-    }
-
-    private static Brush GetBrushResource(string key)
-    {
-        if (Application.Current?.Resources.TryGetValue(key, out var value) == true && value is Brush brush)
-        {
-            return brush;
-        }
-
-        return new SolidColorBrush();
-    }
+    private static Brush GetBrushResource(string key) =>
+        Application.Current?.Resources.TryGetValue(key, out var value) == true && value is Brush brush
+            ? brush
+            : new SolidColorBrush();
 }

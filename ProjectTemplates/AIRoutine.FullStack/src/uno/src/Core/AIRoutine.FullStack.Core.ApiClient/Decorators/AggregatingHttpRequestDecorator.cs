@@ -1,6 +1,5 @@
 using AIRoutine.FullStack.Http;
 using Microsoft.Extensions.Logging;
-using Shiny.Mediator;
 using Shiny.Mediator.Http;
 
 namespace AIRoutine.FullStack.Core.ApiClient.Decorators;
@@ -13,31 +12,24 @@ namespace AIRoutine.FullStack.Core.ApiClient.Decorators;
 /// It serves as the single <see cref="IHttpRequestDecorator"/> that orchestrates header contribution.
 /// </remarks>
 [Service(UnoService.Lifetime, TryAdd = UnoService.TryAdd)]
-public sealed class AggregatingHttpRequestDecorator : IHttpRequestDecorator
+public sealed class AggregatingHttpRequestDecorator(
+    IEnumerable<IHttpHeaderContributor> contributors,
+    ILogger<AggregatingHttpRequestDecorator> logger) : IHttpRequestDecorator
 {
-    private readonly IReadOnlyList<IHttpHeaderContributor> _contributors;
-    private readonly ILogger<AggregatingHttpRequestDecorator> _logger;
+    private readonly IReadOnlyList<IHttpHeaderContributor> _contributors = [.. contributors.OrderBy(c => c.Priority)];
 
-    public AggregatingHttpRequestDecorator(
-        IEnumerable<IHttpHeaderContributor> contributors,
-        ILogger<AggregatingHttpRequestDecorator> logger)
-    {
-        _contributors = contributors.OrderBy(c => c.Priority).ToList();
-        _logger = logger;
-    }
-
-    public async Task Decorate(HttpRequestMessage httpMessage, IMediatorContext context, CancellationToken ct)
+    public async Task Decorate(HttpRequestMessage httpMessage, IMediatorContext context, CancellationToken cancellationToken)
     {
         foreach (var contributor in _contributors)
         {
             try
             {
-                await contributor.ContributeAsync(httpMessage, ct);
-                _logger.LogDebug("Applied header contributor: {ContributorType}", contributor.GetType().Name);
+                await contributor.ContributeAsync(httpMessage, cancellationToken);
+                logger.LogDebug("Applied header contributor: {ContributorType}", contributor.GetType().Name);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Header contributor {ContributorType} failed", contributor.GetType().Name);
+                logger.LogError(ex, "Header contributor {ContributorType} failed", contributor.GetType().Name);
                 throw;
             }
         }

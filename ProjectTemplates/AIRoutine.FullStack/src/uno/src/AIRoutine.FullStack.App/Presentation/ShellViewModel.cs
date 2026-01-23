@@ -7,11 +7,10 @@ public class ShellViewModel
     public ShellViewModel(INavigator navigator)
     {
         _navigator = navigator;
-
-        _ = Start();
+        _ = StartAsync();
     }
 
-    public async Task Start()
+    public async Task StartAsync()
     {
         await _navigator.NavigateRouteAsync(this, Routes.Regions.Header);
         await _navigator.NavigateRouteAsync(this, Routes.Regions.Footer);

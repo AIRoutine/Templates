@@ -1,14 +1,13 @@
 using AIRoutine.FullStack.Core.Styles;
-using Microsoft.UI.Xaml.Automation;
-using Microsoft.UI.Xaml.Controls;
-using Uno.Toolkit.UI;
 using UnoFramework.Contracts.Navigation;
 
 namespace AIRoutine.FullStack.App.Presentation;
 
 public sealed partial class Shell : UserControl, IContentControlProvider, IRegionHost
 {
+#pragma warning disable IDE0032 // Use auto property
     private readonly ContentControl _contentRegion;
+#pragma warning restore IDE0032
 
     public ContentControl ContentControl => _contentRegion;
 

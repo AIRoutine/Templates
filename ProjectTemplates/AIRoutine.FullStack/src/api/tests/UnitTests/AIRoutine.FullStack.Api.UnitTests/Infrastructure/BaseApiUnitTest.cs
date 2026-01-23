@@ -12,19 +12,13 @@ public abstract class BaseApiUnitTest
     /// Wird vor jedem Test aufgerufen.
     /// </summary>
     [SetUp]
-    public virtual void SetUp()
-    {
-        OnSetUp();
-    }
+    public virtual void SetUp() => OnSetUp();
 
     /// <summary>
     /// Wird nach jedem Test aufgerufen.
     /// </summary>
     [TearDown]
-    public virtual void TearDown()
-    {
-        OnTearDown();
-    }
+    public virtual void TearDown() => OnTearDown();
 
     /// <summary>
     /// Kann in abgeleiteten Klassen ueberschrieben werden fuer zusaetzliches Setup.

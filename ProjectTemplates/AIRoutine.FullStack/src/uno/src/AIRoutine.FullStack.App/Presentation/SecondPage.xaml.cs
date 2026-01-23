@@ -1,12 +1,9 @@
 using AIRoutine.FullStack.Core.Styles;
-using Microsoft.UI.Xaml.Automation;
-using Microsoft.UI.Xaml.Controls;
-using Uno.Toolkit.UI;
-using UnoFramework.Controls;
+using UnoFramework.Pages;
 
 namespace AIRoutine.FullStack.App.Presentation;
 
-public sealed partial class SecondPage : Page
+public sealed partial class SecondPage : BasePage
 {
     public SecondPage()
     {
@@ -21,15 +18,6 @@ public sealed partial class SecondPage : Page
 
     private Grid CreateContent(SecondViewModel vm)
     {
-        var rootGrid = new Grid()
-            .Style(x => x.StaticResource(StyleKeys.PageRootStyle))
-            .AutomationProperties(ap => ap.AutomationId("SecondPage.Root"));
-
-        var busyOverlay = new BusyOverlay()
-            .AutomationProperties(ap => ap.AutomationId("SecondPage.BusyOverlay"))
-            .IsBusy(() => vm.IsBusy)
-            .BusyMessage(() => vm.BusyMessage);
-
         var safeAreaGrid = new Grid();
 #pragma warning disable ACS0002
         SafeArea.SetInsets(safeAreaGrid, SafeArea.InsetMask.VisibleBounds);
@@ -37,16 +25,16 @@ public sealed partial class SecondPage : Page
         safeAreaGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         safeAreaGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
 
-        var navigationBar = new NavigationBar()
-            .Style(x => x.StaticResource(StyleKeys.DefaultNavigationBarStyle))
-            .AutomationProperties(ap => ap.AutomationId("SecondPage.NavigationBar"))
-            .Content(() => vm.Title);
-
         var backButton = new AppBarButton()
             .Style(x => x.StaticResource(StyleKeys.AppBarButtonStyle))
             .Icon(new SymbolIcon(Symbol.Back).Style(x => x.StaticResource(StyleKeys.SymbolIconStyle)))
             .AutomationProperties(ap => ap.AutomationId("SecondPage.BackButton"))
             .Command(() => vm.GoBackCommand);
+
+        var navigationBar = new NavigationBar()
+            .Style(x => x.StaticResource(StyleKeys.DefaultNavigationBarStyle))
+            .AutomationProperties(ap => ap.AutomationId("SecondPage.NavigationBar"))
+            .Content(() => vm.Title);
         navigationBar.MainCommand = backButton;
         Grid.SetRow(navigationBar, 0);
 
@@ -73,9 +61,16 @@ public sealed partial class SecondPage : Page
 
         safeAreaGrid.Children.Add(navigationBar);
         safeAreaGrid.Children.Add(contentLayout);
-        busyOverlay.Content = safeAreaGrid;
-        rootGrid.Children.Add(busyOverlay);
 
-        return rootGrid;
+        var busyOverlay = new BusyOverlay()
+            .AutomationProperties(ap => ap.AutomationId("SecondPage.BusyOverlay"))
+            .IsBusy(() => vm.IsBusy)
+            .BusyMessage(() => vm.BusyMessage)
+            .Content(safeAreaGrid);
+
+        return new Grid()
+            .Style(x => x.StaticResource(StyleKeys.PageRootStyle))
+            .AutomationProperties(ap => ap.AutomationId("SecondPage.Root"))
+            .Children(busyOverlay);
     }
 }

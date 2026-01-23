@@ -45,10 +45,8 @@ public abstract class BaseApiIntegrationTest
     /// Erstellt die WebApplicationFactory.
     /// Kann ueberschrieben werden fuer spezifische Konfiguration.
     /// </summary>
-    protected virtual WebApplicationFactory<Program> CreateFactory()
-    {
-        return new CustomWebApplicationFactory<Program>();
-    }
+    protected virtual WebApplicationFactory<Program> CreateFactory() =>
+        new CustomWebApplicationFactory<Program>();
 
     /// <summary>
     /// Kann in abgeleiteten Klassen ueberschrieben werden fuer zusaetzliches Setup.

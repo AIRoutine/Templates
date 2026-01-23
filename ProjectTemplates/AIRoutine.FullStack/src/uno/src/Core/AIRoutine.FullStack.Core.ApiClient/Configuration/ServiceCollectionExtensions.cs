@@ -1,5 +1,3 @@
-using Microsoft.Extensions.DependencyInjection;
-
 namespace AIRoutine.FullStack.Core.ApiClient.Configuration;
 
 /// <summary>

@@ -1,4 +1,3 @@
-using System.Reflection;
 using AIRoutine.FullStack.Api.Core.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,16 +9,15 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     {
         base.OnModelCreating(modelBuilder);
 
-        // Auto-scan all loaded assemblies for IEntityTypeConfiguration implementations
         var assemblies = AppDomain.CurrentDomain.GetAssemblies()
-            .Where(a => a.FullName?.StartsWith("AIRoutine.FullStack") == true);
+            .Where(a => a.FullName?.StartsWith("AIRoutine.FullStack", StringComparison.Ordinal) == true)
+            .ToList();
 
         foreach (var assembly in assemblies)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(assembly);
         }
 
-        // Auto-register entities inheriting from BaseEntity (for entities without explicit configuration)
         foreach (var assembly in assemblies)
         {
             var entityTypes = assembly.GetTypes()
@@ -47,7 +45,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
         return base.SaveChangesAsync(cancellationToken);
     }
 
-    void UpdateTimestamps()
+    private void UpdateTimestamps()
     {
         var entries = ChangeTracker.Entries<BaseEntity>();
 

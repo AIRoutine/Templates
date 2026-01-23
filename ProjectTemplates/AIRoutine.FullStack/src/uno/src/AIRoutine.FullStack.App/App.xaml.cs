@@ -1,10 +1,6 @@
-using AIRoutine.FullStack.App.Presentation;
 using AIRoutine.FullStack.Core.Startup;
 using AIRoutine.FullStack.Core.Styles;
-using Uno.Resizetizer;
 using UnoFramework.Converters;
-using Microsoft.UI.Xaml.Controls;
-using Uno.Toolkit.UI;
 
 namespace AIRoutine.FullStack.App;
 
@@ -20,16 +16,14 @@ public partial class App : Application
 
     public IHost? Host { get; private set; }
 
-    protected async override void OnLaunched(LaunchActivatedEventArgs args)
+    protected override async void OnLaunched(LaunchActivatedEventArgs args)
     {
         var builder = this.CreateBuilder(args)
             .UseToolkitNavigation()
             .Configure(host => host
-//-:cnd:noEmit
 #if DEBUG
                 .UseEnvironment(Environments.Development)
 #endif
-//+:cnd:noEmit
                 .UseLogging(configure: (context, logBuilder) =>
                 {
                     logBuilder
@@ -54,11 +48,9 @@ public partial class App : Application
             );
         MainWindow = builder.Window;
 
-//-:cnd:noEmit
 #if DEBUG
         MainWindow.UseStudio();
 #endif
-//+:cnd:noEmit
         MainWindow.SetWindowIcon();
 
         Host = await builder.NavigateAsync<Shell>();
@@ -67,9 +59,7 @@ public partial class App : Application
     private void ConfigureResources()
     {
         Resources.MergedDictionaries.Add(new XamlControlsResources());
-        // TODO: ToolkitResources causes resource loading issues on Skia Desktop
-        // Resources.MergedDictionaries.Add(new ToolkitResources());
-#pragma warning disable ACS0002 // Static call is required for AppStyles factory method
+#pragma warning disable ACS0002
         Resources.MergedDictionaries.Add(AppStyles.Create());
 #pragma warning restore ACS0002
 

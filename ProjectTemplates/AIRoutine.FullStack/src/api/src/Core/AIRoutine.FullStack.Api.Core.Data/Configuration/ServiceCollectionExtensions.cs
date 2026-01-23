@@ -11,10 +11,7 @@ public static class ServiceCollectionExtensions
         var connectionString = configuration.GetConnectionString("DefaultConnection")
             ?? "Data Source=app.db";
 
-        services.AddDbContext<AppDbContext>(options =>
-        {
-            options.UseSqlite(connectionString);
-        });
+        services.AddDbContext<AppDbContext>(options => options.UseSqlite(connectionString));
 
         return services;
     }

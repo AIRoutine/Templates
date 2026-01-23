@@ -145,9 +145,9 @@ dotnet_naming_rule.non_field_members_should_be_pascal_case.severity = warning
 dotnet_naming_rule.non_field_members_should_be_pascal_case.symbols = non_field_members
 dotnet_naming_rule.non_field_members_should_be_pascal_case.style = pascal_case
 
-dotnet_naming_rule.private_or_internal_field_should_be_camel_case.severity = warning
-dotnet_naming_rule.private_or_internal_field_should_be_camel_case.symbols = private_or_internal_field
-dotnet_naming_rule.private_or_internal_field_should_be_camel_case.style = camel_case
+dotnet_naming_rule.private_or_internal_field_should_be_underscore_camel_case.severity = warning
+dotnet_naming_rule.private_or_internal_field_should_be_underscore_camel_case.symbols = private_or_internal_field
+dotnet_naming_rule.private_or_internal_field_should_be_underscore_camel_case.style = underscore_camel_case
 
 dotnet_naming_rule.async_methods_should_end_with_async.severity = warning
 dotnet_naming_rule.async_methods_should_end_with_async.symbols = async_methods
@@ -189,6 +189,11 @@ dotnet_naming_style.camel_case.required_prefix =
 dotnet_naming_style.camel_case.required_suffix =
 dotnet_naming_style.camel_case.word_separator =
 dotnet_naming_style.camel_case.capitalization = camel_case
+
+dotnet_naming_style.underscore_camel_case.required_prefix = _
+dotnet_naming_style.underscore_camel_case.required_suffix =
+dotnet_naming_style.underscore_camel_case.word_separator =
+dotnet_naming_style.underscore_camel_case.capitalization = camel_case
 
 dotnet_naming_style.end_with_async.required_prefix =
 dotnet_naming_style.end_with_async.required_suffix = Async
@@ -265,3 +270,29 @@ dotnet_diagnostic.IDE0058.severity = suggestion
 
 # IDE0130: Namespace does not match folder structure (conflicts with project conventions)
 dotnet_diagnostic.IDE0130.severity = none
+
+# === Documentation Rules ===
+# CS1591: Missing XML comment for publicly visible type or member (too verbose for internal projects)
+dotnet_diagnostic.CS1591.severity = none
+
+# === Test Project Specific Rules ===
+# CA1515: Types can be made internal (test classes need to be public for test discovery)
+dotnet_diagnostic.CA1515.severity = none
+
+# CA1707: Remove underscores from member names (underscores are standard convention for test method names)
+dotnet_diagnostic.CA1707.severity = none
+
+# CA1034: Do not nest types (nested types for grouping constants is acceptable)
+dotnet_diagnostic.CA1034.severity = none
+
+# CA1716: Identifiers should not match keywords (namespace 'Shared' is acceptable)
+dotnet_diagnostic.CA1716.severity = none
+
+# CA1010: Generic interface should also be implemented (not applicable for UI framework classes)
+dotnet_diagnostic.CA1010.severity = none
+
+# CA1852: Type can be sealed (conflicts with framework patterns)
+dotnet_diagnostic.CA1852.severity = none
+
+# CA1812: Avoid uninstantiated internal classes (DI instantiates these)
+dotnet_diagnostic.CA1812.severity = none
