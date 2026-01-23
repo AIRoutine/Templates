@@ -1,4 +1,4 @@
-namespace AIRoutine.FullStack;
+namespace AIRoutine.FullStack.Shared;
 
 /// <summary>
 /// Uno-spezifische DI-Konstanten.

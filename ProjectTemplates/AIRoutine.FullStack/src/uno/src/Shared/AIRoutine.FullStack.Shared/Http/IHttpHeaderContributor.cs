@@ -1,4 +1,4 @@
-namespace AIRoutine.FullStack.Http;
+namespace AIRoutine.FullStack.Shared.Http;
 
 /// <summary>
 /// Contributes headers to outgoing HTTP requests.

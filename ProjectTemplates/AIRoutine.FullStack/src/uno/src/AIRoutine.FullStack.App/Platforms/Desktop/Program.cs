@@ -1,6 +1,6 @@
 using Uno.UI.Hosting;
 
-namespace AIRoutine.FullStack.App;
+namespace AIRoutine.FullStack.App.Platforms.Desktop;
 
 internal class Program
 {

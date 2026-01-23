@@ -1,4 +1,5 @@
-using AIRoutine.FullStack.Http;
+using AIRoutine.FullStack.Shared;
+using AIRoutine.FullStack.Shared.Http;
 using Microsoft.Extensions.Logging;
 using Shiny.Mediator.Http;
 
