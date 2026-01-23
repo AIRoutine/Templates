@@ -22,8 +22,8 @@ app.MapEndpoints();
 
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
-    app.MapScalarApiReference();
+    _ = app.MapOpenApi();
+    _ = app.MapScalarApiReference();
 }
 
 app.UseHttpsRedirection();

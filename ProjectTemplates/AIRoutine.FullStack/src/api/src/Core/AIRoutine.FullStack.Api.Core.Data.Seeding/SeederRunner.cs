@@ -6,8 +6,15 @@ namespace AIRoutine.FullStack.Api.Core.Data.Seeding;
 /// <summary>
 /// Runs all registered seeders in order.
 /// </summary>
+/// <param name="serviceProvider">The service provider.</param>
+/// <param name="logger">The logger.</param>
 public class SeederRunner(IServiceProvider serviceProvider, ILogger<SeederRunner> logger)
 {
+    /// <summary>
+    /// Runs all registered seeders asynchronously.
+    /// </summary>
+    /// <param name="cancellationToken">The cancellation token.</param>
+    /// <returns>A task representing the asynchronous operation.</returns>
     public async Task RunAllSeedersAsync(CancellationToken cancellationToken = default)
     {
         using var scope = serviceProvider.CreateScope();

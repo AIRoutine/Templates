@@ -1,4 +1,4 @@
-namespace AIRoutine.FullStack.Api;
+namespace AIRoutine.FullStack.Api.Shared;
 
 /// <summary>
 /// API-spezifische DI-Konstanten.

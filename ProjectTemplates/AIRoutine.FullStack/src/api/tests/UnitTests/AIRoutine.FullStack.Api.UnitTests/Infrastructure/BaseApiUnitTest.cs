@@ -6,7 +6,7 @@ namespace AIRoutine.FullStack.Api.UnitTests.Infrastructure;
 /// Basis-Testklasse fuer alle API Unit-Tests.
 /// </summary>
 [TestFixture]
-public abstract class BaseApiUnitTest
+internal abstract class BaseApiUnitTest
 {
     /// <summary>
     /// Wird vor jedem Test aufgerufen.

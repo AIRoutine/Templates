@@ -3,7 +3,7 @@ namespace AIRoutine.FullStack.Api.IntegrationTests.Infrastructure;
 /// <summary>
 /// Konstanten fuer Test-Kategorien.
 /// </summary>
-public static class TestCategories
+internal static class TestCategories
 {
     /// <summary>
     /// Integration-Tests.

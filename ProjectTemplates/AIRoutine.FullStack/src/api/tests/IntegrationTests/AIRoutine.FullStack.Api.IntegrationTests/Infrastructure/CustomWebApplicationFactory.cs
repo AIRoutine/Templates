@@ -9,7 +9,7 @@ namespace AIRoutine.FullStack.Api.IntegrationTests.Infrastructure;
 /// Ersetzt die Datenbank durch eine InMemory-Variante.
 /// </summary>
 /// <typeparam name="TProgram">Der Program-Typ der API.</typeparam>
-public class CustomWebApplicationFactory<TProgram> : WebApplicationFactory<TProgram>
+internal class CustomWebApplicationFactory<TProgram> : WebApplicationFactory<TProgram>
     where TProgram : class
 {
     /// <summary>
@@ -17,7 +17,7 @@ public class CustomWebApplicationFactory<TProgram> : WebApplicationFactory<TProg
     /// </summary>
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
-        builder.ConfigureServices(services =>
+        _ = builder.ConfigureServices(services =>
         {
             // Entferne die echte Datenbank-Registrierung
             var dbContextDescriptor = services.SingleOrDefault(
@@ -25,7 +25,7 @@ public class CustomWebApplicationFactory<TProgram> : WebApplicationFactory<TProg
 
             if (dbContextDescriptor != null)
             {
-                services.Remove(dbContextDescriptor);
+                _ = services.Remove(dbContextDescriptor);
             }
 
             // TODO: Fuege InMemory-DbContext hinzu nach DbContext-Implementierung
@@ -37,7 +37,7 @@ public class CustomWebApplicationFactory<TProgram> : WebApplicationFactory<TProg
             ConfigureTestServices(services);
         });
 
-        builder.UseEnvironment("Testing");
+        _ = builder.UseEnvironment("Testing");
     }
 
     /// <summary>

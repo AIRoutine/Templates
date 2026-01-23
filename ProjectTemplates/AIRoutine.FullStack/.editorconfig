@@ -247,52 +247,14 @@ csharp_space_between_square_brackets = false
 csharp_preserve_single_line_statements = false
 csharp_preserve_single_line_blocks = true
 
-# === Specific Rule Suppressions ===
-# These rules are typically too strict for real-world projects
-
-# CA1062: Validate arguments of public methods (covered by nullable reference types)
-dotnet_diagnostic.CA1062.severity = none
-
-# CA1303: Do not pass literals as localized parameters
-dotnet_diagnostic.CA1303.severity = none
-
-# CA1724: Type names should not match namespaces (often unavoidable)
-dotnet_diagnostic.CA1724.severity = suggestion
-
-# CA1848: Use LoggerMessage delegates (too verbose for most cases)
-dotnet_diagnostic.CA1848.severity = suggestion
-
-# CA2007: Consider calling ConfigureAwait on the awaited task (not needed in ASP.NET Core / UI apps)
-dotnet_diagnostic.CA2007.severity = none
-
-# IDE0058: Expression value is never used (too noisy)
-dotnet_diagnostic.IDE0058.severity = suggestion
-
-# IDE0130: Namespace does not match folder structure (conflicts with project conventions)
-dotnet_diagnostic.IDE0130.severity = none
-
-# === Documentation Rules ===
-# CS1591: Missing XML comment for publicly visible type or member (too verbose for internal projects)
-dotnet_diagnostic.CS1591.severity = none
-
-# === Test Project Specific Rules ===
-# CA1515: Types can be made internal (test classes need to be public for test discovery)
-dotnet_diagnostic.CA1515.severity = none
-
-# CA1707: Remove underscores from member names (underscores are standard convention for test method names)
-dotnet_diagnostic.CA1707.severity = none
-
-# CA1034: Do not nest types (nested types for grouping constants is acceptable)
-dotnet_diagnostic.CA1034.severity = none
-
 # CA1716: Identifiers should not match keywords (namespace 'Shared' is acceptable)
 dotnet_diagnostic.CA1716.severity = none
 
-# CA1010: Generic interface should also be implemented (not applicable for UI framework classes)
-dotnet_diagnostic.CA1010.severity = none
+# CA1812: Avoid uninstantiated internal classes (test classes are instantiated via reflection)
+dotnet_diagnostic.CA1812.severity = none
 
-# CA1852: Type can be sealed (conflicts with framework patterns)
+# CA1852: Seal internal types (test framework patterns and extensibility)
 dotnet_diagnostic.CA1852.severity = none
 
-# CA1812: Avoid uninstantiated internal classes (DI instantiates these)
-dotnet_diagnostic.CA1812.severity = none
+# CA1034: Nested types should not be visible (used for grouping constants like Routes.Pages)
+dotnet_diagnostic.CA1034.severity = none

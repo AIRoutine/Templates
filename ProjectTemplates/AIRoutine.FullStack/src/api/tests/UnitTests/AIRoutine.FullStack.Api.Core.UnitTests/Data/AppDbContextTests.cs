@@ -11,12 +11,11 @@ namespace AIRoutine.FullStack.Api.Core.UnitTests.Data;
 [Category(TestCategories.Core)]
 [Category(TestCategories.Data)]
 [Category(TestCategories.Unit)]
-public class AppDbContextTests : BaseApiUnitTest
+internal class AppDbContextTests : BaseApiUnitTest
 {
     [Test]
     [Category(TestCategories.Smoke)]
     public void AppDbContext_CanBeCreated() =>
-        // Arrange & Act & Assert
         // TODO: Implementiere mit InMemory-DbContext
-        true.Should().BeTrue("Placeholder-Test");
+        _ = true.Should().BeTrue("Placeholder-Test");
 }

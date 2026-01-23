@@ -7,7 +7,7 @@ namespace AIRoutine.FullStack.Api.IntegrationTests.Infrastructure;
 /// Basis-Testklasse fuer alle API Integration-Tests.
 /// </summary>
 [TestFixture]
-public abstract class BaseApiIntegrationTest
+internal abstract class BaseApiIntegrationTest
 {
     /// <summary>
     /// Die WebApplicationFactory fuer den Test.

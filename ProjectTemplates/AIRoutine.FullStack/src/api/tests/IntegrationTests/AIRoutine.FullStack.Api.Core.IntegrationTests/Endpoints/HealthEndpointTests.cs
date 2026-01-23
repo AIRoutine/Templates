@@ -12,7 +12,7 @@ namespace AIRoutine.FullStack.Api.Core.IntegrationTests.Endpoints;
 [Category(TestCategories.Core)]
 [Category(TestCategories.Endpoint)]
 [Category(TestCategories.Integration)]
-public class HealthEndpointTests : BaseApiIntegrationTest
+internal class HealthEndpointTests : BaseApiIntegrationTest
 {
     [Test]
     [Category(TestCategories.Smoke)]
@@ -22,6 +22,6 @@ public class HealthEndpointTests : BaseApiIntegrationTest
         var response = await Client.GetAsync(new Uri("/health", UriKind.Relative));
 
         // Assert
-        response.StatusCode.Should().Be(HttpStatusCode.OK);
+        _ = response.StatusCode.Should().Be(HttpStatusCode.OK);
     }
 }

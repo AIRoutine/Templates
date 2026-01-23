@@ -3,7 +3,7 @@ namespace AIRoutine.FullStack.Api.UnitTests.Infrastructure;
 /// <summary>
 /// Konstanten fuer Test-Kategorien.
 /// </summary>
-public static class TestCategories
+internal static class TestCategories
 {
     /// <summary>
     /// Unit-Tests - schnelle, isolierte Tests.

@@ -5,7 +5,7 @@ namespace AIRoutine.FullStack.Api.UnitTests.Builders;
 /// </summary>
 /// <typeparam name="TBuilder">Der konkrete Builder-Typ.</typeparam>
 /// <typeparam name="TEntity">Der Entity-Typ.</typeparam>
-public abstract class EntityBuilder<TBuilder, TEntity>
+internal abstract class EntityBuilder<TBuilder, TEntity>
     where TBuilder : EntityBuilder<TBuilder, TEntity>
     where TEntity : class
 {

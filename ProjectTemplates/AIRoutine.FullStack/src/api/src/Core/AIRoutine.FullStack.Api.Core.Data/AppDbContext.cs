@@ -3,8 +3,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AIRoutine.FullStack.Api.Core.Data;
 
+/// <summary>
+/// Application database context for Entity Framework Core.
+/// </summary>
+/// <param name="options">The database context options.</param>
 public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
 {
+    /// <inheritdoc />
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
@@ -15,7 +20,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
 
         foreach (var assembly in assemblies)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(assembly);
+            _ = modelBuilder.ApplyConfigurationsFromAssembly(assembly);
         }
 
         foreach (var assembly in assemblies)
@@ -27,18 +32,20 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
             {
                 if (modelBuilder.Model.FindEntityType(entityType) == null)
                 {
-                    modelBuilder.Entity(entityType);
+                    _ = modelBuilder.Entity(entityType);
                 }
             }
         }
     }
 
+    /// <inheritdoc />
     public override int SaveChanges()
     {
         UpdateTimestamps();
         return base.SaveChanges();
     }
 
+    /// <inheritdoc />
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
         UpdateTimestamps();
