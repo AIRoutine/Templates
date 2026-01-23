@@ -12,8 +12,8 @@ public class ShellViewModel
 
     public async Task StartAsync()
     {
-        await _navigator.NavigateRouteAsync(this, Routes.Regions.Header);
-        await _navigator.NavigateRouteAsync(this, Routes.Regions.Footer);
-        await _navigator.NavigateRouteAsync(this, Routes.Regions.Content);
+        await _navigator.NavigateRouteAsync(this, RouteRegions.Header);
+        await _navigator.NavigateRouteAsync(this, RouteRegions.Footer);
+        await _navigator.NavigateRouteAsync(this, RouteRegions.Content);
     }
 }

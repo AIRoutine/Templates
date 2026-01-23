@@ -80,13 +80,13 @@ public partial class App : Application
             new RouteMap("", View: views.FindByViewModel<ShellViewModel>(),
                 Nested:
                 [
-                    new (Routes.Regions.Header, View: views.FindByViewModel<HeaderViewModel>()),
-                    new (Routes.Regions.Footer, View: views.FindByViewModel<FooterViewModel>()),
-                    new (Routes.Regions.Content, View: views.FindByViewModel<MainViewModel>(),
+                    new (RouteRegions.Header, View: views.FindByViewModel<HeaderViewModel>()),
+                    new (RouteRegions.Footer, View: views.FindByViewModel<FooterViewModel>()),
+                    new (RouteRegions.Content, View: views.FindByViewModel<MainViewModel>(),
                         Nested:
                         [
-                            new (Routes.Pages.Main, View: views.FindByViewModel<MainViewModel>()),
-                            new (Routes.Pages.Second, View: views.FindByViewModel<SecondViewModel>())
+                            new (RoutePages.Main, View: views.FindByViewModel<MainViewModel>()),
+                            new (RoutePages.Second, View: views.FindByViewModel<SecondViewModel>())
                         ]
                     )
                 ]

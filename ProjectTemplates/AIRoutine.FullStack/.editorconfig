@@ -256,9 +256,6 @@ dotnet_diagnostic.CA1812.severity = none
 # CA1852: Seal internal types (test framework patterns and extensibility)
 dotnet_diagnostic.CA1852.severity = none
 
-# CA1034: Nested types should not be visible (used for grouping constants like Routes.Pages)
-dotnet_diagnostic.CA1034.severity = none
-
 # IDE0130: Namespace does not match folder structure (Shared project uses shorter namespaces by design)
 dotnet_diagnostic.IDE0130.severity = none
 

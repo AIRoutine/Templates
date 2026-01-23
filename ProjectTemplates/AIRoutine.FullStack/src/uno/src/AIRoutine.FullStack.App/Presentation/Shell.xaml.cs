@@ -11,7 +11,7 @@ public sealed partial class Shell : UserControl, IContentControlProvider, IRegio
 
     public ContentControl ContentControl => _contentRegion;
 
-    public string ContentRegionName => Routes.Regions.Content;
+    public string ContentRegionName => RouteRegions.Content;
 
     public Shell()
     {
@@ -55,7 +55,7 @@ public sealed partial class Shell : UserControl, IContentControlProvider, IRegio
             .VerticalContentAlignment(VerticalAlignment.Stretch)
             .AutomationProperties(ap => ap.AutomationId("Shell.ContentRegion"));
 #pragma warning disable ACS0002
-        Region.SetName(_contentRegion, Routes.Regions.Content);
+        Region.SetName(_contentRegion, RouteRegions.Content);
         Region.SetAttached(_contentRegion, true);
 #pragma warning restore ACS0002
         Grid.SetRow(_contentRegion, 1);

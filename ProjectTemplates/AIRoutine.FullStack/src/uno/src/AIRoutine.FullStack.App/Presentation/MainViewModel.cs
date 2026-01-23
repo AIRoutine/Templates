@@ -21,7 +21,7 @@ public partial class MainViewModel(BaseServices baseServices) : PageViewModel(ba
     [UnoCommand]
     private async Task GoToSecondPageAsync()
     {
-        await Mediator.Send(new UnoNavigationRecord(Routes.Pages.Second)
+        await Mediator.Send(new UnoNavigationRecord(RoutePages.Second)
         {
             Navigator = Navigator
         });
