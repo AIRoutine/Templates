@@ -18,6 +18,7 @@ public sealed class AggregatingHttpRequestDecorator(
 {
     private readonly IReadOnlyList<IHttpHeaderContributor> _contributors = [.. contributors.OrderBy(c => c.Priority)];
 
+    /// <inheritdoc />
     public async Task Decorate(HttpRequestMessage httpMessage, IMediatorContext context, CancellationToken cancellationToken)
     {
         foreach (var contributor in _contributors)

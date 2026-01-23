@@ -2,8 +2,15 @@ using Windows.UI;
 
 namespace AIRoutine.FullStack.Core.Styles;
 
+/// <summary>
+/// Factory for creating application-wide style resources.
+/// </summary>
 public static class AppStyles
 {
+    /// <summary>
+    /// Creates the application's resource dictionary with theme overrides, tokens, and responsive styles.
+    /// </summary>
+    /// <returns>A configured <see cref="ResourceDictionary"/> with all application styles.</returns>
     public static ResourceDictionary Create()
     {
         var root = new ResourceDictionary();

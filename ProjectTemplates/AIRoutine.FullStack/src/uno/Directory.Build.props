@@ -21,8 +21,9 @@
       NU1507: Warning when there are multiple package sources when using CPM with no source mapping
       NETSDK1201: Warning that specifying RID won't create self containing app
       PRI257: Ignore default language (en) not being one of the included resources
+      CS1591: Missing XML comment (UI classes don't need XML documentation)
     -->
-    <NoWarn>$(NoWarn);NU1507;NETSDK1201;PRI257</NoWarn>
+    <NoWarn>$(NoWarn);NU1507;NETSDK1201;PRI257;CS1591</NoWarn>
     <!-- Define UNO for platform-specific code -->
     <DefineConstants>$(DefineConstants);UNO</DefineConstants>
   </PropertyGroup>

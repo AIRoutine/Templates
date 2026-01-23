@@ -258,3 +258,18 @@ dotnet_diagnostic.CA1852.severity = none
 
 # CA1034: Nested types should not be visible (used for grouping constants like Routes.Pages)
 dotnet_diagnostic.CA1034.severity = none
+
+# IDE0130: Namespace does not match folder structure (Shared project uses shorter namespaces by design)
+dotnet_diagnostic.IDE0130.severity = none
+
+# CA1848: Use LoggerMessage delegates (too strict for simple logging scenarios)
+dotnet_diagnostic.CA1848.severity = none
+
+# CA1515: Types can be internal (XAML requires public types for UI classes)
+dotnet_diagnostic.CA1515.severity = none
+
+# CA1010: Collections should implement IEnumerable<T> (UI classes inherit from WinUI base classes)
+dotnet_diagnostic.CA1010.severity = none
+
+# CA1724: Type names should not match namespaces (App and Shell are standard UI names)
+dotnet_diagnostic.CA1724.severity = none
