@@ -1,8 +1,6 @@
 ---
 paths:
-  - "src/uno/**/*Page.xaml"
-  - "src/uno/**/*View.xaml"
-  - "src/uno/**/*Control.xaml"
+  - "src/uno/src/**/Presentation/**"
 ---
 
 # Styling

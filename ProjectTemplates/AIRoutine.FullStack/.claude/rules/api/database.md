@@ -1,6 +1,6 @@
 ---
 paths:
-  - "src/api/**"
+  - "src/api/src/**"
 ---
 
 # Datenbank (EF Core + SQLite)

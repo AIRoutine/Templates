@@ -1,6 +1,6 @@
 ---
 paths:
-  - "src/uno/**"
+  - "src/uno/src/**"
 ---
 
 # Uno Feature-Struktur
