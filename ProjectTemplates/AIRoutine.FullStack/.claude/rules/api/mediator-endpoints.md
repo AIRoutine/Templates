@@ -61,20 +61,4 @@ public record GetItemByIdResponse(ItemDto? Item);
 
 ## API Enum Best Practices
 
-Enums MUESSEN mit `JsonStringEnumConverter` annotiert werden fuer korrekte OpenAPI-Generierung:
-
-```csharp
-using System.Text.Json.Serialization;
-
-[JsonConverter(typeof(JsonStringEnumConverter))]
-public enum ItemType
-{
-    TypeA = 1,
-    TypeB = 2
-}
-```
-
-Dies stellt sicher, dass:
-- OpenAPI Schema die Enum-Werte als Strings enthaelt
-- Der MediatorHttp Source Generator die Enums korrekt generiert
-- Der Uno ApiClient die Enum-Typen erhaelt
+Enums MUESSEN mit `[JsonConverter(typeof(JsonStringEnumConverter))]` annotiert werden fuer korrekte OpenAPI-Generierung und Uno ApiClient Enum-Typen.

@@ -1,17 +1,18 @@
+using UnoFramework;
+
 namespace AIRoutine.FullStack.Shared;
 
 /// <summary>
-/// Uno-spezifische DI-Konstanten.
+/// Uno-spezifische DI-Konstanten. Delegiert zu <see cref="UnoFrameworkService"/>.
 /// </summary>
 public static class UnoService
 {
-    /// <summary>
-    /// Default: Singleton für Uno/Client-Apps.
-    /// </summary>
-    public const ServiceLifetime Lifetime = ServiceLifetime.Singleton;
+    /// <inheritdoc cref="UnoFrameworkService.Lifetime"/>
+    public const ServiceLifetime Lifetime = UnoFrameworkService.Lifetime;
 
-    /// <summary>
-    /// Immer TryAdd verwenden.
-    /// </summary>
-    public const bool TryAdd = true;
+    /// <inheritdoc cref="UnoFrameworkService.PageLifetime"/>
+    public const ServiceLifetime PageLifetime = UnoFrameworkService.PageLifetime;
+
+    /// <inheritdoc cref="UnoFrameworkService.TryAdd"/>
+    public const bool TryAdd = UnoFrameworkService.TryAdd;
 }

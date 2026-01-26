@@ -46,12 +46,5 @@ src/api/src/Features/{FeatureName}/AIRoutine.FullStack.Api.Features.{FeatureName
 Features werden in `Core.Startup/ServiceCollectionExtensions.cs` registriert:
 
 ```csharp
-public static IServiceCollection AddApiServices(this IServiceCollection services, IConfiguration configuration)
-{
-    services.AddShinyServiceRegistry();  // [Service] Attribute scannen
-    services.AddShinyMediator();
-    services.AddAppData(configuration);  // Zentraler DbContext
-    services.Add{FeatureName}Feature();
-    return services;
-}
+services.Add{FeatureName}Feature();
 ```

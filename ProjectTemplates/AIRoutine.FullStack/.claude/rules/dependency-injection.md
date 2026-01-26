@@ -20,6 +20,12 @@ using AIRoutine.FullStack;
 public class MyService : IMyService { }
 ```
 
+**Uno Page-Scoped Services (pro Navigation):**
+```csharp
+[Service(UnoService.PageLifetime, TryAdd = UnoService.TryAdd)]
+public class MyPageService : IMyPageService { }
+```
+
 ## Registrierung
 
 ```csharp
@@ -28,9 +34,9 @@ services.AddShinyServiceRegistry();
 
 ## Konstanten
 
-| Klasse | Namespace | Projekt | Lifetime | TryAdd |
-|--------|-----------|---------|----------|--------|
-| `ApiService` | `AIRoutine.FullStack.Api` | `src/api/src/Shared/Api.Shared` | `Scoped` | `true` |
-| `UnoService` | `AIRoutine.FullStack` | `src/uno/src/Shared/Shared` | `Singleton` | `true` |
+| Klasse | Namespace | Lifetime | PageLifetime | TryAdd |
+|--------|-----------|----------|--------------|--------|
+| `ApiService` | `AIRoutine.FullStack.Api` | `Scoped` | - | `true` |
+| `UnoService` | `AIRoutine.FullStack` | `Singleton` | `Scoped` | `true` |
 
 Referenz: [shinylib.net/extensions/di](https://shinylib.net/extensions/di/)

@@ -50,30 +50,13 @@ src/uno/src/Features/{FeatureName}/AIRoutine.FullStack.Features.{FeatureName}/
 Features werden in `Core.Startup/ServiceCollectionExtensions.cs` registriert:
 
 ```csharp
-public static IServiceCollection AddAppServices(this IServiceCollection services)
-{
-    services.AddShinyServiceRegistry();  // [Service] Attribute scannen
-    services.AddShinyMediator();
-    services.AddSingleton<IEventCollector, UnoEventCollector>();
-    services.AddSingleton<BaseServices>();
-
-    // Features
-    services.Add{FeatureName}Feature();
-
-    return services;
-}
+services.Add{FeatureName}Feature();
 ```
 
 ## HttpClient Registrierung
 
-HttpClient-basierte Services erfordern explizite Registrierung:
+HttpClient-basierte Services erfordern explizite Registrierung in der Feature Extension:
 
 ```csharp
-// In Feature Configuration/ServiceCollectionExtensions.cs
-public static IServiceCollection AddAuthFeature(this IServiceCollection services)
-{
-    // HttpClient erfordert explizite Registrierung
-    services.AddHttpClient<IAuthApiClient, AuthApiClient>();
-    return services;
-}
+services.AddHttpClient<IAuthApiClient, AuthApiClient>();
 ```
