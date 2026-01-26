@@ -41,8 +41,7 @@ public sealed partial class SecondPage : BasePage
         var contentLayout = new AutoLayout()
             .Style(x => x.StaticResource(StyleKeys.CenteredContentAutoLayoutStyle))
             .AutomationProperties(ap => ap.AutomationId("SecondPage.Content"))
-            .ResponsivePadding(narrowest: 16, narrow: 20, normal: 24, wide: 32, widest: 48)
-            .ResponsiveSpacing(narrowest: 12, narrow: 14, normal: 16, wide: 20, widest: 24);
+            .ApplyDefaultResponsiveLayout();
         Grid.SetRow(contentLayout, 1);
 
         contentLayout.Children.Add(
