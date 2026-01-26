@@ -13,4 +13,8 @@
     </UnoFeatures>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\subm\uno\src\UnoFramework\UnoFramework.csproj" />
+  </ItemGroup>
+
 </Project>
