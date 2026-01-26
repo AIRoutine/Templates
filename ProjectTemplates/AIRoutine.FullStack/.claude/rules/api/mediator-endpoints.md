@@ -5,45 +5,13 @@ paths:
 
 # Shiny.Mediator HTTP Endpoints
 
-API-Handler mit automatischer OpenAPI-Generierung und Endpoint-Registrierung.
+**Nutze den Shiny Mediator MCP für die Erstellung von API-Endpunkten.**
 
-## Package Requirements
-
-```xml
-<ItemGroup>
-  <FrameworkReference Include="Microsoft.AspNetCore.App" />
-  <PackageReference Include="Shiny.Mediator.AspNet" />
-</ItemGroup>
-```
-
-## Handler mit MediatorHttpGet
-
-```csharp
-using AIRoutine.FullStack.Api;
-using Shiny.Extensions.DependencyInjection;
-using Shiny.Mediator;
-
-[Service(ApiService.Lifetime, TryAdd = ApiService.TryAdd)]
-public class GetItemsHandler(AppDbContext dbContext) : IRequestHandler<GetItemsRequest, GetItemsResponse>
-{
-    [MediatorHttpGet("/api/items", OperationId = "GetItems")]
-    public async Task<GetItemsResponse> Handle(GetItemsRequest request, IMediatorContext context, CancellationToken cancellationToken)
-    {
-        // Implementation
-    }
-}
-```
-
-## Endpoint Registrierung
-
-```csharp
-// In Core.Startup/ServiceCollectionExtensions.cs
-public static WebApplication MapEndpoints(this WebApplication app)
-{
-    app.MapGeneratedMediatorEndpoints(); // Aufruf triggert Source Generator
-    return app;
-}
-```
+Der MCP bietet aktuelle Dokumentation und Beispiele für:
+- Handler mit `MediatorHttpGet`, `MediatorHttpPost`, etc.
+- Request/Response Records
+- Endpoint-Registrierung
+- OpenAPI-Generierung
 
 ## WICHTIG - Response Types
 
