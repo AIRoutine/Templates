@@ -53,10 +53,3 @@ Features werden in `Core.Startup/ServiceCollectionExtensions.cs` registriert:
 services.Add{FeatureName}Feature();
 ```
 
-## HttpClient Registrierung
-
-HttpClient-basierte Services erfordern explizite Registrierung in der Feature Extension:
-
-```csharp
-services.AddHttpClient<IAuthApiClient, AuthApiClient>();
-```
