@@ -40,7 +40,7 @@ public class GetItemsHandler(AppDbContext dbContext) : IRequestHandler<GetItemsR
 // In Core.Startup/ServiceCollectionExtensions.cs
 public static WebApplication MapEndpoints(this WebApplication app)
 {
-    app.MapGeneratedMediatorEndpoints(); // Automatisch generiert
+    app.MapGeneratedMediatorEndpoints(); // Aufruf triggert Source Generator
     return app;
 }
 ```
