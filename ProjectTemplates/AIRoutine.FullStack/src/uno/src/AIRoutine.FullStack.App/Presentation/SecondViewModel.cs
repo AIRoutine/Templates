@@ -4,7 +4,7 @@ public partial class SecondViewModel(BaseServices baseServices) : PageViewModel(
 {
     [ObservableProperty]
 #pragma warning disable ACS0001 // Template example title
-    private string _title = "Second Page";
+    public partial string Title { get; set; } = "Second Page";
 #pragma warning restore ACS0001
 
     [UnoCommand]

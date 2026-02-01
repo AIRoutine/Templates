@@ -3,10 +3,10 @@ namespace AIRoutine.FullStack.App.Presentation;
 public partial class MainViewModel(BaseServices baseServices) : PageViewModel(baseServices)
 {
     [ObservableProperty]
-    private string _title = "AIRoutine.FullStack";
+    public partial string Title { get; set; } = "AIRoutine.FullStack";
 
     [ObservableProperty]
-    private int _clickCount;
+    public partial int ClickCount { get; set; }
 
     [UnoCommand]
     private async Task ClickAsync()

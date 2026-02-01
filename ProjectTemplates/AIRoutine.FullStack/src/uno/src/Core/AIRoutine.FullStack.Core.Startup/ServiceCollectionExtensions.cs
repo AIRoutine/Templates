@@ -15,10 +15,7 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddAppServices(this IServiceCollection services)
     {
         services.AddShinyServiceRegistry();
-        services.AddShinyMediator(cfg =>
-        {
-            cfg.AddEventCollector<UnoEventCollector>();
-        });
+        services.AddShinyMediator(cfg => cfg.AddEventCollector<UnoEventCollector>());
 
         return services;
     }

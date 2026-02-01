@@ -17,4 +17,8 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\subm\uno\src\UnoFramework\UnoFramework.csproj" />
+  </ItemGroup>
+
 </Project>

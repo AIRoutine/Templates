@@ -1,6 +1,5 @@
 using AIRoutine.FullStack.Core.Startup;
 using AIRoutine.FullStack.Core.Styles;
-using UnoFramework.Converters;
 
 namespace AIRoutine.FullStack.App;
 
@@ -63,7 +62,6 @@ public partial class App : Application
         Resources.MergedDictionaries.Add(AppStyles.Create());
 #pragma warning restore ACS0002
 
-        Resources["NullToCollapsedConverter"] = new NullToCollapsedConverter();
     }
 
     private static void RegisterRoutes(IViewRegistry views, IRouteRegistry routes)
