@@ -1,3 +1,4 @@
+using UnoFramework.Configuration;
 using UnoFramework.Mediator;
 
 namespace AIRoutine.FullStack.Core.Startup;
@@ -14,6 +15,7 @@ public static class ServiceCollectionExtensions
     /// <returns>The service collection for chaining.</returns>
     public static IServiceCollection AddAppServices(this IServiceCollection services)
     {
+        services.AddUnoFramework();
         services.AddShinyServiceRegistry();
         services.AddShinyMediator(cfg => cfg.AddEventCollector<UnoEventCollector>());
 
