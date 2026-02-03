@@ -26,7 +26,7 @@ public sealed class AggregatingHttpRequestDecorator(
         {
             try
             {
-                await contributor.ContributeAsync(httpMessage, cancellationToken);
+                await contributor.ContributeAsync(httpMessage, cancellationToken).ConfigureAwait(false);
                 logger.LogDebug("Applied header contributor: {ContributorType}", contributor.GetType().Name);
             }
             catch (Exception ex)

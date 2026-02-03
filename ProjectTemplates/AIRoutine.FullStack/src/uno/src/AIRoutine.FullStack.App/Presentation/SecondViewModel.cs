@@ -10,9 +10,9 @@ public partial class SecondViewModel(BaseServices baseServices) : PageViewModel(
     [UnoCommand]
     private async Task GoBackAsync()
     {
-        await Mediator.Send(new UnoNavigationRecord(Routes.Back)
+        _ = await Mediator.Send(new UnoNavigationRecord(Routes.Back)
         {
             Navigator = Navigator
-        });
+        }).ConfigureAwait(false);
     }
 }

@@ -13,7 +13,7 @@ public partial class MainViewModel(BaseServices baseServices) : PageViewModel(ba
     {
         using (BeginBusy("Processing..."))
         {
-            await Task.Delay(500);
+            await Task.Delay(500).ConfigureAwait(false);
             ClickCount++;
         }
     }
@@ -21,9 +21,9 @@ public partial class MainViewModel(BaseServices baseServices) : PageViewModel(ba
     [UnoCommand]
     private async Task GoToSecondPageAsync()
     {
-        await Mediator.Send(new UnoNavigationRecord(RoutePages.Second)
+        _ = await Mediator.Send(new UnoNavigationRecord(RoutePages.Second)
         {
             Navigator = Navigator
-        });
+        }).ConfigureAwait(false);
     }
 }

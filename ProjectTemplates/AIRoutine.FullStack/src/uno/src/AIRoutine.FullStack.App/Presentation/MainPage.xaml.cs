@@ -9,14 +9,14 @@ public sealed partial class MainPage : BasePage
     {
         NavigationCacheMode = NavigationCacheMode.Required;
 
-        this.DataContext<MainViewModel>((page, vm) => page
+        _ = this.DataContext<MainViewModel>((page, vm) => page
             .Content(
                 CreateContent(vm)
             )
         );
     }
 
-    private Grid CreateContent(MainViewModel vm)
+    private static Grid CreateContent(MainViewModel vm)
     {
         var safeAreaGrid = new Grid();
         SafeArea.SetInsets(safeAreaGrid, SafeArea.InsetMask.Left | SafeArea.InsetMask.Right);

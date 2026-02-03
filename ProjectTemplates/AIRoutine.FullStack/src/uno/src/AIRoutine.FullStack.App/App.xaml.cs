@@ -52,7 +52,7 @@ public partial class App : Application
 #endif
         MainWindow.SetWindowIcon();
 
-        Host = await builder.NavigateAsync<Shell>();
+        Host = await builder.NavigateAsync<Shell>().ConfigureAwait(false);
     }
 
     private void ConfigureResources()
@@ -66,7 +66,7 @@ public partial class App : Application
 
     private static void RegisterRoutes(IViewRegistry views, IRouteRegistry routes)
     {
-        views.Register(
+        _ = views.Register(
             new ViewMap<Shell, ShellViewModel>(),
             new ViewMap<HeaderPage, HeaderViewModel>(),
             new ViewMap<FooterPage, FooterViewModel>(),
@@ -74,7 +74,7 @@ public partial class App : Application
             new ViewMap<SecondPage, SecondViewModel>()
         );
 
-        routes.Register(
+        _ = routes.Register(
             new RouteMap("", View: views.FindByViewModel<ShellViewModel>(),
                 Nested:
                 [

@@ -6,7 +6,7 @@ public sealed partial class FooterPage : BaseRegionControl
 {
     public FooterPage()
     {
-        this.DataContext<FooterViewModel>((control, vm) => control
+        _ = this.DataContext<FooterViewModel>((control, vm) => control
             .Content(
                 new Grid()
                     .Style(x => x.StaticResource(StyleKeys.GridStyle))

@@ -15,9 +15,9 @@ public static class ServiceCollectionExtensions
     /// <returns>The service collection for chaining.</returns>
     public static IServiceCollection AddAppServices(this IServiceCollection services)
     {
-        services.AddUnoFramework();
-        services.AddShinyServiceRegistry();
-        services.AddShinyMediator(cfg => cfg.AddEventCollector<UnoEventCollector>());
+        _ = services.AddUnoFramework();
+        _ = services.AddShinyServiceRegistry();
+        _ = services.AddShinyMediator(cfg => cfg.AddEventCollector<UnoEventCollector>());
 
         return services;
     }

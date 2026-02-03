@@ -6,7 +6,7 @@
 - **Framework:** .NET 10
 - **Frontend:** Uno Platform (nutze Uno MCP und definierte Skills)
 - **Backend:** ASP.NET (nutze Microsoft Docs MCP und definierte Skills)
-- **Architektur:** Shiny Mediator Pattern ([GitHub](https://github.com/shinyorg/mediator))
+- **Architektur:** Shiny Mediator Pattern ([GitHub](https://github.com/shinyorg/mediator)) — Für jede Code-Umsetzung mit Shiny Mediator **müssen** die `shiny-mediator` Plugin-Skills verwendet werden.
 
 ## Architekturprinzip: Backend-First
 

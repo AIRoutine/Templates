@@ -9,14 +9,14 @@ public sealed partial class SecondPage : BasePage
     {
         NavigationCacheMode = NavigationCacheMode.Required;
 
-        this.DataContext<SecondViewModel>((page, vm) => page
+        _ = this.DataContext<SecondViewModel>((page, vm) => page
             .Content(
                 CreateContent(vm)
             )
         );
     }
 
-    private Grid CreateContent(SecondViewModel vm)
+    private static Grid CreateContent(SecondViewModel vm)
     {
         var safeAreaGrid = new Grid();
 #pragma warning disable ACS0002

@@ -6,7 +6,7 @@ public sealed partial class HeaderPage : BaseRegionControl
 {
     public HeaderPage()
     {
-        this.DataContext<HeaderViewModel>((control, vm) => control
+        _ = this.DataContext<HeaderViewModel>((control, vm) => control
             .Content(
                 new Grid()
                     .Style(x => x.StaticResource(StyleKeys.GridStyle))
